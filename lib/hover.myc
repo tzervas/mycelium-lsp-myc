@@ -1,0 +1,20 @@
+// nodule: lsp.hover
+// **Hover provider** (M-730; `textDocument/hover`).
+//
+// Resolves the token under the cursor to a grounded, human-readable description.
+//
+// Scope and honesty (`Declared` / never-upgraded — VR-5): hover reports only what is **lexically
+// knowable**. For a keyword, a substrate/representation type, or a guarantee-strength token it
+// returns a real, grounded description. For an **identifier** it cannot honestly report a type or
+// guarantee tag — there is no type checker behind this surface yet — so it returns the lexical
+// role and **explicitly flags** that type/guarantee inference is not available, rather than
+// fabricating one (the DoD's "type + guarantee for every symbol" is the north star; this is the
+// honest subset that exists today, flagged not faked). **Never-silent (G2):** a position that is
+// not on a token yields a `null` hover (no result), never an invented one.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.hover;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.span) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type LexKind = Token(Tok) | Comment;

@@ -1,0 +1,57 @@
+// nodule: lsp.diagnostics.sink
+// **Diagnostic routes → RFC-0008 observability sinks** (RFC-0013 §8, closed v0 set; RFC-0008 §4.8
+// "the diagnostic stream lives in RFC-0008").
+//
+// RFC-0013 left `route` a free-form string and deferred *which* targets exist and *how* they compose
+// with the runtime's observability sinks to "the RFC-0008 integration". This module closes that: a
+// **closed v0 [`Route`] vocabulary**, each bound to an RFC-0008 sink with an **honest delivery
+// guarantee** tagged on the lattice (RT5) — *never* an unguaranteed "fire and forget" claimed as
+// reliable, and *never* upgraded without a checked basis (VR-5).
+//
+// Two invariants this layer must not cross:
+// - **I1 (never-silent).** A route says *where a presentation goes*, never *whether the error
+//   propagates*. Resolution lives **outside** [`super::record::present`] (which already returns the
+//   error unchanged), so no route — not even [`Route::Null`] — can gate propagation. An *unknown*
+//   route is an explicit [`UnknownRoute`] error (surfaced, never silently dropped), not a missed
+//   delivery that hides the error.
+// - **RT5 (honest sink guarantees).** Each sink's [`Delivery`] carries the strongest claim that is
+//   *honest for v0*: in-process/durable/best-effort delivery is `Declared` (asserted by construction,
+//   not `Proven` absent a checked theorem); the mesh sink is *probabilistic* and carries a declared
+//   [`ProbabilityBound`](mycelium_core::BoundKind::Probability) δ; the null sink honestly reports
+//   **not delivered**. None claims reliability it has not earned.
+//
+// **Tooling layer only** — no kernel logging dependency (KC-3): this binds *names to honest
+// semantics*; the actual sink transports are the RFC-0008 runtime's, consumed through this contract.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.diagnostics.sink;
+
+// The **closed v0 set** of diagnostic routes (RFC-0013 §8). A `route` string resolves to exactly one
+// of these or is an explicit [`UnknownRoute`]; there is no open-ended free-form target in v0.
+pub type Route = Stream | Audit | Log | Null | Mesh;
+
+impl Show[Route] for Route {
+  fn render(x: Route) => Bytes =
+    match x { Stream => "Stream", Audit => "Audit", Log => "Log", Null => "Null", Mesh => "Mesh" };
+};
+
+fn eq_Route(a: Route, b: Route) => Binary{1} =
+  match a { Stream => match b { Stream => 0b1, _ => 0b0 }, Audit => match b { Audit => 0b1, _ => 0b0 }, Log => match b { Log => 0b1, _ => 0b0 }, Null => match b { Null => 0b1, _ => 0b0 }, Mesh => match b { Mesh => 0b1, _ => 0b0 } };
+
+impl Route {
+  // The canonical route string (the on-the-wire/`PolicyFile` projection name).
+  fn as_str(self: Route) => Bytes = match self { Stream => "stream", Audit => "audit", Log => "log", Null => "null", Mesh => "mesh" };
+};
+
+// A `route` string that is not in the closed v0 [`Route`] set — an explicit configuration error
+// (never silently misrouted; I1 — and the error it would have presented still propagates).
+pub type UnknownRoute = UnknownRoute(Bytes);
+
+impl Show[UnknownRoute] for UnknownRoute {
+  fn render(x: UnknownRoute) => Bytes =
+    match x { UnknownRoute(p0) => bytes_concat(bytes_concat("UnknownRoute(", render(p0)), ")") };
+};
+
+fn eq_UnknownRoute(a: UnknownRoute, b: UnknownRoute) => Binary{1} =
+    match a { UnknownRoute(p0) => match b { UnknownRoute(q0) => bytes_eq(p0, q0) } };

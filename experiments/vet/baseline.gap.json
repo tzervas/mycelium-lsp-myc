@@ -1,0 +1,184 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+  "emitted_items": [
+    "co-include:Level",
+    "co-include:UnknownClass",
+    "co-include:Route",
+    "RecoveryProfile",
+    "impl RecoveryProfile",
+    "RESILIENT_MAX_ATTEMPTS"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: diagnostics :: policy :: { DiagnosticPolicy , Rule } ;",
+      "reason": "`use diagnostics.policy::DiagnosticPolicy` — `DiagnosticPolicy` is not among sibling `diagnostics.policy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics.policy::Rule` — `Rule` is not among sibling `diagnostics.policy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: diagnostics :: registry :: { ClassRegistry , UnknownClass } ;",
+      "reason": "`use diagnostics.registry::ClassRegistry` — `ClassRegistry` is not among sibling `diagnostics.registry`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: recover :: policy :: { RecoveryAction , RecoveryPolicy } ;",
+      "reason": "`use recover.policy::RecoveryAction` — `RecoveryAction` is not among sibling `recover.policy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use recover.policy::RecoveryPolicy` — `RecoveryPolicy` is not among sibling `recover.policy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 29,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The auto-derived baseline for one error class: its presentation level + route, and the *rationale*\"] # [doc = \" the derivation used (surfaced by [`explain_baseline`] — A3/A4).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub struct BaselineRule { # [doc = \" The baseline presentation level.\"] pub level : Level , # [doc = \" The baseline route (an RFC-0013 §8 observability sink).\"] pub route : Route , # [doc = \" Why this class maps here — a fixed, inspectable reason (no learning; A4).\"] pub rationale : & 'static str , }",
+      "reason": "struct `BaselineRule` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "BaselineRule"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 41,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The **total** baseline derivation (A4): a deterministic function of the class name — a closed table\"] # [doc = \" over the v0 built-in classes plus a **safe additive fallback** (`Stream`/`Minimal`) for any other\"] # [doc = \" registered class. Never learned, never `eval`-ed; the same input always yields the same rule.\"] # [must_use] pub fn baseline_for_class (class : & str) -> BaselineRule { let (level , route , rationale) = match class { \"UnsupportedSwapPair\" => (Level :: Medium , Route :: Audit , \"representation-crossing refusal: durable audit, medium detail (RFC-0013 §4.6)\" ,) , c if c . starts_with (\"Swap\") => (Level :: Medium , Route :: Audit , \"representation-crossing refusal: durable audit, medium detail (RFC-0013 §4.6)\" ,) , \"NotValidated\" | \"TypeMismatch\" | \"UnresolvedName\" => (Level :: Medium , Route :: Stream , \"static-check refusal: diagnostic stream, medium detail\" ,) , \"UnverifiedBound\" | \"PolicyDivergence\" => (Level :: Medium , Route :: Audit , \"honesty-load-bearing advisory: durable audit so the unverified/divergent case is recorded (VR-5)\" ,) , \"ImplicitSwap\" | \"PlaceholderPolicy\" | \"FreeVariable\" => (Level :: Minimal , Route :: Stream , \"authoring-invariant lint: diagnostic stream, minimal\" ,) , _ => (Level :: Minimal , Route :: Stream , \"default: safe additive baseline — diagnostic stream, minimal (the class still propagates)\" ,) , } ; BaselineRule { level , route , rationale , } }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "baseline_for_class"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 93,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Derive the baseline [`DiagnosticPolicy`] for **every** class in `registry` (the broadest scope). A1:\"] # [doc = \" the result is presentation-only — it cannot change control flow. Each rule is tagged `baseline` so an\"] # [doc = \" auto-derived rule is distinguishable from a hand-written one.\"] # [must_use] pub fn derive_baseline (registry : & ClassRegistry) -> DiagnosticPolicy { let classes : Vec < String > = registry . classes () . map (str :: to_owned) . collect () ; build (registry , classes . iter () . map (String :: as_str)) . expect (\"classes enumerated from the registry resolve\") }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "derive_baseline"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 104,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Derive the baseline scoped to a **definition's declared effect classes** (the classes it can raise;\"] # [doc = \" RFC-0014 I3) — the per-definition auto-wrap scope (§8-Q3). An unknown class is an explicit error\"] # [doc = \" (X1; never silently dropped).\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] for the first `class` not in `registry`.\"] pub fn derive_baseline_for (registry : & ClassRegistry , classes : & [& str] ,) -> Result < DiagnosticPolicy , UnknownClass > { build (registry , classes . iter () . copied ()) }",
+      "reason": "method call `.copied(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__copied` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `copied(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "derive_baseline_for"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 117,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "fn build < 'a > (registry : & ClassRegistry , classes : impl Iterator < Item = & 'a str > ,) -> Result < DiagnosticPolicy , UnknownClass > { let mut policy = DiagnosticPolicy :: new () ; for class in classes { let b = baseline_for_class (class) ; let rule = Rule :: new () . level (b . level) . route_to (b . route) . tag (\"baseline\") ; policy . on (registry , class , rule) ? ; } Ok (policy) }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "build"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 130,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The `EXPLAIN` of the baseline derivation over `registry` (A3): every class with its derived level,\"] # [doc = \" route, and rationale — so \\\"what baseline applies, and why?\\\" is always answerable. Deterministic\"] # [doc = \" (class-sorted) and stable.\"] # [must_use] pub fn explain_baseline (registry : & ClassRegistry) -> String { let mut out = String :: from (\"baseline diagnostic policy (RFC-0015; derived, not learned):\\n\") ; for class in registry . classes () { let b = baseline_for_class (class) ; out . push_str (& format ! (\"  {class}: level={:?} route={} — {}\\n\" , b . level , b . route . as_str () , b . rationale)) ; } out }",
+      "reason": "qualified/associated-function call `String :: from` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "explain_baseline"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 148,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0** set of named, opt-in, bounded recovery profiles (RFC-0015 §8-Q2; A2). Recovery is\"] # [doc = \" **never** auto-applied — a profile is built only on explicit request, over explicitly-supplied\"] # [doc = \" classes.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum RecoveryProfile { # [doc = \" `strict` — propagate everything (the honest default: no recovery, all errors bubble).\"] Strict , # [doc = \" `resilient` — bounded `retry(<=3)` on the supplied classes; anything else propagates (I4/I5).\"] Resilient , }",
+      "reason": "enum `RecoveryProfile` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 148,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0** set of named, opt-in, bounded recovery profiles (RFC-0015 §8-Q2; A2). Recovery is\"] # [doc = \" **never** auto-applied — a profile is built only on explicit request, over explicitly-supplied\"] # [doc = \" classes.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum RecoveryProfile { # [doc = \" `strict` — propagate everything (the honest default: no recovery, all errors bubble).\"] Strict , # [doc = \" `resilient` — bounded `retry(<=3)` on the supplied classes; anything else propagates (I4/I5).\"] Resilient , }",
+      "reason": "enum `RecoveryProfile` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 148,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0** set of named, opt-in, bounded recovery profiles (RFC-0015 §8-Q2; A2). Recovery is\"] # [doc = \" **never** auto-applied — a profile is built only on explicit request, over explicitly-supplied\"] # [doc = \" classes.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum RecoveryProfile { # [doc = \" `strict` — propagate everything (the honest default: no recovery, all errors bubble).\"] Strict , # [doc = \" `resilient` — bounded `retry(<=3)` on the supplied classes; anything else propagates (I4/I5).\"] Resilient , }",
+      "reason": "enum `RecoveryProfile` derive(Eq): covered by co-occurring PartialEq → `fn eq_RecoveryProfile` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 159,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl RecoveryProfile { # [doc = \" The canonical profile name.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { RecoveryProfile :: Strict => \"strict\" , RecoveryProfile :: Resilient => \"resilient\" , } } # [doc = \" The closed v0 set, for enumeration / exhaustive tests.\"] # [must_use] pub fn all () -> [RecoveryProfile ; 2] { [RecoveryProfile :: Strict , RecoveryProfile :: Resilient] } # [doc = \" Resolve a profile name against the closed set (looked up, never evaluated). `None` if unknown.\"] # [must_use] pub fn resolve (s : & str) -> Option < RecoveryProfile > { RecoveryProfile :: all () . into_iter () . find (| p | p . as_str () == s) } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 159,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl RecoveryProfile { # [doc = \" The canonical profile name.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { RecoveryProfile :: Strict => \"strict\" , RecoveryProfile :: Resilient => \"resilient\" , } } # [doc = \" The closed v0 set, for enumeration / exhaustive tests.\"] # [must_use] pub fn all () -> [RecoveryProfile ; 2] { [RecoveryProfile :: Strict , RecoveryProfile :: Resilient] } # [doc = \" Resolve a profile name against the closed set (looked up, never evaluated). `None` if unknown.\"] # [must_use] pub fn resolve (s : & str) -> Option < RecoveryProfile > { RecoveryProfile :: all () . into_iter () . find (| p | p . as_str () == s) } }",
+      "reason": "impl method `all` signature: unsupported Rust type form `[RecoveryProfile ; 2]`",
+      "item_name": "impl RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 159,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl RecoveryProfile { # [doc = \" The canonical profile name.\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { RecoveryProfile :: Strict => \"strict\" , RecoveryProfile :: Resilient => \"resilient\" , } } # [doc = \" The closed v0 set, for enumeration / exhaustive tests.\"] # [must_use] pub fn all () -> [RecoveryProfile ; 2] { [RecoveryProfile :: Strict , RecoveryProfile :: Resilient] } # [doc = \" Resolve a profile name against the closed set (looked up, never evaluated). `None` if unknown.\"] # [must_use] pub fn resolve (s : & str) -> Option < RecoveryProfile > { RecoveryProfile :: all () . into_iter () . find (| p | p . as_str () == s) } }",
+      "reason": "impl method `resolve` body: method call `.find(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__find` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `find(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "impl RecoveryProfile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 185,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Build a [`RecoveryPolicy`] from a named [`RecoveryProfile`] over the **explicitly supplied** classes\"] # [doc = \" (opt-in, I5). The actions are bounded (I4). This is the *only* way the automation layer produces\"] # [doc = \" recovery — it is never derived or applied implicitly (A2).\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] for the first `class` not in `registry` (X1).\"] pub fn recovery_profile (profile : RecoveryProfile , registry : & ClassRegistry , classes : & [& str] ,) -> Result < RecoveryPolicy , UnknownClass > { let mut policy = RecoveryPolicy :: new () ; match profile { RecoveryProfile :: Strict => { } RecoveryProfile :: Resilient => { for class in classes { policy . on (registry , class , RecoveryAction :: Retry { max_attempts : RESILIENT_MAX_ATTEMPTS , } ,) ? ; } } } Ok (policy) }",
+      "reason": "qualified/associated-function call `RecoveryPolicy :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "recovery_profile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "line": 216,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; use crate :: diagnostics :: record :: present ; use crate :: diagnostics :: registry :: ClassName ; use crate :: diagnostics :: ReasonedError ; fn registry () -> ClassRegistry { ClassRegistry :: with_builtins () } # [test] fn the_derivation_covers_every_registry_class () { let reg = registry () ; let policy = derive_baseline (& reg) ; for class in reg . classes () { let name = reg . resolve (class) . unwrap () ; assert ! (policy . rule_for (& name) . is_some () , \"no baseline for {class}\") ; } } # [test] fn the_derivation_is_deterministic () { let reg = registry () ; assert_eq ! (derive_baseline (& reg) . content_id () , derive_baseline (& reg) . content_id ()) ; assert_eq ! (baseline_for_class (\"SwapOutOfRange\") , baseline_for_class (\"SwapOutOfRange\")) ; } # [test] fn an_unknown_class_in_a_scoped_baseline_is_explicit () { let reg = registry () ; assert ! (derive_baseline_for (& reg , & [\"NotAClass\"]) . is_err ()) ; assert ! (derive_baseline_for (& reg , & [\"SwapOutOfRange\"]) . is_ok ()) ; } # [test] fn the_baseline_never_suppresses_the_error () { let reg = registry () ; let policy = derive_baseline (& reg) ; let class : ClassName = reg . resolve (\"SwapOutOfRange\") . unwrap () ; let err = ReasonedError :: new (class , \"swap out of range\" , \"f/swap\") ; let shown = present (err . clone () , Some (& policy)) ; assert_eq ! (shown . error , err) ; assert_eq ! (shown . diagnostic . route . as_deref () , Some (\"audit\")) ; assert_eq ! (shown . diagnostic . message , \"swap out of range\") ; } # [test] fn explain_names_every_class_and_reason () { let reg = registry () ; let ex = explain_baseline (& reg) ; assert ! (ex . contains (\"SwapOutOfRange: level=Medium route=audit\") , \"{ex}\") ; assert ! (ex . contains (\"ImplicitSwap: level=Minimal route=stream\") , \"{ex}\") ; assert ! (derive_baseline (& reg) . content_id () . as_str () . starts_with (\"blake3:\")) ; } # [test] fn strict_profile_recovers_nothing () { let reg = registry () ; let p = recovery_profile (RecoveryProfile :: Strict , & reg , & [\"SwapOutOfRange\"]) . unwrap () ; assert ! (p . is_empty () , \"strict must propagate everything\") ; } # [test] fn resilient_profile_is_bounded_and_only_acts_on_opted_in_classes () { let reg = registry () ; let p = recovery_profile (RecoveryProfile :: Resilient , & reg , & [\"SwapOutOfRange\"]) . unwrap () ; let acted = reg . resolve (\"SwapOutOfRange\") . unwrap () ; let not_acted = reg . resolve (\"TypeMismatch\") . unwrap () ; match p . action_for (& acted) { Some (RecoveryAction :: Retry { max_attempts }) => { assert_eq ! (* max_attempts , RESILIENT_MAX_ATTEMPTS) ; } other => panic ! (\"expected bounded retry, got {other:?}\") , } assert ! (p . action_for (& not_acted) . is_none ()) ; } # [test] fn profiles_resolve_through_the_closed_set () { assert_eq ! (RecoveryProfile :: resolve (\"resilient\") , Some (RecoveryProfile :: Resilient)) ; assert_eq ! (RecoveryProfile :: resolve (\"strict\") , Some (RecoveryProfile :: Strict)) ; assert_eq ! (RecoveryProfile :: resolve (\"yolo\") , None) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 16
+}

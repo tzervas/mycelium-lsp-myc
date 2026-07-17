@@ -1,0 +1,37 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: Node ;",
+      "reason": "`use mycelium_core::Node` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Format a Core IR node into its canonical textual normal form (α-normalized binders).\"] # [must_use] pub fn format (node : & Node) -> String { mycelium_core :: lower :: format (node) }",
+      "reason": "qualified/associated-function call `mycelium_core :: lower :: format` — no established Mycelium surface form for a Rust conversion-op body; emitting the bare last-segment name would fabricate a call (e.g. `from(...)` is not a Mycelium builtin)",
+      "item_name": "format"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+      "line": 20,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; use mycelium_core :: { ContentHash , Meta , Payload , Provenance , Repr , Value } ; fn byte () -> Value { Value :: new (Repr :: Binary { width : 8 } , Payload :: Bits (vec ! [true , false , true , true , false , false , true , false]) , Meta :: exact (Provenance :: Root) ,) . unwrap () } # [doc = \" `let <binder> = byte in swap(<binder> -> Ternary{6})`, parameterized by the binder name.\"] fn def (binder : & str) -> Node { Node :: Let { id : binder . to_owned () , bound : Box :: new (Node :: Const (byte ())) , body : Box :: new (Node :: Swap { src : Box :: new (Node :: Var (binder . to_owned ())) , target : Repr :: Ternary { trits : 6 } , policy : ContentHash :: parse (\"blake3:round_trip_safe\") . unwrap () , }) , } } # [test] fn formatting_is_deterministic () { assert_eq ! (format (& def (\"a\")) , format (& def (\"a\"))) ; } # [doc = \" ADR-003: reformatting (here, renaming binders) yields the **same canonical text** and leaves\"] # [doc = \" content-addressed identity **unchanged**.\"] # [test] fn reformatting_preserves_canonical_text_and_identity () { let a = def (\"a\") ; let renamed = def (\"a_very_long_binder_name\") ; assert_eq ! (format (& a) , format (& renamed)) ; assert_eq ! (a . content_hash () , renamed . content_hash ()) ; } # [test] fn formatting_does_not_mutate_identity () { let n = def (\"a\") ; let before = n . content_hash () ; let _ = format (& n) ; assert_eq ! (before , n . content_hash ()) ; } # [test] fn canonical_names_appear_not_source_names () { let text = format (& def (\"my_buffer\")) ; assert ! (text . contains (\"let v0 =\") , \"{text}\") ; assert ! (text . contains (\"var v0\") , \"{text}\") ; assert ! (! text . contains (\"my_buffer\") , \"source name leaked: {text}\") ; } # [test] fn structurally_distinct_defs_format_differently () { let swap_def = def (\"a\") ; let const_def = Node :: Const (byte ()) ; assert_ne ! (format (& swap_def) , format (& const_def)) ; } # [test] fn free_variables_keep_their_names () { let text = format (& Node :: Var (\"external\" . to_owned ())) ; assert ! (text . contains (\"free external\") , \"{text}\") ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 3
+}

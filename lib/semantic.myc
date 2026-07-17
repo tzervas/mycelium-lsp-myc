@@ -1,0 +1,56 @@
+// nodule: lsp.semantic
+// **Semantic-tokens provider** (M-730; `textDocument/semanticTokens/full`).
+//
+// Classifies the lexical token stream into LSP semantic-token types and emits the protocol's
+// relative-delta encoding. The legend is the **LSP layer of the ratified RFC-0026 §3.2 scope-name
+// table** (Accepted), **plus one additive extension** (M-975, see the [`TOKEN_TYPES`] doc): the
+// standard, *unsuffixed* LSP token types
+// `keyword`/`type`/`enumMember`/`number`/`operator`/`comment`/`variable`/`string` the table maps
+// each lexer bucket to (e.g. the guarantee-strength bucket → `enumMember`, the substrate/scalar
+// types → `type`). This is the broadest-coverage layer — it classifies comments, numbers,
+// operators, strings, and identifiers as well as the keyword buckets, with **every** lexer token
+// kind landing on a legend entry or the documented delimiter/`Eof` no-highlight set (M-975: the
+// `classify` match is exhaustive, no wildcard fallthrough — see its doc comment). The TextMate +
+// tree-sitter layers of the same table are generated under `tools/grammar/` (M-731) from the same
+// lexer `keyword()`; per §3.2 those layers cover a subset today (the tree-sitter scaffold captures
+// only the four word buckets).
+//
+// Scope and honesty (`Declared`): classification is **purely lexical/token-kind** — every
+// identifier is `variable` because the lexer cannot tell a function name from a binding without
+// semantic context. A client should present these as syntax colors, never as type-aware
+// classification (VR-5). A lexer error yields an **empty** token stream (the parse error surfaces
+// on the diagnostics channel), never a fabricated highlight (G2).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.semantic;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.span) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type LexKind = Token(Tok) | Comment;
+
+// LSP semantic-token type indices (into [`TOKEN_TYPES`]). `pub(crate)` (not public API) so the
+// in-crate test module (`src/tests/semantic.rs`) gets white-box access without exposing these to
+// downstream crates.
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_KEYWORD() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0000; // 0
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_TYPE() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0001; // 1
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_ENUM_MEMBER() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0010; // 2
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_VARIABLE() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0100; // 4
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_NUMBER() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0101; // 5
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_OPERATOR() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0110; // 6
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_COMMENT() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_0111; // 7
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn T_STRING() => Binary{32} = 0b0000_0000_0000_0000_0000_0000_0000_1000; // 8

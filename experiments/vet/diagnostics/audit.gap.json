@@ -1,0 +1,109 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+  "emitted_items": [
+    "co-emit:GuaranteeStrength"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_cert :: { binary_to_ternary , ternary_to_binary , SwapCertificate } ;",
+      "reason": "`use mycelium_cert::binary_to_ternary` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_cert::ternary_to_binary` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_cert::SwapCertificate` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { GuaranteeStrength , Node , Repr } ;",
+      "reason": "`use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Node` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Repr` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: Serialize ;",
+      "reason": "`use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 16,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One representation crossing (`swap` site) and what the audit can read off it.\"] # [derive (Debug , Clone , PartialEq , Serialize)] pub struct Crossing { # [doc = \" Breadcrumb to the crossing.\"] pub site : String , # [doc = \" The source representation, when statically known (`None` for a non-constant source).\"] pub from : Option < Repr > , # [doc = \" The target representation (always known — it is the swap's static contract).\"] pub to : Repr , # [doc = \" The crossing's honesty bound, **read off** its certificate and **never upgraded** (VR-5).\"] # [doc = \" `None` when no certificate is statically derivable here (unknown ≠ exact).\"] pub honesty : Option < GuaranteeStrength > , # [doc = \" The selection policy that chose/justified the target (the RFC-0005 `PolicyRef`).\"] pub policy : String , }",
+      "reason": "struct `Crossing` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Crossing"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 32,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The audit view: every crossing in a program, in deterministic traversal order.\"] # [derive (Debug , Clone , PartialEq , Serialize)] pub struct AuditView { # [doc = \" Every representation crossing, wherever it sits (I5).\"] pub crossings : Vec < Crossing > , }",
+      "reason": "struct `AuditView` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "AuditView"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 39,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl AuditView { # [doc = \" Build the audit view for a Core IR program — enumerating **every** `swap` (I5).\"] # [must_use] pub fn of (node : & Node) -> Self { let mut crossings = Vec :: new () ; walk (node , \"\" , & mut crossings) ; AuditView { crossings } } # [doc = \" The JSON projection (§4.3 dual-projection form — this view is read-only structured output).\"] # [must_use] pub fn to_json (& self) -> String { serde_json :: to_string (self) . expect (\"an audit view serializes\") } # [doc = \" The human projection: one line per crossing, honesty bound named (or `unknown`, never faked).\"] # [must_use] pub fn to_human (& self) -> String { if self . crossings . is_empty () { return \"no representation crossings\" . to_owned () ; } let mut out = String :: new () ; for (i , c) in self . crossings . iter () . enumerate () { if i > 0 { out . push ('\\n') ; } let from = c . from . as_ref () . map_or_else (| | \"?\" . to_owned () , | r | format ! (\"{r:?}\")) ; let honesty = c . honesty . map_or_else (| | \"unknown\" . to_owned () , | g | format ! (\"{g:?}\")) ; out . push_str (& format ! (\"{}: {} → {:?}  [honesty: {}]  policy: {}\" , c . site , from , c . to , honesty , c . policy)) ; } out } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `of` body: qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `to_json` body: method call `.expect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__expect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `expect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `to_human` body: function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "AuditView"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 81,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The honesty bound a swap certificate justifies — **read, never upgraded** (VR-5). A `Bijective`\"] # [doc = \" (exact-within-range) crossing is `Exact`; a `Bounded` crossing reports the *basis* strength of its\"] # [doc = \" bound (`Proven`/`Empirical`/`Declared`) — exactly what the kernel recorded, never stronger.\"] fn honesty_of (cert : & SwapCertificate) -> GuaranteeStrength { match cert { SwapCertificate :: Bijective { .. } => GuaranteeStrength :: Exact , SwapCertificate :: Bounded { bound , .. } => bound . basis . strength () , } }",
+      "reason": "struct-variant pattern `Bijective { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2)",
+      "item_name": "honesty_of"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 91,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Derive the crossing's honesty from a statically-known source, or `None` when it cannot be derived\"] # [doc = \" here (a non-constant source, or a pair/instance with no implemented certifier). `None` is honest\"] # [doc = \" \\\"unknown\\\" — never silently upgraded to `Exact` (VR-5).\"] fn static_honesty (src : & Node , target : & Repr , policy : & mycelium_core :: ContentHash ,) -> Option < GuaranteeStrength > { let Node :: Const (v) = src else { return None ; } ; let cert = match (v . repr () , target) { (Repr :: Binary { .. } , Repr :: Ternary { trits }) => binary_to_ternary (v , * trits , policy) . ok () , (Repr :: Ternary { .. } , Repr :: Binary { width }) => ternary_to_binary (v , * width , policy) . ok () , _ => None , } ; cert . map (| (_ , c) | honesty_of (& c)) }",
+      "reason": "qualified type path `mycelium_core :: ContentHash` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "static_honesty"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 110,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn here (prefix : & str , step : & str) -> String { if prefix . is_empty () { step . to_owned () } else { format ! (\"{prefix}/{step}\") } }",
+      "reason": "method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "here"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "line": 118,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Walk every node, recording a [`Crossing`] at each `Swap` — wherever it sits (I5).\"] fn walk (node : & Node , prefix : & str , out : & mut Vec < Crossing >) { match node { Node :: Const (_) | Node :: Var (_) => { } Node :: Let { id , bound , body } => { let at = here (prefix , & format ! (\"let {id}\")) ; walk (bound , & at , out) ; walk (body , & at , out) ; } Node :: Op { prim , args } => { let at = here (prefix , & format ! (\"op {prim}\")) ; for a in args { walk (a , & at , out) ; } } Node :: Swap { src , target , policy , } => { let at = here (prefix , \"swap\") ; let from = match src . as_ref () { Node :: Const (v) => Some (v . repr () . clone ()) , _ => None , } ; out . push (Crossing { site : at . clone () , from , to : target . clone () , honesty : static_honesty (src , target , policy) , policy : policy . as_str () . to_owned () , }) ; walk (src , & at , out) ; } Node :: Construct { ctor , args } => { let at = here (prefix , & format ! (\"construct {ctor}\")) ; for a in args { walk (a , & at , out) ; } } Node :: Match { scrutinee , alts , default , } => { let at = here (prefix , \"match\") ; walk (scrutinee , & at , out) ; for alt in alts { match alt { mycelium_core :: Alt :: Ctor { ctor , body , .. } => { walk (body , & here (& at , & format ! (\"alt {ctor}\")) , out) ; } mycelium_core :: Alt :: Lit { body , .. } => { walk (body , & here (& at , \"alt-lit\") , out) ; } } } if let Some (d) = default { walk (d , & here (& at , \"default\") , out) ; } } Node :: Lam { body , .. } => walk (body , & here (prefix , \"lam\") , out) , Node :: App { func , arg } => { let at = here (prefix , \"app\") ; walk (func , & at , out) ; walk (arg , & at , out) ; } Node :: Fix { body , .. } => walk (body , & here (prefix , \"fix\") , out) , Node :: FixGroup { defs , body } => { let at = here (prefix , \"fixgroup\") ; for (name , def) in defs { walk (def , & here (& at , & format ! (\"def {name}\")) , out) ; } walk (body , & at , out) ; } } }",
+      "reason": "mutating method's tail expression is neither a threaded-binding field/whole-value re-assignment nor (with the method's original return type already `()`/self-chain, and either multiple threaded bindings or one already assigned) an extra value — value-threading only supports a flat sequence of `self.<field> = ..`/`*<param> = ..` re-assignments plus, when the source return type is non-unit, one trailing value expression (DN-125 §5, conservative scope per §6.1)",
+      "item_name": "walk"
+    }
+  ],
+  "total_top_level_items": 10
+}

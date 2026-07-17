@@ -1,0 +1,22 @@
+// nodule: lsp.sync
+// **Document sync** (M-310; FR-S5; SC-5): the text → `Node` pipeline the LSP server runs on
+// `textDocument/didOpen` / `didChange` / `didClose`, now that RFC-0011 r3 + RFC-0001 r4 give the
+// surface a path into L0 (parse → check → elaborate).
+//
+// On each edit the server re-analyzes the *whole* document (full sync — `TextDocumentSyncKind.Full`)
+// and pushes `textDocument/publishDiagnostics`. The diagnostics are **honest about their spans**:
+// - a **parse/lex** failure carries a **real range** (the L1 lexer tracks `line:col`, `Pos`);
+// - a **type-check** failure carries a best-effort range at the offending function's `fn <name>`
+//   declaration (the checker tracks the failing *function* but not yet the failing *sub-expression*
+//   span — flagged, not fabricated: the precise sub-span awaits the checker carrying spans), with
+//   the function name in `data.breadcrumb`;
+// - a **clean** nodule yields **no** diagnostics.
+//
+// The parser is fail-fast (one error at a time); a recovering parser that reports many diagnostics
+// at once is a later refinement — recorded, not silently implied.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.sync;
+
+

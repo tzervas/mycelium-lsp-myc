@@ -1,0 +1,57 @@
+// nodule: lsp.baseline
+// The **automatic baseline** (M-362; RFC-0015) — the automation layer *over* RFC-0013 (presentation)
+// and RFC-0014 (recovery).
+//
+// It derives a zero-config **baseline diagnostic policy** from the language's own structured mapping
+// — the error-class registry (RFC-0013 §4.5) and a **closed, total `class → (level, route)` table** —
+// optionally scoped per-definition by that definition's **declared effects** (the classes it can
+// raise). The result is an ordinary, content-addressed [`DiagnosticPolicy`] you can read, diff, and
+// `EXPLAIN`. The four honesty-boundary rules of RFC-0015 §4.1 hold by construction:
+//
+// - **(A1) additive only.** The baseline is a [`DiagnosticPolicy`] — presentation/routing only,
+//   structurally incapable of changing control flow (RFC-0013 I1). Auto-applying it can never swallow,
+//   soften, or hide an error.
+// - **(A2) recovery is opt-in, declared, bounded.** No recovery is ever auto-applied. A [`RecoveryProfile`]
+//   is produced **only** when explicitly requested, over the **explicitly supplied** classes, and its
+//   actions are bounded (RFC-0014 I4/I5).
+// - **(A3) reified + EXPLAIN.** The derived policy is content-addressed ([`DiagnosticPolicy::content_id`])
+//   and [`explain_baseline`] answers "what baseline applied here, and why?".
+// - **(A4) total, not learned.** [`baseline_for_class`] is a total, deterministic function of the class
+//   name (a closed table + a safe fallback) — never a learned or `eval`-ed guess (VR-5/RFC-0005).
+//
+// §8 resolutions and the prior-art grounding live in `research/06-automatic-baseline-diagnostics-RECORD.md`.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.baseline;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.record) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.registry) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type UnknownClass = UnknownClass(Bytes);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.sink) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Route = Stream | Audit | Log | Null | Mesh;
+
+// The **closed v0** set of named, opt-in, bounded recovery profiles (RFC-0015 §8-Q2; A2). Recovery is
+// **never** auto-applied — a profile is built only on explicit request, over explicitly-supplied
+// classes.
+pub type RecoveryProfile = Strict | Resilient;
+
+impl Show[RecoveryProfile] for RecoveryProfile {
+  fn render(x: RecoveryProfile) => Bytes =
+    match x { Strict => "Strict", Resilient => "Resilient" };
+};
+
+fn eq_RecoveryProfile(a: RecoveryProfile, b: RecoveryProfile) => Binary{1} =
+  match a { Strict => match b { Strict => 0b1, _ => 0b0 }, Resilient => match b { Resilient => 0b1, _ => 0b0 } };
+
+impl RecoveryProfile {
+  // The canonical profile name.
+  fn as_str(self: RecoveryProfile) => Bytes = match self { Strict => "strict", Resilient => "resilient" };
+};
+
+// The bounded retry ceiling the `resilient` profile applies (RFC-0015 §4.1 example `retry(<=3)`; I4).
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn RESILIENT_MAX_ATTEMPTS() => Binary{64} = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0011; // 3

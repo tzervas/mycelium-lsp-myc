@@ -1,0 +1,47 @@
+// nodule: lsp.lint
+// The **invariant linter** (M-141; SC-3; G2; FR-M3; VR-5).
+//
+// Static, inspectable checks over a Core IR [`Node`] that surface the house honesty rules as
+// [`Diagnostic`]s for authoring tools (the LSP, M-140). The lints:
+//
+// - **`implicit-swap`** (error) — an `Op` whose `Const` operands span *more than one paradigm*
+//   (binary/ternary/dense/vsa). A representation change must be an explicit [`Node::Swap`], never
+//   implied by feeding mixed-paradigm operands to an op (FR-M3; SC-3 "no implicit conversion").
+// - **`unverified-bound`** (warning) — a value carrying a `Declared` guarantee. A user-asserted,
+//   unvalidated bound must *always* be surfaced; it is never silently trusted (M-I4; VR-5).
+// - **`placeholder-policy`** (error) — a [`Node::Swap`] whose `policy` is a stub (an all-zero
+//   digest, or `todo`/`tbd`/`none`/`placeholder`) rather than a real `PolicyRef` (G2: a swap's
+//   selection must be reified, not faked).
+// - **`free-variable`** (error) — a `Var` with no enclosing binder (an open term the interpreter
+//   cannot run).
+//
+// Note WF1 (only `Swap` changes a representation) and WF2 (every `Swap` carries a `PolicyRef`) are
+// enforced *by construction* in the `Node` grammar, so a literally repr-changing non-`Swap` node or
+// a policy-less swap is unrepresentable; these lints catch the *spirit* of those rules at the level
+// where authoring mistakes actually occur (mixed-paradigm ops, stub policies).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.lint;
+
+// Severity of a [`Diagnostic`].
+pub type Severity = Error | Warning;
+
+impl Show[Severity] for Severity {
+  fn render(x: Severity) => Bytes =
+    match x { Error => "Error", Warning => "Warning" };
+};
+
+fn eq_Severity(a: Severity, b: Severity) => Binary{1} =
+  match a { Error => match b { Error => 0b1, _ => 0b0 }, Warning => match b { Warning => 0b1, _ => 0b0 } };
+
+// A single lint finding.
+pub type Diagnostic = Diagnostic(Bytes, Severity, Bytes, Bytes);
+
+impl Show[Diagnostic] for Diagnostic {
+  fn render(x: Diagnostic) => Bytes =
+    match x { Diagnostic(p0, p1, p2, p3) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("Diagnostic(", render(p0)), ", "), render(p1)), ", "), render(p2)), ", "), render(p3)), ")") };
+};
+
+fn eq_Diagnostic(a: Diagnostic, b: Diagnostic) => Binary{1} =
+    match a { Diagnostic(p0, p1, p2, p3) => match b { Diagnostic(q0, q1, q2, q3) => and(and(and(bytes_eq(p0, q0), eq_Severity(p1, q1)), bytes_eq(p2, q2)), bytes_eq(p3, q3)) } };

@@ -1,0 +1,89 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+  "emitted_items": [
+    "co-include:ClassName,UnknownClass"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 1,
+      "col": 1,
+      "category": "ReservedWord",
+      "rust_construct": "ReservedWord",
+      "snippet": "nodule lsp.recover.policy;",
+      "reason": "derived nodule path `lsp.recover.policy` has segment(s) [policy] colliding with a Mycelium reserved word — emitting them verbatim would fail to parse (`nodule lsp.recover.policy;` tokenizes the colliding word as a keyword, not an identifier); each colliding segment is escaped with the `_kw` suffix (now `lsp.recover.policy_kw`) rather than dropped, so distinct source files whose only differing segment is a reserved word (e.g. `l1.fuse` vs `l1.nodule`) stay distinguishable instead of both collapsing onto the same nodule path (G2/VR-5)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeMap ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { ContentHash , Value } ;",
+      "reason": "`use mycelium_core::ContentHash` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Value` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use super :: effect :: EffectKind ;",
+      "reason": "`use recover.effect::EffectKind` — `EffectKind` is not among sibling `recover.effect`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: diagnostics :: registry :: { ClassName , ClassRegistry , UnknownClass } ;",
+      "reason": "`use diagnostics.registry::ClassRegistry` — `ClassRegistry` is not among sibling `diagnostics.registry`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:ClassName,UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 17,
+      "col": 1,
+      "category": "PayloadVariant",
+      "rust_construct": "PayloadVariant",
+      "snippet": "# [doc = \" The **closed** v0 recovery-action set (§4.4; §8 resolved). Each action yields an explicit\"] # [doc = \" outcome — a recovered value or a re-propagated error — never a silent drop (I1).\"] # [derive (Debug , Clone , PartialEq)] pub enum RecoveryAction { # [doc = \" Recover with an explicit fallback value. The recovered value is honestly tagged **`Declared`**\"] # [doc = \" (a substituted fallback has no checked basis — I2/VR-5; recovery only ever downgrades).\"] Fallback { # [doc = \" The fallback value (boxed — it is much larger than the other actions' fields).\"] value : Box < Value > , } , # [doc = \" Re-attempt the operation, **bounded** by `max_attempts` (I4). If every attempt fails the\"] # [doc = \" original error **continues to propagate** (additive — a policy is never a silent terminator).\"] Retry { # [doc = \" The maximum number of attempts.\"] max_attempts : u64 , } , # [doc = \" Transform and re-propagate as another (registry-resolved) error class — still explicit.\"] Escalate { # [doc = \" The class to escalate to.\"] to : ClassName , } , # [doc = \" Run a **bounded** effect (consuming from the ambient budget ledger), then let the original\"] # [doc = \" error continue (additive). The effect's budget lives in the [`super::effect::Budgets`] ledger\"] # [doc = \" (one enforcement mechanism); a budget overrun is a graceful `EffectBudgetExhausted` that skips\"] # [doc = \" the cleanup, and the original error propagates regardless.\"] CleanupThenPropagate { # [doc = \" The effect the cleanup performs (its budget is declared in the ambient ledger; I5).\"] effect : EffectKind , } , }",
+      "reason": "enum `RecoveryAction` has a named-field variant referencing a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "RecoveryAction"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 48,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A reified recovery policy: a map from a **registry-resolved** [`ClassName`] to its [`RecoveryAction`].\"] # [derive (Debug , Clone , Default , PartialEq)] pub struct RecoveryPolicy { rules : BTreeMap < ClassName , RecoveryAction > , }",
+      "reason": "struct `RecoveryPolicy` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "RecoveryPolicy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "line": 54,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl RecoveryPolicy { # [doc = \" An empty policy.\"] # [must_use] pub fn new () -> Self { RecoveryPolicy :: default () } # [doc = \" Add an action for `class`, **resolving the class name through the registry** (X1). Replaces and\"] # [doc = \" returns any prior action for the class.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] if `class` is not in `registry` — an explicit configuration error.\"] pub fn on (& mut self , registry : & ClassRegistry , class : & str , action : RecoveryAction ,) -> Result < Option < RecoveryAction > , UnknownClass > { let name = registry . resolve (class) ? ; Ok (self . rules . insert (name , action)) } # [doc = \" The recovery action for a resolved class, if any.\"] # [must_use] pub fn action_for (& self , class : & ClassName) -> Option < & RecoveryAction > { self . rules . get (class) } # [doc = \" The rules, in deterministic (class-sorted) order.\"] pub fn rules (& self) -> impl Iterator < Item = (& ClassName , & RecoveryAction) > { self . rules . iter () } # [doc = \" Whether the policy has no rules.\"] # [must_use] pub fn is_empty (& self) -> bool { self . rules . is_empty () } # [doc = \" The **content address** of this policy (RFC-0005 `PolicyRef`; ADR-006) — a deterministic BLAKE3\"] # [doc = \" over its canonical, sorted rules. Diffable and identity-stable.\"] # [must_use] pub fn content_id (& self) -> ContentHash { let mut h = blake3 :: Hasher :: new () ; let blob = | hasher : & mut blake3 :: Hasher , bytes : & [u8] | { hasher . update (& (bytes . len () as u64) . to_le_bytes ()) ; hasher . update (bytes) ; } ; blob (& mut h , b\"mycelium.recovery-policy.v1\") ; h . update (& (self . rules . len () as u64) . to_le_bytes ()) ; for (class , action) in & self . rules { blob (& mut h , class . as_str () . as_bytes ()) ; match action { RecoveryAction :: Fallback { value } => { h . update (& [0u8]) ; blob (& mut h , value . content_hash () . as_str () . as_bytes ()) ; } RecoveryAction :: Retry { max_attempts } => { h . update (& [1u8]) ; h . update (& max_attempts . to_le_bytes ()) ; } RecoveryAction :: Escalate { to } => { h . update (& [2u8]) ; blob (& mut h , to . as_str () . as_bytes ()) ; } RecoveryAction :: CleanupThenPropagate { effect } => { h . update (& [3u8]) ; blob (& mut h , effect . to_string () . as_bytes ()) ; } } } let hex = h . finalize () . to_hex () ; ContentHash :: from_parts (\"blake3\" , hex . as_str ()) . expect (\"blake3 hex is a valid digest\") } }",
+      "reason": "no member of this impl block could be transpiled (6 sub-issue(s)): impl method `new` body: qualified/associated-function call `RecoveryPolicy :: default` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `on` body: unsupported expression form `registry . resolve (class) ?`; impl method `action_for` body: method call `.get(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__get` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `get(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `rules` signature: unsupported Rust type form `impl Iterator < Item = (& ClassName , & RecoveryAction) >`; impl method `is_empty` body: method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `content_id` body: qualified/associated-function call `blake3 :: Hasher :: new` — no established Mycelium surface form for a Rust conversion-op body; emitting the bare last-segment name would fabricate a call (e.g. `from(...)` is not a Mycelium builtin)",
+      "item_name": "RecoveryPolicy"
+    }
+  ],
+  "total_top_level_items": 7
+}

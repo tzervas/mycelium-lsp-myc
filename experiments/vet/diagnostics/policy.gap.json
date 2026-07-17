@@ -1,0 +1,120 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+  "emitted_items": [
+    "co-include:Level",
+    "co-include:ClassName,UnknownClass"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 1,
+      "col": 1,
+      "category": "ReservedWord",
+      "rust_construct": "ReservedWord",
+      "snippet": "nodule lsp.diagnostics.policy;",
+      "reason": "derived nodule path `lsp.diagnostics.policy` has segment(s) [policy] colliding with a Mycelium reserved word — emitting them verbatim would fail to parse (`nodule lsp.diagnostics.policy;` tokenizes the colliding word as a keyword, not an identifier); each colliding segment is escaped with the `_kw` suffix (now `lsp.diagnostics.policy_kw`) rather than dropped, so distinct source files whose only differing segment is a reserved word (e.g. `l1.fuse` vs `l1.nodule`) stay distinguishable instead of both collapsing onto the same nodule path (G2/VR-5)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 17,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: { BTreeMap , BTreeSet } ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 19,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: ContentHash ;",
+      "reason": "`use mycelium_core::ContentHash` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 20,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: { Deserialize , Serialize } ;",
+      "reason": "`use serde::Deserialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use super :: registry :: { ClassName , ClassRegistry , UnknownClass } ;",
+      "reason": "`use diagnostics.registry::ClassRegistry` — `ClassRegistry` is not among sibling `diagnostics.registry`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:ClassName,UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A single `on <ErrorClass> => { … }` rule. Presentation/routing only (I4); a `None` field leaves\"] # [doc = \" the corresponding default in place.\"] # [derive (Debug , Clone , Default , PartialEq , Eq , Serialize , Deserialize)] pub struct Rule { # [doc = \" A presentation message override (does not change the error's identity or reason).\"] # [serde (default , skip_serializing_if = \"Option::is_none\")] pub message : Option < String > , # [doc = \" Free-form string tags (v0; §4.4 DN04-Q2).\"] # [serde (default , skip_serializing_if = \"BTreeSet::is_empty\")] pub tags : BTreeSet < String > , # [doc = \" The default verbosity for diagnostics under this rule.\"] # [serde (default , skip_serializing_if = \"Option::is_none\")] pub level : Option < Level > , # [doc = \" An output route — *where* the presentation goes, never *whether* the error propagates (I1).\"] # [serde (default , skip_serializing_if = \"Option::is_none\")] pub route : Option < String > , }",
+      "reason": "struct `Rule` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Rule"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 43,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Rule { # [doc = \" An empty rule (all defaults).\"] # [must_use] pub fn new () -> Self { Rule :: default () } # [doc = \" Set the presentation message.\"] # [must_use] pub fn message (mut self , m : impl Into < String >) -> Self { self . message = Some (m . into ()) ; self } # [doc = \" Add a tag.\"] # [must_use] pub fn tag (mut self , t : impl Into < String >) -> Self { self . tags . insert (t . into ()) ; self } # [doc = \" Set the level.\"] # [must_use] pub fn level (mut self , l : Level) -> Self { self . level = Some (l) ; self } # [doc = \" Set the route from a free-form string (the on-the-wire/`PolicyFile` projection form). Prefer\"] # [doc = \" [`route_to`](Rule::route_to) for a route in the closed v0 set; a string that does not resolve to\"] # [doc = \" a [`Route`](super::sink::Route) is an explicit [`UnknownRoute`](super::sink::UnknownRoute) at\"] # [doc = \" sink-resolution time (never a silent misroute — RFC-0013 §8).\"] # [must_use] pub fn route (mut self , r : impl Into < String >) -> Self { self . route = Some (r . into ()) ; self } # [doc = \" Set the route from the **closed v0** [`Route`](super::sink::Route) vocabulary (the checked path).\"] # [must_use] pub fn route_to (mut self , r : super :: sink :: Route) -> Self { self . route = Some (r . as_str () . to_owned ()) ; self } }",
+      "reason": "no member of this impl block could be transpiled (6 sub-issue(s)): impl method `new` body: qualified/associated-function call `Rule :: default` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `message` signature: unsupported Rust type form `impl Into < String >`; impl method `tag` signature: unsupported Rust type form `impl Into < String >`; impl method `level` body: function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression; impl method `route` signature: unsupported Rust type form `impl Into < String >`; impl method `route_to` signature: qualified type path `super :: sink :: Route` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "Rule"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 84,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A reified error-handling policy: a map from a **registry-resolved** [`ClassName`] to its [`Rule`].\"] # [derive (Debug , Clone , Default , PartialEq , Eq)] pub struct DiagnosticPolicy { rules : BTreeMap < ClassName , Rule > , }",
+      "reason": "struct `DiagnosticPolicy` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "DiagnosticPolicy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 90,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl DiagnosticPolicy { # [doc = \" An empty policy.\"] # [must_use] pub fn new () -> Self { DiagnosticPolicy :: default () } # [doc = \" Add a rule for `class`, **resolving the class name through the registry** (X1). A duplicate\"] # [doc = \" class replaces the prior rule and returns it.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] if `class` is not in `registry` — an explicit configuration error\"] # [doc = \" (never silently ignored, never coerced into code).\"] pub fn on (& mut self , registry : & ClassRegistry , class : & str , rule : Rule ,) -> Result < Option < Rule > , UnknownClass > { let name = registry . resolve (class) ? ; Ok (self . rules . insert (name , rule)) } # [doc = \" The rule for a resolved class, if any.\"] # [must_use] pub fn rule_for (& self , class : & ClassName) -> Option < & Rule > { self . rules . get (class) } # [doc = \" The rules, in deterministic (class-sorted) order.\"] pub fn rules (& self) -> impl Iterator < Item = (& ClassName , & Rule) > { self . rules . iter () } # [doc = \" Whether the policy has no rules.\"] # [must_use] pub fn is_empty (& self) -> bool { self . rules . is_empty () } # [doc = \" The **content address** of this policy (RFC-0005 `PolicyRef`; ADR-006) — a deterministic\"] # [doc = \" BLAKE3 over its canonical, sorted rules. Diffable and identity-stable regardless of insertion\"] # [doc = \" order or which on-disk format (JSON/YAML/TOML) a file used (§4.7).\"] # [must_use] pub fn content_id (& self) -> ContentHash { let mut h = blake3 :: Hasher :: new () ; let blob = | hasher : & mut blake3 :: Hasher , bytes : & [u8] | { hasher . update (& (bytes . len () as u64) . to_le_bytes ()) ; hasher . update (bytes) ; } ; blob (& mut h , b\"mycelium.diagnostic-policy.v1\") ; h . update (& (self . rules . len () as u64) . to_le_bytes ()) ; for (class , rule) in & self . rules { blob (& mut h , class . as_str () . as_bytes ()) ; let json = serde_json :: to_string (rule) . expect (\"a rule serializes\") ; blob (& mut h , json . as_bytes ()) ; } let hex = h . finalize () . to_hex () ; ContentHash :: from_parts (\"blake3\" , hex . as_str ()) . expect (\"blake3 hex is a valid digest\") } }",
+      "reason": "no member of this impl block could be transpiled (6 sub-issue(s)): impl method `new` body: qualified/associated-function call `DiagnosticPolicy :: default` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `on` body: unsupported expression form `registry . resolve (class) ?`; impl method `rule_for` body: method call `.get(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__get` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `get(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `rules` signature: unsupported Rust type form `impl Iterator < Item = (& ClassName , & Rule) >`; impl method `is_empty` body: method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `content_id` body: qualified/associated-function call `blake3 :: Hasher :: new` — no established Mycelium surface form for a Rust conversion-op body; emitting the bare last-segment name would fabricate a call (e.g. `from(...)` is not a Mycelium builtin)",
+      "item_name": "DiagnosticPolicy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 154,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A serializable projection of a policy (RFC-0013 §4.7: a file is a *projection of* the canonical\"] # [doc = \" declaration, not the source of truth). Class names are strings here; re-ingesting validates them\"] # [doc = \" through the registry (X1), so an on-disk file can never smuggle in an unknown/evaluated class.\"] # [derive (Debug , Clone , Default , PartialEq , Eq , Serialize , Deserialize)] pub struct PolicyFile { # [doc = \" `class name -> rule`.\"] # [serde (default)] pub on : BTreeMap < String , Rule > , }",
+      "reason": "struct `PolicyFile` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "PolicyFile"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "line": 164,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl DiagnosticPolicy { # [doc = \" Project this policy to a serializable [`PolicyFile`] (one on-disk form; §4.7).\"] # [must_use] pub fn to_file (& self) -> PolicyFile { PolicyFile { on : self . rules . iter () . map (| (c , r) | (c . as_str () . to_owned () , r . clone ())) . collect () , } } # [doc = \" Ingest a [`PolicyFile`], **resolving every class name through the registry** (X1). An unknown\"] # [doc = \" class anywhere in the file is an explicit error — the file is rejected as a whole, never\"] # [doc = \" partially/silently applied.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] for the first class name not in `registry`.\"] pub fn from_file (registry : & ClassRegistry , file : & PolicyFile) -> Result < Self , UnknownClass > { let mut policy = DiagnosticPolicy :: new () ; for (class , rule) in & file . on { policy . on (registry , class , rule . clone ()) ? ; } Ok (policy) } }",
+      "reason": "no member of this impl block could be transpiled (2 sub-issue(s)): impl method `to_file` body: struct literal `PolicyFile { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `from_file` body: qualified/associated-function call `DiagnosticPolicy :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "DiagnosticPolicy"
+    }
+  ],
+  "total_top_level_items": 11
+}

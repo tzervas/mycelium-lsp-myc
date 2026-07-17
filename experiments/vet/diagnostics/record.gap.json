@@ -1,0 +1,231 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+  "emitted_items": [
+    "co-include:ClassName",
+    "co-include:Route,UnknownRoute",
+    "Level"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 9,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: { BTreeMap , BTreeSet } ;",
+      "reason": "`use std.collections::BTreeMap` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: fmt ;",
+      "reason": "`use std::fmt` — `std` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: ContentHash ;",
+      "reason": "`use mycelium_core::ContentHash` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde :: { Deserialize , Serialize } ;",
+      "reason": "`use serde::Deserialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde::Serialize` — `serde` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use super :: policy :: DiagnosticPolicy ;",
+      "reason": "`use diagnostics.policy::DiagnosticPolicy` — `DiagnosticPolicy` is not among sibling `diagnostics.policy`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 17,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use super :: sink :: { Route , SinkBinding , UnknownRoute } ;",
+      "reason": "`use diagnostics.sink::SinkBinding` — `SinkBinding` is not among sibling `diagnostics.sink`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Route,UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered\"] # [doc = \" `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the\"] # [doc = \" underlying error exists (I2).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Serialize , Deserialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" The refusal, its reason, and its site. The error is always present at this level (I2).\"] Minimal , # [doc = \" Adds the `NotValidatedReason` / `FeedbackSummary`-style reason detail.\"] Medium , # [doc = \" Adds an **allowlisted** set of additional context fields (§4.5 X2) — never a wholesale dump.\"] Detailed , }",
+      "reason": "dropped non-doc non-derive attribute(s) on enum `Level`: # [serde (rename_all = \"lowercase\")]",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered\"] # [doc = \" `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the\"] # [doc = \" underlying error exists (I2).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Serialize , Deserialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" The refusal, its reason, and its site. The error is always present at this level (I2).\"] Minimal , # [doc = \" Adds the `NotValidatedReason` / `FeedbackSummary`-style reason detail.\"] Medium , # [doc = \" Adds an **allowlisted** set of additional context fields (§4.5 X2) — never a wholesale dump.\"] Detailed , }",
+      "reason": "enum `Level` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered\"] # [doc = \" `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the\"] # [doc = \" underlying error exists (I2).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Serialize , Deserialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" The refusal, its reason, and its site. The error is always present at this level (I2).\"] Minimal , # [doc = \" Adds the `NotValidatedReason` / `FeedbackSummary`-style reason detail.\"] Medium , # [doc = \" Adds an **allowlisted** set of additional context fields (§4.5 X2) — never a wholesale dump.\"] Detailed , }",
+      "reason": "enum `Level` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered\"] # [doc = \" `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the\"] # [doc = \" underlying error exists (I2).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Serialize , Deserialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" The refusal, its reason, and its site. The error is always present at this level (I2).\"] Minimal , # [doc = \" Adds the `NotValidatedReason` / `FeedbackSummary`-style reason detail.\"] Medium , # [doc = \" Adds an **allowlisted** set of additional context fields (§4.5 X2) — never a wholesale dump.\"] Detailed , }",
+      "reason": "enum `Level` derive(Eq): covered by co-occurring PartialEq → `fn eq_Level` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered\"] # [doc = \" `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the\"] # [doc = \" underlying error exists (I2).\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Serialize , Deserialize)] # [serde (rename_all = \"lowercase\")] pub enum Level { # [doc = \" The refusal, its reason, and its site. The error is always present at this level (I2).\"] Minimal , # [doc = \" Adds the `NotValidatedReason` / `FeedbackSummary`-style reason detail.\"] Medium , # [doc = \" Adds an **allowlisted** set of additional context fields (§4.5 X2) — never a wholesale dump.\"] Detailed , }",
+      "reason": "enum `Level` derive(...) names PartialOrd, Ord, Serialize, Deserialize not in the DN-128 enum-derive set this leaf builds (Debug/PartialEq/Clone/Copy recognized; bare Eq is a satisfied co-occurrence note; Hash/PartialOrd/Ord/Default stay product-only for now) — dropped, no confirmed Mycelium surface",
+      "item_name": "Level"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 33,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The **allowlist** for the detailed tier (§4.5, exclusion X2): the *only* context-field names a\"] # [doc = \" detailed diagnostic may carry. Context not on this list is **not gathered** — there is no path by\"] # [doc = \" which a wholesale environment / locals dump (and the secrets in it) reaches a diagnostic.\"] pub const DETAILED_ALLOWLIST : & [& str] = & [\"from_repr\" , \"to_repr\" , \"honesty_bound\" , \"policy\" , \"lemma_ref\" , \"trials\" , \"expected_source\" , \"element_index\" , \"required_dim\" , \"supplied_dim\" , \"binary_width\" , \"ternary_trits\" ,] ;",
+      "reason": "top-level `const DETAILED_ALLOWLIST` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "DETAILED_ALLOWLIST"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 51,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Keep only the allowlisted context fields (X2). Applied at record construction, so a record never\"] # [doc = \" even *holds* a non-allowlisted field.\"] fn allowlist (context : BTreeMap < String , String >) -> BTreeMap < String , String > { context . into_iter () . filter (| (k , _) | DETAILED_ALLOWLIST . contains (& k . as_str ())) . collect () }",
+      "reason": "method call `.collect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__collect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `collect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "allowlist"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 60,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The **explicit, already-emitted reasoned error** this layer *presents* — never replaces (I1).\"] # [doc = \" Built from the structured errors the kernel / checker / linter already emit (a swap refusal, a\"] # [doc = \" `CheckVerdict::NotValidated`, a lint finding). The renderer is a pure function *of* it.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct ReasonedError { # [doc = \" The error class (resolved through the registry, never evaluated — X1).\"] pub class : ClassName , # [doc = \" The refusal message — always shown, even at [`Level::Minimal`] (I2).\"] pub message : String , # [doc = \" The site (breadcrumb / location).\"] pub site : String , # [doc = \" The reason detail surfaced at [`Level::Medium`] and above.\"] pub reason : Option < String > , # [doc = \" Candidate additional context, **allowlist-filtered** at projection (§4.5 X2). Fields not on\"] # [doc = \" [`DETAILED_ALLOWLIST`] are dropped before they ever reach a [`DiagnosticRecord`].\"] pub context : BTreeMap < String , String > , }",
+      "reason": "struct `ReasonedError` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "ReasonedError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 78,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl ReasonedError { # [doc = \" A minimal reasoned error (class + message + site), no reason or context.\"] # [must_use] pub fn new (class : ClassName , message : impl Into < String > , site : impl Into < String >) -> Self { ReasonedError { class , message : message . into () , site : site . into () , reason : None , context : BTreeMap :: new () , } } # [doc = \" Attach a medium-tier reason.\"] # [must_use] pub fn with_reason (mut self , reason : impl Into < String >) -> Self { self . reason = Some (reason . into ()) ; self } # [doc = \" Attach a candidate detailed-tier context field (allowlist-filtered at projection).\"] # [must_use] pub fn with_context (mut self , key : impl Into < String > , value : impl Into < String >) -> Self { self . context . insert (key . into () , value . into ()) ; self } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `new` signature: unsupported Rust type form `impl Into < String >`; impl method `with_reason` signature: unsupported Rust type form `impl Into < String >`; impl method `with_context` signature: unsupported Rust type form `impl Into < String >`",
+      "item_name": "ReasonedError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 106,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" One **content-addressed diagnostic** (§4.3) — the canonical truth. Human and JSON are projections\"] # [doc = \" *of* this record; both carry its [`content_id`](DiagnosticRecord::content_id).\"] # [derive (Debug , Clone , PartialEq , Eq , Serialize , Deserialize)] pub struct DiagnosticRecord { # [doc = \" The error class (the refusal's identity).\"] pub class : String , # [doc = \" The presentation message (a policy may set this; it does not change the error's identity).\"] pub message : String , # [doc = \" The site.\"] pub site : String , # [doc = \" The medium-tier reason detail, if any.\"] pub reason : Option < String > , # [doc = \" The verbosity level (set by policy; default [`Level::Minimal`]).\"] pub level : Level , # [doc = \" Free-form string tags (v0; §4.4 DN04-Q2).\"] pub tags : BTreeSet < String > , # [doc = \" The output route, if any. Routing concerns *where the presentation goes*, never *whether the\"] # [doc = \" error propagates* (I1).\"] pub route : Option < String > , # [doc = \" Allowlisted detailed-tier context (§4.5 X2) — already filtered; never a wholesale dump.\"] pub context : BTreeMap < String , String > , # [doc = \" The `PolicyRef` (content hash) of the policy that shaped this diagnostic, if any (§4.4).\"] pub policy : Option < String > , }",
+      "reason": "struct `DiagnosticRecord` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "DiagnosticRecord"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 131,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The result of presenting an error: the **additive** diagnostic *and* the explicit error, **still\"] # [doc = \" propagating, unchanged** (I1). Returning the error here is the structural proof that the renderer\"] # [doc = \" cannot suppress it — a mutant renderer that dropped it would not type-check / would fail the\"] # [doc = \" never-silent invariant test (§5).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Presentation { # [doc = \" The additive presentation (§4.1).\"] pub diagnostic : DiagnosticRecord , # [doc = \" The explicit error — **unchanged** by any policy (I1).\"] pub error : ReasonedError , }",
+      "reason": "struct `Presentation` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Presentation"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 143,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Present an explicit [`ReasonedError`] as a [`DiagnosticRecord`], optionally shaped by a policy.\"] # [doc = \"\"] # [doc = \" The error is returned **unchanged** in [`Presentation::error`] (I1: no policy, level, tag, route,\"] # [doc = \" or message can cause it not to surface). A policy sets only message / tags / level / route\"] # [doc = \" (§4.4 I4); the class + site of the refusal are always present, and at [`Level::Minimal`] the\"] # [doc = \" message names it (I2). The detailed-tier context is allowlist-filtered (X2). When a policy\"] # [doc = \" applies, the record carries that policy's content hash (`PolicyRef`; §4.4).\"] # [must_use] pub fn present (error : ReasonedError , policy : Option < & DiagnosticPolicy >) -> Presentation { let rule = policy . and_then (| p | p . rule_for (& error . class)) ; let message = rule . and_then (| r | r . message . clone ()) . unwrap_or_else (| | error . message . clone ()) ; let level = rule . and_then (| r | r . level) . unwrap_or (Level :: Minimal) ; let tags = rule . map (| r | r . tags . clone ()) . unwrap_or_default () ; let route = rule . and_then (| r | r . route . clone ()) ; let policy_ref = match (policy , rule) { (Some (p) , Some (_)) => Some (p . content_id () . as_str () . to_owned ()) , _ => None , } ; let diagnostic = DiagnosticRecord { class : error . class . as_str () . to_owned () , message , site : error . site . clone () , reason : error . reason . clone () , level , tags , route , context : allowlist (error . context . clone ()) , policy : policy_ref , } ; Presentation { diagnostic , error } }",
+      "reason": "method call `.and_then(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__and_then` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `and_then(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "present"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 182,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A canonical, injective byte encoder for content-addressing a record (mirrors the kernel's\"] # [doc = \" length-prefixed BLAKE3 framing in `mycelium-core::content`, kept in the tooling layer so no kernel\"] # [doc = \" dependency is added — KC-3).\"] struct Canon { h : blake3 :: Hasher , }",
+      "reason": "struct `Canon` has a field type with no confirmed mapping (qualified type path `blake3 :: Hasher` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5))",
+      "item_name": "Canon"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 189,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Canon { fn new () -> Self { Canon { h : blake3 :: Hasher :: new () , } } fn blob (& mut self , bytes : & [u8]) { self . h . update (& (bytes . len () as u64) . to_le_bytes ()) ; self . h . update (bytes) ; } fn str (& mut self , s : & str) { self . blob (s . as_bytes ()) ; } fn opt (& mut self , s : Option < & str >) { match s { None => { self . h . update (& [0u8]) ; } Some (v) => { self . h . update (& [1u8]) ; self . str (v) ; } } } fn finish (self) -> ContentHash { let hex = self . h . finalize () . to_hex () ; ContentHash :: from_parts (\"blake3\" , hex . as_str ()) . expect (\"blake3 hex is a valid digest\") } }",
+      "reason": "no member of this impl block could be transpiled (5 sub-issue(s)): impl method `new` body: struct literal `Canon { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `blob` body: mutating method body statement is neither a `let`, a supported `self.<field>`/`*<param>` re-assignment, nor (in tail position) the method's own return value — value-threading deliberately refuses any shape outside a flat re-assignment sequence rather than risk an unsound rebind (DN-125 §6.1, never-silent G2/VR-5); impl method `str` body: mutating method body statement is neither a `let`, a supported `self.<field>`/`*<param>` re-assignment, nor (in tail position) the method's own return value — value-threading deliberately refuses any shape outside a flat re-assignment sequence rather than risk an unsound rebind (DN-125 §6.1, never-silent G2/VR-5); impl method `opt` body: mutating method's tail expression is neither a threaded-binding field/whole-value re-assignment nor (with the method's original return type already `()`/self-chain, and either multiple threaded bindings or one already assigned) an extra value — value-threading only supports a flat sequence of `self.<field> = ..`/`*<param> = ..` re-assignments plus, when the source return type is non-unit, one trailing value expression (DN-125 §5, conservative scope per §6.1); impl method `finish` body: method call `.to_hex(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__to_hex` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `to_hex(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "Canon"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 220,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl DiagnosticRecord { # [doc = \" Resolve this diagnostic's `route` to its RFC-0008 [`SinkBinding`] (M-354, RFC-0013 §8).\"] # [doc = \" `None` when no route is set; `Some(Err(_))` when the route string is not in the closed v0 set\"] # [doc = \" (an explicit [`UnknownRoute`], never a silent misroute). This is the **sink-dispatch** point and\"] # [doc = \" it lives **outside** [`present`] — so routing (or a failed route resolution) can never gate the\"] # [doc = \" error's propagation (I1): the error has already surfaced unchanged in [`Presentation::error`].\"] # [must_use] pub fn sink (& self) -> Option < Result < SinkBinding , UnknownRoute > > { self . route . as_deref () . map (| r | Route :: resolve (r) . map (Route :: binding)) } # [doc = \" The **content address** of this diagnostic (§4.3; ADR-003) — a deterministic BLAKE3 over its\"] # [doc = \" canonical fields. Identity-stable: the same diagnostic content always hashes the same, so the\"] # [doc = \" human and JSON projections share it (I3).\"] # [must_use] pub fn content_id (& self) -> ContentHash { let mut c = Canon :: new () ; c . str (\"mycelium.diagnostic.v1\") ; c . str (& self . class) ; c . str (& self . message) ; c . str (& self . site) ; c . opt (self . reason . as_deref ()) ; c . str (match self . level { Level :: Minimal => \"minimal\" , Level :: Medium => \"medium\" , Level :: Detailed => \"detailed\" , }) ; c . h . update (& (self . tags . len () as u64) . to_le_bytes ()) ; for t in & self . tags { c . str (t) ; } c . opt (self . route . as_deref ()) ; c . h . update (& (self . context . len () as u64) . to_le_bytes ()) ; for (k , v) in & self . context { c . str (k) ; c . str (v) ; } c . opt (self . policy . as_deref ()) ; c . finish () } # [doc = \" The **JSON projection** (§4.3): the lossless, round-trippable machine record, with its\"] # [doc = \" content `id` embedded. `from_json(to_json(r))` recovers an equal record with an equal\"] # [doc = \" `content_id` (I3).\"] # [must_use] pub fn to_json (& self) -> String { let mut value = serde_json :: to_value (self) . expect (\"a diagnostic record serializes\") ; if let serde_json :: Value :: Object (map) = & mut value { map . insert (\"id\" . to_owned () , serde_json :: Value :: String (self . content_id () . as_str () . to_owned ()) ,) ; } serde_json :: to_string (& value) . expect (\"a json value serializes\") } # [doc = \" Recover a record from its JSON projection (I3). The embedded `id` is informational — it is\"] # [doc = \" recomputed from the recovered fields, so the round-trip is over the semantic content.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns a [`serde_json::Error`] if the input is not a well-formed diagnostic record.\"] pub fn from_json (s : & str) -> Result < Self , serde_json :: Error > { serde_json :: from_str (s) } # [doc = \" The **human projection** (§4.3), graded by [`self.level`](Self::level). Minimal names the\"] # [doc = \" refusal (class + message + site; I2); medium adds the reason; detailed adds the allowlisted\"] # [doc = \" context. The content `id` is embedded so the human view carries the same identity as the JSON\"] # [doc = \" one (I3).\"] # [must_use] pub fn to_human (& self) -> String { let mut out = String :: new () ; out . push_str (& format ! (\"[{}] {} (at {})\" , self . class , self . message , self . site)) ; if let Some (route) = & self . route { out . push_str (& format ! (\" → {route}\")) ; } if ! self . tags . is_empty () { let tags : Vec < & str > = self . tags . iter () . map (String :: as_str) . collect () ; out . push_str (& format ! (\"  #{}\" , tags . join (\" #\"))) ; } if self . level >= Level :: Medium { if let Some (reason) = & self . reason { out . push_str (& format ! (\"\\n  reason: {reason}\")) ; } } if self . level >= Level :: Detailed { for (k , v) in & self . context { out . push_str (& format ! (\"\\n  {k}: {v}\")) ; } } out . push_str (& format ! (\"\\n  id: {}\" , self . content_id () . as_str ())) ; out } }",
+      "reason": "no member of this impl block could be transpiled (5 sub-issue(s)): impl method `sink` body: method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `content_id` body: qualified/associated-function call `Canon :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133); impl method `to_json` body: method call `.expect(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__expect` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `expect(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered); impl method `from_json` signature: qualified type path `serde_json :: Error` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5); impl method `to_human` body: qualified/associated-function call `String :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "DiagnosticRecord"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "line": 323,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for DiagnosticRecord { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { f . write_str (& self . to_human ()) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "DiagnosticRecord"
+    }
+  ],
+  "total_top_level_items": 19
+}

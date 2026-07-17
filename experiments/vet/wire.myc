@@ -1,0 +1,34 @@
+// nodule: lsp.wire
+// The **LSP wire protocol** (M-310; FR-S5; SC-5): JSON-RPC 2.0 framing over stdio plus the
+// mapping of the [`Feedback`] surface into LSP-shaped messages — the
+// "mechanical wrapping" the facade doc (M-140) flagged as the later step.
+//
+// What this layer **is**: the byte-level [`read_message`]/[`write_message`] codec (the
+// `Content-Length` header framing every LSP transport uses), the
+// [`Diagnostic`] → LSP-`Diagnostic` mapping with the proper
+// `DiagnosticSeverity` codes, the `textDocument/publishDiagnostics` notification builder, and a
+// minimal [`serve`] lifecycle loop (`initialize` → capabilities, `shutdown`/`exit`). [`serve_stdio`]
+// runs that loop over the process's real stdin/stdout — the executable an editor launches (the
+// `mycelium-lsp` binary).
+//
+// Since M-310's document-sync step (RFC-0011 r3 / RFC-0001 r4 gave the surface a text → `Node`
+// path), [`serve`] is a **document-syncing server**: it advertises `TextDocumentSyncKind.Full`,
+// handles `didOpen`/`didChange`/`didClose`, and pushes diagnostics computed through
+// [`crate::sync`] (parse → check). **Honest about spans (VR-5):** a *parse* diagnostic carries a
+// **real** `line:col` range from the lexer; a *check* diagnostic is located at its function's
+// `fn <name>` declaration (the checker tracks the failing function, not yet the failing
+// sub-expression span — flagged, never fabricated) with the function name in `data.breadcrumb`. The
+// facade's node-analysis diagnostics ([`to_lsp_diagnostic`]) still use the zero-range + breadcrumb
+// shape (they analyze Core IR nodes, which carry no spans).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.wire;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.lint) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Severity = Error | Warning;
+type Diagnostic = Diagnostic(Bytes, Severity, Bytes, Bytes);
+
+// LSP `DiagnosticSeverity` code for a [`Severity`] (LSP spec: Error=1, Warning=2, Information=3,
+// Hint=4). The lint lattice only has Error/Warning, mapped to 1/2.
+fn lsp_severity(severity: Severity) => Binary{8} = match severity { Error => 1, Warning => 2 };

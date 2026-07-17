@@ -1,0 +1,17 @@
+// nodule: lsp.recover.policy_kw
+// The **reified recovery policy** (RFC-0014 §4.4) — the RFC-0005 pattern (ADR-006) applied to
+// *control* (what happens on an error) rather than presentation (RFC-0013). It is the sibling of the
+// diagnostic policy and **shares RFC-0013's error-class registry** (§4.9): a rule names a class
+// resolved through the registry — never an evaluated string (X1). A recovery policy is
+// content-addressed (`PolicyRef`), so every recovered/re-propagated outcome can answer *"which policy
+// acted on this error, and what does it do?"*.
+//
+// The recovery-action set is **closed** in v0 (§8 resolved); each action is explicit and never-silent.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.recover.policy_kw;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.registry) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ClassName = ClassName(Bytes);
+type UnknownClass = UnknownClass(Bytes);

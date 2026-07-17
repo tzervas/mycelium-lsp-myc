@@ -1,0 +1,211 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+  "emitted_items": [
+    "Route",
+    "impl Route",
+    "UnknownRoute"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: fmt ;",
+      "reason": "`use std::fmt` — `std` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { Bound , BoundBasis , BoundKind , GuaranteeStrength } ;",
+      "reason": "`use mycelium_core::Bound` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::BoundBasis` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::BoundKind` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 29,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0 set** of diagnostic routes (RFC-0013 §8). A `route` string resolves to exactly one\"] # [doc = \" of these or is an explicit [`UnknownRoute`]; there is no open-ended free-form target in v0.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Hash)] pub enum Route { # [doc = \" The in-process **diagnostic stream** — the default observability feed RFC-0008 hosts\"] # [doc = \" (RFC-0013 §4.8 Feeds). Synchronous in-process hand-off.\"] Stream , # [doc = \" The durable **representation-crossing audit view** (RFC-0013 §4.6) — persisted for later\"] # [doc = \" inspection / EXPLAIN.\"] Audit , # [doc = \" A best-effort textual **log** sink (may be redirected/dropped by the io layer).\"] Log , # [doc = \" The **null** sink: the presentation is intentionally discarded. Honest — it reports *not\"] # [doc = \" delivered*; it still does **not** gate propagation (I1: the error bubbles regardless).\"] Null , # [doc = \" The **mesh** sink: probabilistic gossip/pub-sub delivery across the runtime overlay\"] # [doc = \" (RFC-0008 §4.3, RT5). Carries a [`Delivery::Probabilistic`] δ; never claimed reliable.\"] Mesh , }",
+      "reason": "enum `Route` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 29,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0 set** of diagnostic routes (RFC-0013 §8). A `route` string resolves to exactly one\"] # [doc = \" of these or is an explicit [`UnknownRoute`]; there is no open-ended free-form target in v0.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Hash)] pub enum Route { # [doc = \" The in-process **diagnostic stream** — the default observability feed RFC-0008 hosts\"] # [doc = \" (RFC-0013 §4.8 Feeds). Synchronous in-process hand-off.\"] Stream , # [doc = \" The durable **representation-crossing audit view** (RFC-0013 §4.6) — persisted for later\"] # [doc = \" inspection / EXPLAIN.\"] Audit , # [doc = \" A best-effort textual **log** sink (may be redirected/dropped by the io layer).\"] Log , # [doc = \" The **null** sink: the presentation is intentionally discarded. Honest — it reports *not\"] # [doc = \" delivered*; it still does **not** gate propagation (I1: the error bubbles regardless).\"] Null , # [doc = \" The **mesh** sink: probabilistic gossip/pub-sub delivery across the runtime overlay\"] # [doc = \" (RFC-0008 §4.3, RT5). Carries a [`Delivery::Probabilistic`] δ; never claimed reliable.\"] Mesh , }",
+      "reason": "enum `Route` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 29,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The **closed v0 set** of diagnostic routes (RFC-0013 §8). A `route` string resolves to exactly one\"] # [doc = \" of these or is an explicit [`UnknownRoute`]; there is no open-ended free-form target in v0.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Hash)] pub enum Route { # [doc = \" The in-process **diagnostic stream** — the default observability feed RFC-0008 hosts\"] # [doc = \" (RFC-0013 §4.8 Feeds). Synchronous in-process hand-off.\"] Stream , # [doc = \" The durable **representation-crossing audit view** (RFC-0013 §4.6) — persisted for later\"] # [doc = \" inspection / EXPLAIN.\"] Audit , # [doc = \" A best-effort textual **log** sink (may be redirected/dropped by the io layer).\"] Log , # [doc = \" The **null** sink: the presentation is intentionally discarded. Honest — it reports *not\"] # [doc = \" delivered*; it still does **not** gate propagation (I1: the error bubbles regardless).\"] Null , # [doc = \" The **mesh** sink: probabilistic gossip/pub-sub delivery across the runtime overlay\"] # [doc = \" (RFC-0008 §4.3, RT5). Carries a [`Delivery::Probabilistic`] δ; never claimed reliable.\"] Mesh , }",
+      "reason": "enum `Route` derive(Eq): covered by co-occurring PartialEq → `fn eq_Route` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 29,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" The **closed v0 set** of diagnostic routes (RFC-0013 §8). A `route` string resolves to exactly one\"] # [doc = \" of these or is an explicit [`UnknownRoute`]; there is no open-ended free-form target in v0.\"] # [derive (Debug , Clone , Copy , PartialEq , Eq , PartialOrd , Ord , Hash)] pub enum Route { # [doc = \" The in-process **diagnostic stream** — the default observability feed RFC-0008 hosts\"] # [doc = \" (RFC-0013 §4.8 Feeds). Synchronous in-process hand-off.\"] Stream , # [doc = \" The durable **representation-crossing audit view** (RFC-0013 §4.6) — persisted for later\"] # [doc = \" inspection / EXPLAIN.\"] Audit , # [doc = \" A best-effort textual **log** sink (may be redirected/dropped by the io layer).\"] Log , # [doc = \" The **null** sink: the presentation is intentionally discarded. Honest — it reports *not\"] # [doc = \" delivered*; it still does **not** gate propagation (I1: the error bubbles regardless).\"] Null , # [doc = \" The **mesh** sink: probabilistic gossip/pub-sub delivery across the runtime overlay\"] # [doc = \" (RFC-0008 §4.3, RT5). Carries a [`Delivery::Probabilistic`] δ; never claimed reliable.\"] Mesh , }",
+      "reason": "enum `Route` derive(...) names PartialOrd, Ord, Hash not in the DN-128 enum-derive set this leaf builds (Debug/PartialEq/Clone/Copy recognized; bare Eq is a satisfied co-occurrence note; Hash/PartialOrd/Ord/Default stay product-only for now) — dropped, no confirmed Mycelium surface",
+      "item_name": "Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 49,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl Route { # [doc = \" The canonical route string (the on-the-wire/`PolicyFile` projection name).\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Route :: Stream => \"stream\" , Route :: Audit => \"audit\" , Route :: Log => \"log\" , Route :: Null => \"null\" , Route :: Mesh => \"mesh\" , } } # [doc = \" The closed v0 set, in declaration order (for enumeration / exhaustive tests).\"] # [must_use] pub fn all () -> [Route ; 5] { [Route :: Stream , Route :: Audit , Route :: Log , Route :: Null , Route :: Mesh ,] } # [doc = \" Resolve a `route` string to its [`Route`] — **checked against the closed v0 set** (the §4.5 X1\"] # [doc = \" \\\"looked up, never evaluated\\\" discipline applied to routes). An unrecognised route is an explicit\"] # [doc = \" [`UnknownRoute`], never a silent misroute.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownRoute`] when `s` is not one of the closed v0 routes.\"] pub fn resolve (s : & str) -> Result < Route , UnknownRoute > { Route :: all () . into_iter () . find (| r | r . as_str () == s) . ok_or_else (| | UnknownRoute { route : s . to_owned () , }) } # [doc = \" The RFC-0008 sink this route binds to, with its **honest delivery guarantee** (RT5).\"] # [must_use] pub fn binding (self) -> SinkBinding { let (sink , delivery) = match self { Route :: Stream => (\"rfc0008.diagnostic-stream\" , Delivery :: Synchronous) , Route :: Audit => (\"rfc0008.audit-store\" , Delivery :: Durable) , Route :: Log => (\"rfc0008.text-log\" , Delivery :: BestEffort) , Route :: Null => (\"rfc0008.null\" , Delivery :: Discarded) , Route :: Mesh => (\"rfc0008.mesh\" , Delivery :: Probabilistic { bound : Bound { kind : BoundKind :: Probability { delta : 0.01 } , basis : BoundBasis :: UserDeclared , } , } ,) , } ; SinkBinding { route : self , sink , delivery , } } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 49,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Route { # [doc = \" The canonical route string (the on-the-wire/`PolicyFile` projection name).\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Route :: Stream => \"stream\" , Route :: Audit => \"audit\" , Route :: Log => \"log\" , Route :: Null => \"null\" , Route :: Mesh => \"mesh\" , } } # [doc = \" The closed v0 set, in declaration order (for enumeration / exhaustive tests).\"] # [must_use] pub fn all () -> [Route ; 5] { [Route :: Stream , Route :: Audit , Route :: Log , Route :: Null , Route :: Mesh ,] } # [doc = \" Resolve a `route` string to its [`Route`] — **checked against the closed v0 set** (the §4.5 X1\"] # [doc = \" \\\"looked up, never evaluated\\\" discipline applied to routes). An unrecognised route is an explicit\"] # [doc = \" [`UnknownRoute`], never a silent misroute.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownRoute`] when `s` is not one of the closed v0 routes.\"] pub fn resolve (s : & str) -> Result < Route , UnknownRoute > { Route :: all () . into_iter () . find (| r | r . as_str () == s) . ok_or_else (| | UnknownRoute { route : s . to_owned () , }) } # [doc = \" The RFC-0008 sink this route binds to, with its **honest delivery guarantee** (RT5).\"] # [must_use] pub fn binding (self) -> SinkBinding { let (sink , delivery) = match self { Route :: Stream => (\"rfc0008.diagnostic-stream\" , Delivery :: Synchronous) , Route :: Audit => (\"rfc0008.audit-store\" , Delivery :: Durable) , Route :: Log => (\"rfc0008.text-log\" , Delivery :: BestEffort) , Route :: Null => (\"rfc0008.null\" , Delivery :: Discarded) , Route :: Mesh => (\"rfc0008.mesh\" , Delivery :: Probabilistic { bound : Bound { kind : BoundKind :: Probability { delta : 0.01 } , basis : BoundBasis :: UserDeclared , } , } ,) , } ; SinkBinding { route : self , sink , delivery , } } }",
+      "reason": "impl method `all` signature: unsupported Rust type form `[Route ; 5]`",
+      "item_name": "impl Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 49,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Route { # [doc = \" The canonical route string (the on-the-wire/`PolicyFile` projection name).\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Route :: Stream => \"stream\" , Route :: Audit => \"audit\" , Route :: Log => \"log\" , Route :: Null => \"null\" , Route :: Mesh => \"mesh\" , } } # [doc = \" The closed v0 set, in declaration order (for enumeration / exhaustive tests).\"] # [must_use] pub fn all () -> [Route ; 5] { [Route :: Stream , Route :: Audit , Route :: Log , Route :: Null , Route :: Mesh ,] } # [doc = \" Resolve a `route` string to its [`Route`] — **checked against the closed v0 set** (the §4.5 X1\"] # [doc = \" \\\"looked up, never evaluated\\\" discipline applied to routes). An unrecognised route is an explicit\"] # [doc = \" [`UnknownRoute`], never a silent misroute.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownRoute`] when `s` is not one of the closed v0 routes.\"] pub fn resolve (s : & str) -> Result < Route , UnknownRoute > { Route :: all () . into_iter () . find (| r | r . as_str () == s) . ok_or_else (| | UnknownRoute { route : s . to_owned () , }) } # [doc = \" The RFC-0008 sink this route binds to, with its **honest delivery guarantee** (RT5).\"] # [must_use] pub fn binding (self) -> SinkBinding { let (sink , delivery) = match self { Route :: Stream => (\"rfc0008.diagnostic-stream\" , Delivery :: Synchronous) , Route :: Audit => (\"rfc0008.audit-store\" , Delivery :: Durable) , Route :: Log => (\"rfc0008.text-log\" , Delivery :: BestEffort) , Route :: Null => (\"rfc0008.null\" , Delivery :: Discarded) , Route :: Mesh => (\"rfc0008.mesh\" , Delivery :: Probabilistic { bound : Bound { kind : BoundKind :: Probability { delta : 0.01 } , basis : BoundBasis :: UserDeclared , } , } ,) , } ; SinkBinding { route : self , sink , delivery , } } }",
+      "reason": "impl method `resolve` body: method call `.ok_or_else(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__ok_or_else` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `ok_or_else(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "impl Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 49,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "impl Route { # [doc = \" The canonical route string (the on-the-wire/`PolicyFile` projection name).\"] # [must_use] pub fn as_str (self) -> & 'static str { match self { Route :: Stream => \"stream\" , Route :: Audit => \"audit\" , Route :: Log => \"log\" , Route :: Null => \"null\" , Route :: Mesh => \"mesh\" , } } # [doc = \" The closed v0 set, in declaration order (for enumeration / exhaustive tests).\"] # [must_use] pub fn all () -> [Route ; 5] { [Route :: Stream , Route :: Audit , Route :: Log , Route :: Null , Route :: Mesh ,] } # [doc = \" Resolve a `route` string to its [`Route`] — **checked against the closed v0 set** (the §4.5 X1\"] # [doc = \" \\\"looked up, never evaluated\\\" discipline applied to routes). An unrecognised route is an explicit\"] # [doc = \" [`UnknownRoute`], never a silent misroute.\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownRoute`] when `s` is not one of the closed v0 routes.\"] pub fn resolve (s : & str) -> Result < Route , UnknownRoute > { Route :: all () . into_iter () . find (| r | r . as_str () == s) . ok_or_else (| | UnknownRoute { route : s . to_owned () , }) } # [doc = \" The RFC-0008 sink this route binds to, with its **honest delivery guarantee** (RT5).\"] # [must_use] pub fn binding (self) -> SinkBinding { let (sink , delivery) = match self { Route :: Stream => (\"rfc0008.diagnostic-stream\" , Delivery :: Synchronous) , Route :: Audit => (\"rfc0008.audit-store\" , Delivery :: Durable) , Route :: Log => (\"rfc0008.text-log\" , Delivery :: BestEffort) , Route :: Null => (\"rfc0008.null\" , Delivery :: Discarded) , Route :: Mesh => (\"rfc0008.mesh\" , Delivery :: Probabilistic { bound : Bound { kind : BoundKind :: Probability { delta : 0.01 } , basis : BoundBasis :: UserDeclared , } , } ,) , } ; SinkBinding { route : self , sink , delivery , } } }",
+      "reason": "impl method `binding` body: `let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "impl Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 129,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for Route { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { f . write_str (self . as_str ()) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "Route"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 135,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" A `route` string that is not in the closed v0 [`Route`] set — an explicit configuration error\"] # [doc = \" (never silently misrouted; I1 — and the error it would have presented still propagates).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownRoute { # [doc = \" The unrecognised route string.\"] pub route : String , }",
+      "reason": "struct `UnknownRoute` named field(s) `route` emitted positionally as `UnknownRoute(Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 135,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A `route` string that is not in the closed v0 [`Route`] set — an explicit configuration error\"] # [doc = \" (never silently misrouted; I1 — and the error it would have presented still propagates).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownRoute { # [doc = \" The unrecognised route string.\"] pub route : String , }",
+      "reason": "struct `UnknownRoute` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 135,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A `route` string that is not in the closed v0 [`Route`] set — an explicit configuration error\"] # [doc = \" (never silently misrouted; I1 — and the error it would have presented still propagates).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownRoute { # [doc = \" The unrecognised route string.\"] pub route : String , }",
+      "reason": "struct `UnknownRoute` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 143,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for UnknownRoute { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { let known : Vec < & str > = Route :: all () . iter () . map (| r | r . as_str ()) . collect () ; write ! (f , \"unknown diagnostic route {:?}: not in the closed v0 set {{{}}} (RFC-0013 §8) — an explicit \\\n             configuration error, never a silent misroute\" , self . route , known . join (\", \")) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl std :: error :: Error for UnknownRoute { }",
+      "reason": "trait-impl of non-prelude trait `Error` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UnknownRoute"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 158,
+      "col": 1,
+      "category": "PayloadVariant",
+      "rust_construct": "PayloadVariant",
+      "snippet": "# [doc = \" The **honest delivery semantics** of a sink (RT5). The lattice tag a delivery may *claim* is bounded\"] # [doc = \" by what is honest for v0; [`guarantee`](Delivery::guarantee) reads it off, never upgraded (VR-5).\"] # [derive (Debug , Clone , PartialEq)] pub enum Delivery { # [doc = \" In-process, synchronous: handed to the sink before the presenting call returns. No loss path in\"] # [doc = \" v0. Honest strength `Declared`.\"] Synchronous , # [doc = \" Durable append (delivered + persisted). Honest strength `Declared`.\"] Durable , # [doc = \" Best-effort: may be dropped/redirected by the io layer. Honest strength `Declared`, explicitly\"] # [doc = \" best-effort.\"] BestEffort , # [doc = \" Intentionally discarded (the null sink): **not delivered**, and honestly so.\"] Discarded , # [doc = \" Probabilistic gossip delivery (mesh): carries a declared [`ProbabilityBound`] δ.\"] # [doc = \"\"] # [doc = \" [`ProbabilityBound`]: mycelium_core::BoundKind::Probability\"] Probabilistic { # [doc = \" The declared failure-probability bound (v0: `UserDeclared` basis — no measured convergence).\"] bound : Bound , } , }",
+      "reason": "enum `Delivery` has a named-field variant referencing a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Delivery"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 181,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Delivery { # [doc = \" Whether the sink actually **delivers** the presentation. The null sink does not — and says so;\"] # [doc = \" callers that need a delivery must not route to it expecting one (RT5).\"] # [must_use] pub fn delivers (& self) -> bool { ! matches ! (self , Delivery :: Discarded) } # [doc = \" The honest **delivery guarantee** on the lattice (RT5/VR-5): `None` for the null sink (nothing\"] # [doc = \" delivered, so no delivery claim), `Some(strength)` otherwise. v0 never exceeds `Declared` — a\"] # [doc = \" stronger claim requires a *checked* basis (a proven no-loss property, or measured convergence).\"] # [must_use] pub fn guarantee (& self) -> Option < GuaranteeStrength > { match self { Delivery :: Discarded => None , Delivery :: Synchronous | Delivery :: Durable | Delivery :: BestEffort | Delivery :: Probabilistic { .. } => Some (GuaranteeStrength :: Declared) , } } # [doc = \" The probabilistic delivery bound, if this is a probabilistic sink (the mesh δ; RT5).\"] # [must_use] pub fn probability_bound (& self) -> Option < & Bound > { match self { Delivery :: Probabilistic { bound } => Some (bound) , _ => None , } } }",
+      "reason": "no member of this impl block could be transpiled (3 sub-issue(s)): impl method `delivers` body: expression-position macro `matches` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3); impl method `guarantee` body: struct-variant pattern `Probabilistic { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2); impl method `probability_bound` body: struct-variant pattern `Probabilistic { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2)",
+      "item_name": "Delivery"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 213,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A resolved binding of a [`Route`] to its RFC-0008 sink and the sink's honest [`Delivery`] guarantee.\"] # [derive (Debug , Clone , PartialEq)] pub struct SinkBinding { # [doc = \" The route.\"] pub route : Route , # [doc = \" The RFC-0008 sink identifier this route delivers to.\"] pub sink : & 'static str , # [doc = \" The sink's honest delivery semantics (RT5).\"] pub delivery : Delivery , }",
+      "reason": "struct `SinkBinding` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "SinkBinding"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "line": 224,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [test] fn the_v0_route_set_is_closed_and_round_trips () { for r in Route :: all () { assert_eq ! (Route :: resolve (r . as_str ()) . unwrap () , r) ; } let err = Route :: resolve (\"diagnostics_channel\") . unwrap_err () ; assert_eq ! (err . route , \"diagnostics_channel\") ; assert ! (err . to_string () . contains (\"closed v0 set\")) ; } # [test] fn every_sink_guarantee_is_honest_and_never_upgraded () { for r in Route :: all () { let b = r . binding () ; match b . delivery . guarantee () { Some (g) => assert_eq ! (g , GuaranteeStrength :: Declared , \"{r} must not over-claim its delivery guarantee (VR-5)\") , None => assert ! (! b . delivery . delivers () , \"only a non-delivering sink may have no guarantee\") , } } let mesh = Route :: Mesh . binding () ; let bound = mesh . delivery . probability_bound () . expect (\"mesh is probabilistic\") ; assert ! (bound . well_formed ()) ; assert ! (matches ! (bound . kind , BoundKind :: Probability { .. })) ; assert ! (! Route :: Null . binding () . delivery . delivers ()) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 12
+}

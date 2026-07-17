@@ -1,0 +1,19 @@
+// nodule: lsp.definition
+// **Go-to-definition provider** (M-730; `textDocument/definition`).
+//
+// Resolves an identifier under the cursor to a declaration **within the same document**.
+//
+// Scope and honesty (`Declared`): this is a **lexical, single-document** resolver. It collects the
+// names introduced by the declaration forms `fn <name>`, `type <name>`, and `trait <name>` (the
+// lexer pattern `<keyword> <Ident>`), and navigates an identifier use to the matching declaration.
+// It does **not** cross nodule/phylum boundaries, resolve imports, or do scope/shadowing analysis —
+// a client should treat it as best-effort lexical navigation, not a semantic resolver (VR-5).
+// **Never-silent (G2):** an identifier with no in-document declaration yields a `null` result, never
+// a fabricated location.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.definition;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.span) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type LexKind = Token(Tok) | Comment;

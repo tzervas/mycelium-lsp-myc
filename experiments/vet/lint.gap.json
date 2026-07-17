@@ -1,0 +1,180 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+  "emitted_items": [
+    "Severity",
+    "Diagnostic"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 22,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { GuaranteeStrength , Node , Repr , Value } ;",
+      "reason": "`use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Node` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Repr` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Value` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 24,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Severity of a [`Diagnostic`].\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A house-rule violation that should block (honesty / never-silent).\"] Error , # [doc = \" An advisory the author must see (e.g. an unverified `Declared` value).\"] Warning , }",
+      "reason": "enum `Severity` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 24,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Severity of a [`Diagnostic`].\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A house-rule violation that should block (honesty / never-silent).\"] Error , # [doc = \" An advisory the author must see (e.g. an unverified `Declared` value).\"] Warning , }",
+      "reason": "enum `Severity` derive(Copy) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 24,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Severity of a [`Diagnostic`].\"] # [derive (Debug , Clone , Copy , PartialEq , Eq)] pub enum Severity { # [doc = \" A house-rule violation that should block (honesty / never-silent).\"] Error , # [doc = \" An advisory the author must see (e.g. an unverified `Declared` value).\"] Warning , }",
+      "reason": "enum `Severity` derive(Eq): covered by co-occurring PartialEq → `fn eq_Severity` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 33,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" A single lint finding.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Diagnostic { # [doc = \" Stable lint code (e.g. `\\\"implicit-swap\\\"`).\"] pub code : & 'static str , # [doc = \" Severity.\"] pub severity : Severity , # [doc = \" A breadcrumb path to the offending node (e.g. `\\\"let a/swap/op f\\\"`).\"] pub at : String , # [doc = \" Human-readable explanation.\"] pub message : String , }",
+      "reason": "struct `Diagnostic` named field(s) `code, severity, at, message` emitted positionally as `Diagnostic(Bytes, Severity, Bytes, Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "Diagnostic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 33,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A single lint finding.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Diagnostic { # [doc = \" Stable lint code (e.g. `\\\"implicit-swap\\\"`).\"] pub code : & 'static str , # [doc = \" Severity.\"] pub severity : Severity , # [doc = \" A breadcrumb path to the offending node (e.g. `\\\"let a/swap/op f\\\"`).\"] pub at : String , # [doc = \" Human-readable explanation.\"] pub message : String , }",
+      "reason": "struct `Diagnostic` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Diagnostic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 33,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A single lint finding.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct Diagnostic { # [doc = \" Stable lint code (e.g. `\\\"implicit-swap\\\"`).\"] pub code : & 'static str , # [doc = \" Severity.\"] pub severity : Severity , # [doc = \" A breadcrumb path to the offending node (e.g. `\\\"let a/swap/op f\\\"`).\"] pub at : String , # [doc = \" Human-readable explanation.\"] pub message : String , }",
+      "reason": "struct `Diagnostic` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "Diagnostic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Diagnostic { # [doc = \" The breadcrumb [`Self::at`] as a structured, navigable path (split on `/`) — so a client can\"] # [doc = \" locate the offending node step-by-step rather than parsing the string (M-310). An empty\"] # [doc = \" breadcrumb (the program root) yields an empty path.\"] # [must_use] pub fn path (& self) -> Vec < & str > { if self . at . is_empty () { Vec :: new () } else { self . at . split ('/') . collect () } } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `path` body: method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "Diagnostic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 60,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Lint a (closed) Core IR program, returning all findings in deterministic traversal order.\"] # [must_use] pub fn lint (node : & Node) -> Vec < Diagnostic > { let mut out = Vec :: new () ; let mut scope : Vec < & str > = Vec :: new () ; walk (node , \"\" , & mut scope , & mut out) ; out }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "lint"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 69,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Whether `lint` found at least one `Error`-severity diagnostic.\"] # [must_use] pub fn has_errors (diags : & [Diagnostic]) -> bool { diags . iter () . any (| d | d . severity == Severity :: Error) }",
+      "reason": "method call `.any(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__any` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `any(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "has_errors"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 75,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The **source-text** companion lint (M-141; DN-06 §6): recognise the `// nodule:` header marker\"] # [doc = \" on a document's first non-blank line and surface a malformed *named* marker as an explicit\"] # [doc = \" `Error` (never silently dropped — G2). A well-formed marker (or its absence) yields nothing;\"] # [doc = \" this is a *recogniser*, not a requirement (a file need not declare a nodule). The Core-IR [`lint`]\"] # [doc = \" runs over the elaborated program; this runs over raw text, where the comment marker lives.\"] # [must_use] pub fn lint_nodule_header (src : & str) -> Vec < Diagnostic > { match mycelium_l1 :: parse_nodule_header (src) { Ok (_) => Vec :: new () , Err (e) => vec ! [Diagnostic { code : \"nodule-header\" , severity : Severity :: Error , at : format ! (\"line {}\" , e . line) , message : format ! (\"malformed `// nodule:` header marker (DN-06 §6): {} — a near-miss marker is \\\n                 flagged, never silently ignored (G2)\" , e . message) , }] , } }",
+      "reason": "qualified/associated-function call `mycelium_l1 :: parse_nodule_header` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "lint_nodule_header"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 97,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The **structured-header** lint (M-141; M-359 / spec §3): parse the `// @key: value` header and\"] # [doc = \" surface any malformed marker, unknown/duplicate key, or bad value (non-SPDX `@license`, non-ISO\"] # [doc = \" `@since`/`@updated`, ill-formed `@version`) as an explicit `Error` — never silently ignored (G2).\"] # [doc = \" A well-formed header (or a file with none) yields nothing. Supersedes the bare-marker\"] # [doc = \" [`lint_nodule_header`] when the richer M-359 metadata is wanted; both run over raw text.\"] # [must_use] pub fn lint_structured_header (src : & str) -> Vec < Diagnostic > { match mycelium_proj :: parse_header (src) { Ok (_) => Vec :: new () , Err (e) => vec ! [Diagnostic { code : \"nodule-header\" , severity : Severity :: Error , at : format ! (\"line {}\" , e . line) , message : format ! (\"malformed nodule header (DN-06 §6 / M-359 spec §3): {} — a header defect is flagged, \\\n                 never silently ignored (G2)\" , e . message) , }] , } }",
+      "reason": "qualified/associated-function call `mycelium_proj :: parse_header` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "lint_structured_header"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 119,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn paradigm (repr : & Repr) -> & 'static str { match repr { Repr :: Binary { .. } => \"binary\" , Repr :: Ternary { .. } => \"ternary\" , Repr :: Dense { .. } => \"dense\" , Repr :: Vsa { .. } => \"vsa\" , Repr :: Seq { .. } => \"seq\" , Repr :: Bytes => \"bytes\" , Repr :: Float { .. } => \"float\" , } }",
+      "reason": "struct-variant pattern `Binary_kw { .. }` names a constructor with no confirmed in-file layout -- resolved only for an emitted, in-file struct (or, once DN-132's SS5.1 variant-aware `StructLayout` population lands, an in-file enum's named-field variant); never a guessed field-index arity (DN-132 SS5.1/OQ-4, VR-5/G2)",
+      "item_name": "paradigm"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 134,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" A policy reference that is a stub rather than a real reified policy.\"] fn is_placeholder_policy (policy : & mycelium_core :: ContentHash) -> bool { let d = policy . digest () ; d . bytes () . all (| b | b == b'0') || matches ! (d , \"todo\" | \"tbd\" | \"none\" | \"placeholder\") }",
+      "reason": "qualified type path `mycelium_core :: ContentHash` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "is_placeholder_policy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 140,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn here (prefix : & str , step : & str) -> String { if prefix . is_empty () { step . to_owned () } else { format ! (\"{prefix}/{step}\") } }",
+      "reason": "method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "here"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 148,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn check_value (v : & Value , at : & str , out : & mut Vec < Diagnostic >) { if v . meta () . guarantee () == GuaranteeStrength :: Declared { out . push (Diagnostic { code : \"unverified-bound\" , severity : Severity :: Warning , at : at . to_owned () , message : \"value carries a Declared (user-asserted, unvalidated) bound — surface it; \\\n                      never trust it silently (VR-5/M-I4)\" . to_owned () , }) ; } }",
+      "reason": "mutating method's tail expression is neither a threaded-binding field/whole-value re-assignment nor (with the method's original return type already `()`/self-chain, and either multiple threaded bindings or one already assigned) an extra value — value-threading only supports a flat sequence of `self.<field> = ..`/`*<param> = ..` re-assignments plus, when the source return type is non-unit, one trailing value expression (DN-125 §5, conservative scope per §6.1)",
+      "item_name": "check_value"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "line": 161,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "fn walk < 'a > (node : & 'a Node , prefix : & str , scope : & mut Vec < & 'a str > , out : & mut Vec < Diagnostic >) { match node { Node :: Const (v) => check_value (v , & here (prefix , \"const\") , out) , Node :: Var (x) => { if ! scope . iter () . rev () . any (| b | b == x) { out . push (Diagnostic { code : \"free-variable\" , severity : Severity :: Error , at : here (prefix , & format ! (\"var {x}\")) , message : format ! (\"`{x}` is not bound by any enclosing `let` (open term)\") , }) ; } } Node :: Let { id , bound , body } => { let at = here (prefix , & format ! (\"let {id}\")) ; walk (bound , & at , scope , out) ; scope . push (id) ; walk (body , & at , scope , out) ; scope . pop () ; } Node :: Op { prim , args } => { let at = here (prefix , & format ! (\"op {prim}\")) ; let mut paradigms : Vec < & str > = args . iter () . filter_map (| a | match a { Node :: Const (v) => Some (paradigm (v . repr ())) , _ => None , }) . collect () ; paradigms . sort_unstable () ; paradigms . dedup () ; if paradigms . len () > 1 { out . push (Diagnostic { code : \"implicit-swap\" , severity : Severity :: Error , at : at . clone () , message : format ! (\"op `{prim}` mixes paradigms [{}] — insert an explicit `swap` (no implicit conversion; FR-M3/SC-3)\" , paradigms . join (\", \")) , }) ; } for a in args { walk (a , & at , scope , out) ; } } Node :: Swap { src , target , policy , } => { let at = here (prefix , & format ! (\"swap -> {}\" , paradigm (target))) ; if is_placeholder_policy (policy) { out . push (Diagnostic { code : \"placeholder-policy\" , severity : Severity :: Error , at : at . clone () , message : format ! (\"swap references a placeholder policy `{}` — a swap must cite a real reified PolicyRef (G2)\" , policy . as_str ()) , }) ; } walk (src , & at , scope , out) ; } Node :: Construct { ctor , args } => { let at = here (prefix , & format ! (\"construct {ctor}\")) ; for a in args { walk (a , & at , scope , out) ; } } Node :: Match { scrutinee , alts , default , } => { let at = here (prefix , \"match\") ; walk (scrutinee , & at , scope , out) ; for alt in alts { match alt { mycelium_core :: Alt :: Ctor { ctor , binders , body , } => { let arm_at = here (& at , & format ! (\"alt {ctor}\")) ; let mark = scope . len () ; for b in binders { scope . push (b) ; } walk (body , & arm_at , scope , out) ; scope . truncate (mark) ; } mycelium_core :: Alt :: Lit { body , .. } => { walk (body , & here (& at , \"alt-lit\") , scope , out) ; } } } if let Some (d) = default { walk (d , & here (& at , \"default\") , scope , out) ; } } Node :: Lam { param , body } => { let at = here (prefix , & format ! (\"lam {param}\")) ; scope . push (param) ; walk (body , & at , scope , out) ; scope . pop () ; } Node :: App { func , arg } => { let at = here (prefix , \"app\") ; walk (func , & at , scope , out) ; walk (arg , & at , scope , out) ; } Node :: Fix { name , body } => { let at = here (prefix , & format ! (\"fix {name}\")) ; scope . push (name) ; walk (body , & at , scope , out) ; scope . pop () ; } Node :: FixGroup { defs , body } => { let at = here (prefix , \"fixgroup\") ; let mark = scope . len () ; for (name , _) in defs { scope . push (name) ; } for (name , def) in defs { walk (def , & here (& at , & format ! (\"def {name}\")) , scope , out) ; } walk (body , & at , scope , out) ; scope . truncate (mark) ; } } }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "walk"
+    }
+  ],
+  "total_top_level_items": 13
+}

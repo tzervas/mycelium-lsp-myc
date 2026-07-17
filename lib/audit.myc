@@ -1,0 +1,22 @@
+// nodule: lsp.diagnostics.audit
+// The **representation-crossing audit view** (RFC-0013 §4.6) — routed here from RFC-0012 R12-Q2
+// (M-351): *"where do my lossy / precision-changing conversions live, and under what honesty
+// bound?"*, delivered as a structured diagnostic **without constraining where crossings live**.
+//
+// It enumerates **every `swap`** in a program (every representation crossing), wherever it sits
+// (I5: location-independent — it does not care whether a crossing is at a block edge or buried in an
+// expression), and reports each crossing's location, from/to representation, **honesty bound** on
+// the lattice `Exact ⊐ Proven ⊐ Empirical ⊐ Declared`, and selection policy. The honesty bound is
+// **read off** each crossing's certificate and is **never upgraded** (VR-5): a crossing whose bound
+// cannot be derived statically reports `None` (unknown), never a fabricated `Exact`.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.diagnostics.audit;
+
+// Declared: co-emitted guarantee-lattice type — referenced in this file but not declared here and not available via a resolved batch `use` (ORACLE-R1 A2; never silent unknown-type file poison — G2/VR-5). Variants use DN-140 `*_kw` renames for the reserved lattice keywords (Exact/Proven/Empirical/Declared).
+// Declared: renamed Exact -> Exact_kw (reserved-word collision, DN-140)
+// Declared: renamed Proven -> Proven_kw (reserved-word collision, DN-140)
+// Declared: renamed Empirical -> Empirical_kw (reserved-word collision, DN-140)
+// Declared: renamed Declared -> Declared_kw (reserved-word collision, DN-140)
+type GuaranteeStrength = Exact_kw | Proven_kw | Empirical_kw | Declared_kw;

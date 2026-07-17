@@ -1,0 +1,89 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+  "emitted_items": [
+    "co-include:LexKind"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 13,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde_json :: { json , Value } ;",
+      "reason": "`use serde_json::json` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde_json::Value` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 15,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_l1 :: token :: Tok ;",
+      "reason": "`use mycelium_l1.token::Tok` — `mycelium_l1.token` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 17,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: span :: { item_at , lex_items , LexItem , LexKind } ;",
+      "reason": "`use span::item_at` — `item_at` is not among sibling `span`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:LexKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 17,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: span :: { item_at , lex_items , LexItem , LexKind } ;",
+      "reason": "`use span::lex_items` — `lex_items` is not among sibling `span`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:LexKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 17,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: span :: { item_at , lex_items , LexItem , LexKind } ;",
+      "reason": "`use span::LexItem` — `LexItem` is not among sibling `span`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:LexKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 19,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Build the `textDocument/definition` result for `src` at the 0-based position `(line, character)`,\"] # [doc = \" for a document identified by `uri`.\"] # [doc = \"\"] # [doc = \" Returns an LSP `Location` (`{ \\\"uri\\\", \\\"range\\\" }`) pointing at the in-document declaration of the\"] # [doc = \" identifier under the cursor, or [`Value::Null`] when the cursor is not on an identifier or the\"] # [doc = \" name has no `fn`/`type`/`trait` declaration in this document.\"] # [must_use] pub fn definition (uri : & str , src : & str , line : u32 , character : u32) -> Value { let items = lex_items (src) ; let Some (target) = item_at (& items , line , character) else { return Value :: Null ; } ; let LexKind :: Token (Tok :: Ident (name)) = & target . kind else { return Value :: Null ; } ; let Some (decl) = declarations (& items) . into_iter () . find (| (n , _) | n == name) else { return Value :: Null ; } ; let (_ , span) = decl ; let start = span . col . saturating_sub (1) ; json ! ({ \"uri\" : uri , \"range\" : { \"start\" : { \"line\" : span . line . saturating_sub (1) , \"character\" : start } , \"end\" : { \"line\" : span . line . saturating_sub (1) , \"character\" : start + span . len } , } , }) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "definition"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 48,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The `(name, declaration-span)` pairs introduced in `items` by the `fn`/`type`/`trait` declaration\"] # [doc = \" forms — the lexer adjacency `<decl-keyword> <Ident>`. First declaration wins on a duplicate name\"] # [doc = \" (a redeclaration is a checker concern, not a navigation one).\"] fn declarations (items : & [LexItem]) -> Vec < (String , LexItem) > { let mut out : Vec < (String , LexItem) > = Vec :: new () ; for win in items . windows (2) { let is_decl_kw = matches ! (& win [0] . kind , LexKind :: Token (Tok :: Fn) | LexKind :: Token (Tok :: Type) | LexKind :: Token (Tok :: Trait)) ; if ! is_decl_kw { continue ; } if let LexKind :: Token (Tok :: Ident (name)) = & win [1] . kind { if ! out . iter () . any (| (n , _) | n == name) { out . push ((name . clone () , win [1] . clone ())) ; } } } out }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "declarations"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "line": 70,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; fn pos_of (src : & str , line_idx : usize , needle : & str) -> u32 { src . lines () . nth (line_idx) . unwrap () . find (needle) . expect (\"needle present\") as u32 } # [test] fn jumps_from_a_use_to_the_fn_declaration () { let src = \"fn g() -> Binary{8} = 0b0\\nfn h() = g()\\n\" ; let use_col = pos_of (src , 1 , \"g()\") ; let loc = definition (\"mem://d.myc\" , src , 1 , use_col) ; assert_eq ! (loc [\"uri\"] , \"mem://d.myc\") ; assert_eq ! (loc [\"range\"] [\"start\"] [\"line\"] , 0 , \"declaration is on line 1\") ; assert_eq ! (loc [\"range\"] [\"start\"] [\"character\"] , 3) ; assert_eq ! (loc [\"range\"] [\"end\"] [\"character\"] , 4) ; } # [test] fn resolves_type_and_trait_declarations () { let src = \"type Shape = Binary{8}\\nfn area(s: Shape) = 0b0\\n\" ; let use_col = pos_of (src , 1 , \"Shape\") ; let loc = definition (\"mem://d.myc\" , src , 1 , use_col) ; assert_eq ! (loc [\"range\"] [\"start\"] [\"line\"] , 0) ; } # [test] fn unknown_name_is_null_never_fabricated () { let src = \"fn h() = undeclared()\\n\" ; let use_col = pos_of (src , 0 , \"undeclared\") ; assert_eq ! (definition (\"mem://d.myc\" , src , 0 , use_col) , Value :: Null) ; } # [test] fn cursor_not_on_an_identifier_is_null () { let src = \"fn g() = 0b0\\n\" ; assert_eq ! (definition (\"mem://d.myc\" , src , 0 , 0) , Value :: Null) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 6
+}

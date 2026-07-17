@@ -1,0 +1,69 @@
+// nodule: lsp.completions
+// **Lexical/scaffolding completion provider** (dogfooding wave — LSP completions track).
+//
+// Scope and honesty (Declared):
+// - This is a **lexical + scaffolding** provider only. It offers the ACTIVE keywords from the L1
+//   surface and a small set of high-value code scaffolding snippets grounded in the grammar
+//   (`docs/spec/grammar/mycelium.ebnf`). It has **no** semantic context: it does not know the
+//   type at the cursor, what names are in scope, or what imports are open. Clients should present
+//   these as simple keyword/scaffold suggestions — never as type-aware or inference-driven
+//   completions. Guarantee: `Declared` (asserted capabilities, always flagged).
+//
+// Active keywords are drawn from the `keyword()` function in `mycelium-l1::token` — the
+// authoritative source for which words lex as keywords today. Reserved-not-active words are
+// intentionally excluded from keyword completions: they lex as keywords (never silent, G2) but
+// no construct consumes them yet, so offering them as if usable would violate the honesty rule
+// (VR-5 / G2). This set is `phylum`, the 8 remaining DN-03 §4 runtime words
+// `fuse`/`mesh`/`graft`/`cyst`/`xloc`/`backbone`/`tier`/`reclaim` (reserved by M-665),
+// and the DN-03 §1 surface-tier words `consume`/`grow` (lexed, but the parser refuses them with a
+// teaching diagnostic until their constructs land with M-664). `forage` left this set in M-906
+// (DN-70 D1): it is now active *only* as the `@forage(policy)` hypha placement annotation (a
+// prefix-attribute form, not a bare item-position keyword — `forage` at item position is still an
+// explicit parse error), so it is not offered as a plain keyword completion here either. `impl` graduated to a real, active
+// keyword in M-659 and is offered. `colony` and `hypha` were reserved-not-active through M-665;
+// M-666 made them **active** (they now open real surface constructs — RFC-0008 §4.5/§4.7) and are
+// offered here.
+//
+// `matured` is offered as a keyword (it is reserved — using it at item position is an explicit
+// parse error with a teaching diagnostic, RFC-0017 §4.1); its correct use is the header attribute
+// form (`// @matured: true`), not a code-position keyword. The keyword entry is still offered (it
+// IS in `keyword()`) but carries a detail note pointing at that header attribute form. `thaw` is
+// offered as a keyword because `thaw fn f(…)` is active syntax.
+//
+// LSP completion item kinds (integer codes from the LSP specification):
+// - `1` = Text
+// - `14` = Keyword
+// - `15` = Snippet
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.completions;
+
+// LSP `CompletionItemKind` for a reserved keyword.
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn KIND_KEYWORD() => Binary{8} = 0b0000_1110; // 14
+
+// LSP `CompletionItemKind` for a code scaffold snippet.
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn KIND_SNIPPET() => Binary{8} = 0b0000_1111; // 15
+
+// LSP `insertTextFormat`: plain text (`1`) vs snippet grammar (`2`).
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn FORMAT_PLAIN() => Binary{8} = 0b0000_0001; // 1
+
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn FORMAT_SNIPPET() => Binary{8} = 0b0000_0010; // 2
+
+// A single LSP completion item (minimal fields: `label`, `kind`, `insertText`,
+// `insertTextFormat`, `detail`, `documentation`).
+//
+// All fields serialise to the LSP `CompletionItem` shape required by the protocol.
+pub type CompletionItem = CompletionItem(Bytes, Binary{8}, Bytes, Binary{8}, Bytes, Bytes);
+
+impl Show[CompletionItem] for CompletionItem {
+  fn render(x: CompletionItem) => Bytes =
+    match x { CompletionItem(p0, p1, p2, p3, p4, p5) => bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat(bytes_concat("CompletionItem(", render(p0)), ", "), render(width_cast(p1, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ", "), render(p2)), ", "), render(width_cast(p3, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ", "), render(p4)), ", "), render(p5)), ")") };
+};
+
+fn eq_CompletionItem(a: CompletionItem, b: CompletionItem) => Binary{1} =
+    match a { CompletionItem(p0, p1, p2, p3, p4, p5) => match b { CompletionItem(q0, q1, q2, q3, q4, q5) => and(and(and(and(and(bytes_eq(p0, q0), eq(p1, q1)), bytes_eq(p2, q2)), eq(p3, q3)), bytes_eq(p4, q4)), bytes_eq(p5, q5)) } };

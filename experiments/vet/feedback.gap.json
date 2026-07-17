@@ -1,0 +1,209 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+  "emitted_items": [
+    "co-include:Diagnostic,Severity"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 24,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_cert :: { binary_to_ternary , ternary_to_binary , SwapCertificate } ;",
+      "reason": "`use mycelium_cert::binary_to_ternary` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_cert::ternary_to_binary` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_cert::SwapCertificate` — `mycelium_cert` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: sync :: OnceLock ;",
+      "reason": "`use std.sync::OnceLock` — `std.sync` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: lower :: { self , Stage } ;",
+      "reason": "`use mycelium_core.lower::{self, ..}` — `self` binds the module ITSELF as a local name; there is no \"import a nodule as a name\" construct in this grammar, so this leaf cannot resolve (distinct from an ordinary lookup miss); `use mycelium_core.lower::Stage` — `mycelium_core.lower` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 28,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { Bound , GuaranteeStrength , Node , PrimRef , PrimTable , Repr } ;",
+      "reason": "`use mycelium_core::Bound` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Node` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::PrimRef` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::PrimTable` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Repr` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 29,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_select :: { explain , Candidate , Explanation , PolicyRegistry , SelectionInputs } ;",
+      "reason": "`use mycelium_select::explain` — `mycelium_select` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_select::Candidate` — `mycelium_select` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_select::Explanation` — `mycelium_select` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_select::PolicyRegistry` — `mycelium_select` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_select::SelectionInputs` — `mycelium_select` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 31,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: lint :: { self , Diagnostic , Severity } ;",
+      "reason": "`use lint::{self, ..}` — `self` binds the module ITSELF as a local name; there is no \"import a nodule as a name\" construct in this grammar, so this leaf cannot resolve (distinct from an ordinary lookup miss)",
+      "item_name": "co-include:Diagnostic,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 33,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The closed v0 kernel-prim table (R7-Q4), built once and shared. It is immutable, so re-hashing it\"] # [doc = \" on every [`analyze_with`] call is avoidable overhead; cache the shared instance.\"] fn builtin_prim_table () -> & 'static PrimTable { static TABLE : OnceLock < PrimTable > = OnceLock :: new () ; TABLE . get_or_init (PrimTable :: builtins) }",
+      "reason": "function body contains a nested item declaration (e.g. a local `static`/`const`/`fn`) — this grammar fragment has no local-item production; only simple `let x = e;` bindings plus a trailing expression map",
+      "item_name": "builtin_prim_table"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 40,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A per-value honesty annotation: where it is, its guarantee tag, and its bound (if approximate).\"] # [derive (Debug , Clone , PartialEq)] pub struct GuaranteeAnnotation { # [doc = \" Breadcrumb to the value.\"] pub at : String , # [doc = \" The disclosed guarantee strength.\"] pub guarantee : GuaranteeStrength , # [doc = \" The bound, if the value is approximate.\"] pub bound : Option < Bound > , }",
+      "reason": "struct `GuaranteeAnnotation` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "GuaranteeAnnotation"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 51,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A swap site and the certificate it emits (when statically resolvable).\"] # [derive (Debug , Clone , PartialEq)] pub struct SwapSite { # [doc = \" Breadcrumb to the swap.\"] pub at : String , # [doc = \" The target representation.\"] pub target : Repr , # [doc = \" The emitted certificate, or `None` when the source is not a statically-known value (so no\"] # [doc = \" certificate *can* be derived here), or when the swap is statically known but failed or has\"] # [doc = \" no implemented certifier. In the latter two cases the reason is surfaced as a diagnostic\"] # [doc = \" (`swap-error` / `unsupported-swap-pair`) — `None` is never silent for a known source.\"] pub certificate : Option < SwapCertificate > , }",
+      "reason": "struct `SwapSite` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "SwapSite"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 65,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A surfaced **prim declaration** at an `Op` site (M-390; R7-Q4; DN-10 §3.2 step 4): the\"] # [doc = \" content-addressed prim the call resolves to, made inspectable so a primitive is no longer a black\"] # [doc = \" box (G2/SC-3). The `reference`/`intrinsic`/`arity` are present when the prim resolves in the\"] # [doc = \" content-addressed prim table `Π`; an unrecognized prim instead raises an `unknown-prim`\"] # [doc = \" diagnostic (never silent), and this site records `reference = None`.\"] # [derive (Debug , Clone , PartialEq)] pub struct PrimSite { # [doc = \" Breadcrumb to the `Op` node.\"] pub at : String , # [doc = \" The kernel prim name as written in the node.\"] pub name : String , # [doc = \" The content-addressed declaration `#p` this prim resolves to (`None` if not in `Π`).\"] pub reference : Option < PrimRef > , # [doc = \" The prim's intrinsic guarantee `g_f` (RFC-0001 §4.7), when resolved.\"] pub intrinsic : Option < GuaranteeStrength > , # [doc = \" The prim's declared arity, when resolved.\"] pub arity : Option < usize > , }",
+      "reason": "struct `PrimSite` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "PrimSite"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 84,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A surfaced selection EXPLAIN (M-221; RFC-0005 §4): the swap site and the re-derived trace.\"] # [derive (Debug , Clone , PartialEq)] pub struct ExplainSite { # [doc = \" Breadcrumb to the swap whose selection this explains.\"] pub at : String , # [doc = \" The deterministic EXPLAIN record (same `Meta` in → same trace out).\"] pub explanation : Explanation , }",
+      "reason": "struct `ExplainSite` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "ExplainSite"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 93,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The aggregated feedback surface (SC-5 channel) for one Core IR program.\"] # [derive (Debug , Clone , PartialEq)] pub struct Feedback { # [doc = \" (1) Typecheck/invariant diagnostics.\"] pub diagnostics : Vec < Diagnostic > , # [doc = \" (3) Per-value bound/guarantee annotations.\"] pub guarantees : Vec < GuaranteeAnnotation > , # [doc = \" (2) Swap certificates, one entry per swap site.\"] pub swaps : Vec < SwapSite > , # [doc = \" (4) Lowering-stage dumps.\"] pub stages : Vec < Stage > , # [doc = \" (5) Selection EXPLAIN traces (M-221) — one per swap site whose `PolicyRef` resolves in the\"] # [doc = \" registry handed to [`analyze_with`]; empty under plain [`analyze`].\"] pub explanations : Vec < ExplainSite > , # [doc = \" (6) Prim declarations surfaced at `Op` sites (M-390; R7-Q4) — one per primitive application,\"] # [doc = \" each resolving to its content-addressed `Π` declaration (EXPLAIN over prims).\"] pub prims : Vec < PrimSite > , }",
+      "reason": "struct `Feedback` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Feedback"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 112,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" A structured, at-a-glance rollup of a [`Feedback`] (M-310): per-artifact-kind counts and the\"] # [doc = \" diagnostic severity breakdown, plus the worst severity present. This is the machine-navigable\"] # [doc = \" health signal an AI co-author's feedback loop (SC-5b / E3-2) or an IDE status line consumes\"] # [doc = \" without re-walking the channels — the \\\"rich diagnostics\\\" maturation of the M-140 facade.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct FeedbackSummary { # [doc = \" Count of `Error`-severity diagnostics.\"] pub errors : usize , # [doc = \" Count of `Warning`-severity diagnostics.\"] pub warnings : usize , # [doc = \" Count of per-value guarantee annotations (kind 3).\"] pub guarantees : usize , # [doc = \" Count of swap sites (kind 2).\"] pub swaps : usize , # [doc = \" Count of lowering-stage dumps (kind 4).\"] pub stages : usize , # [doc = \" Count of selection EXPLAIN traces (kind 5).\"] pub explanations : usize , # [doc = \" Count of prim declarations surfaced at `Op` sites (kind 6).\"] pub prims : usize , # [doc = \" The worst diagnostic severity present, if any (`Error` outranks `Warning`).\"] pub worst : Option < Severity > , }",
+      "reason": "struct `FeedbackSummary` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "FeedbackSummary"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 136,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl FeedbackSummary { # [doc = \" Clean = no `Error`-severity diagnostics — the gate [`crate::lint::has_errors`] checks, lifted\"] # [doc = \" to the whole feedback surface.\"] # [must_use] pub fn is_clean (& self) -> bool { self . errors == 0 } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `is_clean` body: field projection `self.errors` on `FeedbackSummary` — not an in-file single-ctor struct that emits (an enum / external / non-resolvable type has no constructor to `match` against)",
+      "item_name": "FeedbackSummary"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 145,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Feedback { # [doc = \" Summarize this feedback into a [`FeedbackSummary`] (M-310). Deterministic.\"] # [must_use] pub fn summary (& self) -> FeedbackSummary { let errors = self . diagnostics . iter () . filter (| d | d . severity == Severity :: Error) . count () ; let warnings = self . diagnostics . iter () . filter (| d | d . severity == Severity :: Warning) . count () ; let worst = if errors > 0 { Some (Severity :: Error) } else if warnings > 0 { Some (Severity :: Warning) } else { None } ; FeedbackSummary { errors , warnings , guarantees : self . guarantees . len () , swaps : self . swaps . len () , stages : self . stages . len () , explanations : self . explanations . len () , prims : self . prims . len () , worst , } } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `summary` body: method call `.count(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__count` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `count(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "Feedback"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 180,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Analyze a Core IR program and return the feedback artifact kinds over one surface. EXPLAIN\"] # [doc = \" traces need a policy registry — use [`analyze_with`] to surface them.\"] # [must_use] pub fn analyze (node : & Node) -> Feedback { analyze_with (node , & PolicyRegistry :: new ()) }",
+      "reason": "qualified/associated-function call `PolicyRegistry :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "analyze"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 187,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" [`analyze`], plus the **EXPLAIN channel** (M-221; SC-5): every swap site whose `PolicyRef`\"] # [doc = \" resolves in `policies` and whose source is statically known gets its selection re-derived and\"] # [doc = \" surfaced; a disagreement between the policy's choice and the node's recorded target raises a\"] # [doc = \" `policy-divergence` warning (override or stale policy — surfaced, never silent).\"] # [must_use] pub fn analyze_with (node : & Node , policies : & PolicyRegistry) -> Feedback { let mut diagnostics = lint :: lint (node) ; let mut guarantees = Vec :: new () ; let mut swaps = Vec :: new () ; let mut explanations = Vec :: new () ; let mut prims = Vec :: new () ; let prim_table = builtin_prim_table () ; let mut cx = Collect { policies , prim_table , g : & mut guarantees , sw : & mut swaps , ex : & mut explanations , pr : & mut prims , diags : & mut diagnostics , } ; collect (node , \"\" , & mut cx) ; Feedback { diagnostics , guarantees , swaps , stages : lower :: stages (node) , explanations , prims , } }",
+      "reason": "qualified/associated-function call `lint :: lint` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "analyze_with"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 222,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn here (prefix : & str , step : & str) -> String { if prefix . is_empty () { step . to_owned () } else { format ! (\"{prefix}/{step}\") } }",
+      "reason": "method call `.is_empty(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__is_empty` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `is_empty(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "here"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 230,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" The traversal state — bundled so the walk stays one recursive function.\"] struct Collect < 'a > { policies : & 'a PolicyRegistry , prim_table : & 'a PrimTable , g : & 'a mut Vec < GuaranteeAnnotation > , sw : & 'a mut Vec < SwapSite > , ex : & 'a mut Vec < ExplainSite > , pr : & 'a mut Vec < PrimSite > , diags : & 'a mut Vec < Diagnostic > , }",
+      "reason": "lifetime parameter `'a` has no grammar surface",
+      "item_name": "Collect"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "line": 241,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "fn collect (node : & Node , prefix : & str , cx : & mut Collect < '_ >) { match node { Node :: Const (v) => { cx . g . push (GuaranteeAnnotation { at : here (prefix , \"const\") , guarantee : v . meta () . guarantee () , bound : v . meta () . bound () . cloned () , }) ; } Node :: Var (_) => { } Node :: Let { id , bound , body } => { let at = here (prefix , & format ! (\"let {id}\")) ; collect (bound , & at , cx) ; collect (body , & at , cx) ; } Node :: Op { prim , args } => { let at = here (prefix , & format ! (\"op {prim}\")) ; let site = match cx . prim_table . get (prim) { Some (decl) => PrimSite { at : at . clone () , name : prim . clone () , reference : cx . prim_table . prim_ref (prim) , intrinsic : Some (decl . intrinsic) , arity : Some (decl . sig . arity ()) , } , None => { cx . diags . push (Diagnostic { code : \"unknown-prim\" , severity : crate :: lint :: Severity :: Error , at : at . clone () , message : format ! (\"prim `{prim}` is not a declared kernel prim in Π (the prim table); \\\n                             the declaration channel is empty for this site (not silent)\") , }) ; PrimSite { at : at . clone () , name : prim . clone () , reference : None , intrinsic : None , arity : None , } } } ; cx . pr . push (site) ; for a in args { collect (a , & at , cx) ; } } Node :: Swap { src , target , policy , } => { let at = here (prefix , \"swap\") ; let certificate = match src . as_ref () { Node :: Const (v) => { let result = match (v . repr () , target) { (Repr :: Binary { .. } , Repr :: Ternary { trits }) => { Some (binary_to_ternary (v , * trits , policy)) } (Repr :: Ternary { .. } , Repr :: Binary { width }) => { Some (ternary_to_binary (v , * width , policy)) } _ => None , } ; match result { Some (Ok ((_ , cert))) => Some (cert) , Some (Err (e)) => { cx . diags . push (Diagnostic { code : \"swap-error\" , severity : crate :: lint :: Severity :: Error , at : at . clone () , message : e . to_string () , }) ; None } None => { cx . diags . push (Diagnostic { code : \"unsupported-swap-pair\" , severity : crate :: lint :: Severity :: Error , at : at . clone () , message : format ! (\"no certified swap is implemented for {:?} → {target:?}; the \\\n                                     certificate channel is empty for this site (not silent)\" , v . repr ()) , }) ; None } } } _ => None , } ; if let (Some (p) , Node :: Const (v)) = (cx . policies . get (policy) , src . as_ref ()) { let explanation = explain (p , & SelectionInputs :: of_value (v)) ; if ! matches ! (& explanation . chosen , Candidate :: Repr (r) if r == target) { cx . diags . push (Diagnostic { code : \"policy-divergence\" , severity : crate :: lint :: Severity :: Warning , at : at . clone () , message : format ! (\"the recorded policy would choose {:?}, but the node's target is \\\n                             {target:?} (an override or a stale policy — verify which)\" , explanation . chosen) , }) ; } cx . ex . push (ExplainSite { at : at . clone () , explanation , }) ; } cx . sw . push (SwapSite { at : at . clone () , target : target . clone () , certificate , }) ; collect (src , & at , cx) ; } Node :: Construct { ctor , args } => { let at = here (prefix , & format ! (\"construct {ctor}\")) ; for a in args { collect (a , & at , cx) ; } } Node :: Match { scrutinee , alts , default , } => { let at = here (prefix , \"match\") ; collect (scrutinee , & at , cx) ; for alt in alts { match alt { mycelium_core :: Alt :: Ctor { ctor , body , .. } => { collect (body , & here (& at , & format ! (\"alt {ctor}\")) , cx) ; } mycelium_core :: Alt :: Lit { body , .. } => { collect (body , & here (& at , \"alt-lit\") , cx) ; } } } if let Some (d) = default { collect (d , & here (& at , \"default\") , cx) ; } } Node :: Lam { body , .. } => collect (body , & here (prefix , \"lam\") , cx) , Node :: App { func , arg } => { let at = here (prefix , \"app\") ; collect (func , & at , cx) ; collect (arg , & at , cx) ; } Node :: Fix { body , .. } => collect (body , & here (prefix , \"fix\") , cx) , Node :: FixGroup { defs , body } => { let at = here (prefix , \"fixgroup\") ; for (name , def) in defs { collect (def , & here (& at , & format ! (\"def {name}\")) , cx) ; } collect (body , & at , cx) ; } } }",
+      "reason": "generic type path `Collect < '_ >` — type argument `'_` is not a type (lifetime / const-generic / associated-type binding-or-constraint); `type_args` admits only type_refs, so left an explicit gap (VR-5)",
+      "item_name": "collect"
+    }
+  ],
+  "total_top_level_items": 20
+}

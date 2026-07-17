@@ -1,0 +1,33 @@
+// nodule: lsp
+// `mycelium-lsp` — the **minimal toolchain surface** (FR-S5; Foundation §5.8): the invariant
+// linter (M-141), the canonical formatter (M-142), and the LSP feedback facade (M-140) that
+// exposes the semantic-feedback artifact kinds over one surface (SC-5 channel) — the four
+// Phase-1 kinds plus, since M-221, the **selection EXPLAIN channel** (RFC-0005 §4: "why was
+// this representation chosen?").
+//
+// This is a *toolchain* crate, deliberately kept out of the small auditable kernel (KC-3): it
+// depends on `mycelium-core`/`-interp`/`-cert`/`-select` but nothing depends on it.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.baseline) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type RecoveryProfile = Strict | Resilient;
+// EXPLAIN (DN-124): batch-resolved cross-nodule `use` of a non-type item with no extractable single-line free-fn surface — phylum mode sees the sibling export; single-file oracle (phylum-of-one) may refuse until multi-nodule co-check. Types and free-fns with extractable surface co-include instead (L2-B / G-α Rank-2). Not a silent skip (G2/VR-5).
+use lsp.baseline.RESILIENT_MAX_ATTEMPTS;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.completions) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type CompletionItem = CompletionItem(Bytes, Binary{8}, Bytes, Binary{8}, Bytes, Bytes);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.lint) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Severity = Error | Warning;
+type Diagnostic = Diagnostic(Bytes, Severity, Bytes, Bytes);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.llm_canonical_parser) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ParseError = EmptyInput | UnrecognizedConstruct(Binary{64}, Bytes) | UnclosedDelimiter(Binary{64}, Binary{32}) | DepthLimitExceeded(Binary{64});
+// EXPLAIN (DN-124): batch-resolved cross-nodule `use` of a non-type item with no extractable single-line free-fn surface — phylum mode sees the sibling export; single-file oracle (phylum-of-one) may refuse until multi-nodule co-check. Types and free-fns with extractable surface co-include instead (L2-B / G-α Rank-2). Not a silent skip (G2/VR-5).
+use lsp.llm_canonical_parser.DEPTH_LIMIT;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.recover) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Outcome = Ok(Value) | Err(StructuredError);

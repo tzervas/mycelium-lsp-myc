@@ -1,0 +1,43 @@
+// nodule: lsp.recover
+// **Declarative error recovery & bounded effects** (M-352; RFC-0014, Accepted 2026-06-16).
+//
+// The recovery half RFC-0013 deferred: a **separable** subsystem (SoC, bounded blast radius) that lets
+// an error *trigger functionality* (fallback, retry, escalate, cleanup) while staying inside the
+// never-silent contract (G2). **Tooling layer only** — no kernel change (KC-3, zero new L0 nodes); no
+// Python (ADR-007). Three pillars:
+//
+// - **errors-as-propagating-values** ([`Outcome`] over a [`StructuredError`]; RFC-0001 substrate);
+// - **explicit declarative recovery** — [`handle`] applies a reified [`policy::RecoveryPolicy`]
+//   (RFC-0005 pattern; **shares RFC-0013's error-class registry**, §4.9) and yields a [`Resolution`]
+//   that is **always** either *recovered* or *re-propagated* — never a silent drop (I1);
+// - **declared, bounded effects** ([`effect`]: declared sets, per-kind budgets, a graceful
+//   `EffectBudgetExhausted` — I3/I4).
+//
+// The governing invariant (RFC-0014 §4.2 I1): a handler **acts on** an error and produces a *new
+// explicit outcome*; it never makes the error vanish unobserved. [`Resolution`] has no "dropped"
+// variant — never-silent is enforced by the type. Recovery never fabricates or upgrades a guarantee
+// (I2/VR-5): a substituted fallback is honestly `Declared`.
+//
+// **The L0 lowering target** — `handle` is a `Match` over the result sum (`Ok | Err`), so recovery
+// introduces **no new kernel node**; that `Match`-over-error-sums target is differentially verified
+// (L1-eval ≡ L0-interp ≡ AOT) in `mycelium-l1` (NFR-7). Wiring the [`effect::Budgets`] ledger into the
+// AOT env-machine's runtime budget resolver is the RFC-0008 integration (§4.8 boundary), not v0.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.recover;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.registry) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ClassName = ClassName(Bytes);
+
+// The result sum `Ok(τ) | Err(ε)` (RFC-0014 §4.1). v0's success domain is a kernel [`Value`]; the
+// `Err` payload is a [`StructuredError`]. Errors propagate by default — there is no silent unwind.
+pub type Outcome = Ok(Value) | Err(StructuredError);
+
+impl Show[Outcome] for Outcome {
+  fn render(x: Outcome) => Bytes =
+    match x { Ok(p0) => bytes_concat(bytes_concat("Ok(", render(p0)), ")"), Err(p0) => bytes_concat(bytes_concat("Err(", render(p0)), ")") };
+};
+
+fn eq_Outcome(a: Outcome, b: Outcome) => Binary{1} =
+  match a { Ok(p0) => match b { Ok(q0) => eq_Value(p0, q0), _ => 0b0 }, Err(p0) => match b { Err(q0) => eq_StructuredError(p0, q0), _ => 0b0 } };

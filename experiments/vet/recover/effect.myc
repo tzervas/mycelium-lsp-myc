@@ -1,0 +1,24 @@
+// nodule: lsp.recover.effect
+// **Declared, bounded effects** (RFC-0014 §4.5) — the safety discipline: effects are *declared* on a
+// signature (no unknown side effects, I3) and any effect that could be unbounded carries an explicit
+// *budget* whose overrun is an **explicit, graceful** [`EffectBudgetExhausted`] (I4) — never a hang, a
+// stack overflow, or an OOM. This is the direct generalisation of the `Fix`/`FixGroup` fuel clock
+// (RFC-0007 §4.5), the M-347 depth ceiling, and DN-05 budgets: **separate named budgets, one
+// enforcement mechanism** (§8 resolved). The default scope is the narrowest — an effect with no budget
+// set cannot run (you opt into a broader effect by *declaring its budget*, I5).
+//
+// ## The shared budget primitive lives in `mycelium-interp` (RFC-0014 §4.8, completed)
+// The ledger primitive — [`EffectKind`], [`EffectBudget`], [`EffectBudgetExhausted`], [`Budgets`] —
+// now lives in [`mycelium_interp::budget`], the common ancestor both this recovery subsystem
+// (`mycelium-lsp`) and the AOT env-machine (`mycelium-mlir`) depend on. A budget overrun routes
+// through [`mycelium_interp::EvalError::EffectBudget`], so the ledger is no longer tooling-only: it is
+// the **same** type the env-machine threads, on the **same** runtime refusal channel as
+// `FuelExhausted`/`DepthLimit`. This module re-exports it (RFC-0014's enacted API is preserved) and
+// keeps the *checker* half — the [`EffectSet`] / [`UndeclaredEffect`] / [`check_effects`]
+// no-undeclared-effect check (I3) — in the tooling layer (it is not a runtime concern; KC-3).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.recover.effect;
+
+

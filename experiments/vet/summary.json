@@ -1,0 +1,819 @@
+{
+  "files": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+      "total_items": 16,
+      "non_test_items": 15,
+      "emitted": 6,
+      "gaps": 17,
+      "expressible_pct": 40.0,
+      "category_counts": {
+        "DeriveAttr": 1,
+        "DeriveSatisfied": 3,
+        "GenericBound": 1,
+        "Import": 3,
+        "MultiStmtBody": 2,
+        "Other": 5,
+        "Struct": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+      "total_items": 2,
+      "non_test_items": 2,
+      "emitted": 0,
+      "gaps": 3,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Import": 1,
+        "Other": 1,
+        "ReservedWord": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/completions.rs",
+      "total_items": 10,
+      "non_test_items": 10,
+      "emitted": 5,
+      "gaps": 7,
+      "expressible_pct": 50.0,
+      "category_counts": {
+        "DeriveSatisfied": 1,
+        "Impl": 1,
+        "Import": 1,
+        "MultiStmtBody": 1,
+        "NamedFieldDrop": 1,
+        "Other": 2
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+      "total_items": 6,
+      "non_test_items": 5,
+      "emitted": 1,
+      "gaps": 8,
+      "expressible_pct": 20.0,
+      "category_counts": {
+        "Import": 5,
+        "MultiStmtBody": 2,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+      "total_items": 10,
+      "non_test_items": 10,
+      "emitted": 1,
+      "gaps": 10,
+      "expressible_pct": 10.0,
+      "category_counts": {
+        "Impl": 1,
+        "Import": 3,
+        "Other": 4,
+        "Struct": 2
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/mod.rs",
+      "total_items": 10,
+      "non_test_items": 5,
+      "emitted": 0,
+      "gaps": 10,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Import": 5,
+        "ModuleDecl": 5
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+      "total_items": 11,
+      "non_test_items": 11,
+      "emitted": 2,
+      "gaps": 11,
+      "expressible_pct": 18.181818181818183,
+      "category_counts": {
+        "Impl": 3,
+        "Import": 4,
+        "ReservedWord": 1,
+        "Struct": 3
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+      "total_items": 19,
+      "non_test_items": 19,
+      "emitted": 3,
+      "gaps": 22,
+      "expressible_pct": 15.789473684210526,
+      "category_counts": {
+        "DeriveAttr": 2,
+        "DeriveSatisfied": 3,
+        "Impl": 4,
+        "Import": 6,
+        "Other": 3,
+        "Struct": 4
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "total_items": 12,
+      "non_test_items": 12,
+      "emitted": 3,
+      "gaps": 15,
+      "expressible_pct": 25.0,
+      "category_counts": {
+        "DeriveAttr": 3,
+        "DeriveSatisfied": 2,
+        "Impl": 5,
+        "Import": 2,
+        "NamedFieldDrop": 1,
+        "Other": 1,
+        "Struct": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+      "total_items": 12,
+      "non_test_items": 11,
+      "emitted": 3,
+      "gaps": 20,
+      "expressible_pct": 27.27272727272727,
+      "category_counts": {
+        "DeriveAttr": 3,
+        "DeriveSatisfied": 4,
+        "Impl": 4,
+        "Import": 2,
+        "MultiStmtBody": 1,
+        "NamedFieldDrop": 1,
+        "Other": 2,
+        "PayloadVariant": 1,
+        "Struct": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/expand.rs",
+      "total_items": 3,
+      "non_test_items": 2,
+      "emitted": 0,
+      "gaps": 3,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Import": 1,
+        "Other": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+      "total_items": 20,
+      "non_test_items": 20,
+      "emitted": 1,
+      "gaps": 20,
+      "expressible_pct": 5.0,
+      "category_counts": {
+        "GenericBound": 2,
+        "Impl": 2,
+        "Import": 6,
+        "MultiStmtBody": 1,
+        "Other": 3,
+        "Struct": 6
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+      "total_items": 3,
+      "non_test_items": 2,
+      "emitted": 0,
+      "gaps": 3,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Import": 1,
+        "Other": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/hover.rs",
+      "total_items": 8,
+      "non_test_items": 7,
+      "emitted": 1,
+      "gaps": 9,
+      "expressible_pct": 14.285714285714285,
+      "category_counts": {
+        "Import": 4,
+        "MacroInvocation": 2,
+        "MultiStmtBody": 1,
+        "Other": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "total_items": 31,
+      "non_test_items": 14,
+      "emitted": 5,
+      "gaps": 49,
+      "expressible_pct": 35.714285714285715,
+      "category_counts": {
+        "Import": 32,
+        "ModuleDecl": 16,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+      "total_items": 13,
+      "non_test_items": 13,
+      "emitted": 2,
+      "gaps": 17,
+      "expressible_pct": 15.384615384615385,
+      "category_counts": {
+        "DeriveAttr": 1,
+        "DeriveSatisfied": 4,
+        "GenericBound": 1,
+        "Impl": 1,
+        "Import": 1,
+        "NamedFieldDrop": 1,
+        "Other": 8
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "total_items": 20,
+      "non_test_items": 19,
+      "emitted": 5,
+      "gaps": 28,
+      "expressible_pct": 26.31578947368421,
+      "category_counts": {
+        "DeriveSatisfied": 1,
+        "Impl": 1,
+        "MultiStmtBody": 13,
+        "NamedFieldDrop": 7,
+        "Other": 5,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/project.rs",
+      "total_items": 19,
+      "non_test_items": 19,
+      "emitted": 5,
+      "gaps": 15,
+      "expressible_pct": 26.31578947368421,
+      "category_counts": {
+        "Import": 2,
+        "MacroInvocation": 1,
+        "MultiStmtBody": 1,
+        "Other": 11
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "total_items": 9,
+      "non_test_items": 8,
+      "emitted": 0,
+      "gaps": 9,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Impl": 2,
+        "Import": 3,
+        "MultiStmtBody": 1,
+        "Other": 1,
+        "Struct": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "total_items": 13,
+      "non_test_items": 11,
+      "emitted": 2,
+      "gaps": 12,
+      "expressible_pct": 18.181818181818183,
+      "category_counts": {
+        "DeriveSatisfied": 1,
+        "Impl": 1,
+        "Import": 5,
+        "ModuleDecl": 2,
+        "Other": 1,
+        "PayloadVariant": 1,
+        "Struct": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+      "total_items": 7,
+      "non_test_items": 7,
+      "emitted": 1,
+      "gaps": 8,
+      "expressible_pct": 14.285714285714285,
+      "category_counts": {
+        "Impl": 1,
+        "Import": 4,
+        "PayloadVariant": 1,
+        "ReservedWord": 1,
+        "Struct": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "total_items": 16,
+      "non_test_items": 16,
+      "emitted": 9,
+      "gaps": 9,
+      "expressible_pct": 56.25,
+      "category_counts": {
+        "Import": 4,
+        "MacroInvocation": 2,
+        "Other": 3
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/span.rs",
+      "total_items": 8,
+      "non_test_items": 7,
+      "emitted": 1,
+      "gaps": 8,
+      "expressible_pct": 14.285714285714285,
+      "category_counts": {
+        "DeriveSatisfied": 1,
+        "Import": 2,
+        "MultiStmtBody": 2,
+        "Other": 1,
+        "Struct": 1,
+        "TestItem": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/sync.rs",
+      "total_items": 18,
+      "non_test_items": 17,
+      "emitted": 0,
+      "gaps": 18,
+      "expressible_pct": 0.0,
+      "category_counts": {
+        "Closure": 1,
+        "Impl": 1,
+        "Import": 4,
+        "MacroInvocation": 6,
+        "Other": 3,
+        "Struct": 1,
+        "TestItem": 1,
+        "WhereClause": 1
+      }
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "total_items": 21,
+      "non_test_items": 20,
+      "emitted": 2,
+      "gaps": 20,
+      "expressible_pct": 10.0,
+      "category_counts": {
+        "DeriveAttr": 1,
+        "GenericBound": 3,
+        "Import": 3,
+        "MacroInvocation": 6,
+        "Other": 6,
+        "TestItem": 1
+      }
+    }
+  ],
+  "totals": {
+    "total_items": 317,
+    "non_test_items": 282,
+    "emitted": 58,
+    "gaps": 351,
+    "expressible_pct": 20.56737588652482,
+    "category_counts": {
+      "Closure": 1,
+      "DeriveAttr": 11,
+      "DeriveSatisfied": 20,
+      "GenericBound": 7,
+      "Impl": 27,
+      "Import": 104,
+      "MacroInvocation": 17,
+      "ModuleDecl": 23,
+      "MultiStmtBody": 25,
+      "NamedFieldDrop": 11,
+      "Other": 63,
+      "PayloadVariant": 3,
+      "ReservedWord": 3,
+      "Struct": 23,
+      "TestItem": 12,
+      "WhereClause": 1
+    }
+  },
+  "remap": {
+    "phylum": {
+      "source_crate": "mycelium-lsp",
+      "target_phylum": "lsp"
+    },
+    "nodules": [
+      {
+        "target_nodule": "lsp.baseline",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/baseline.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.bin.mycelium-lsp",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.completions",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/completions.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.definition",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/definition.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics.audit",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/audit.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/mod.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics.policy",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/policy.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics.record",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/record.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics.registry",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.diagnostics.sink",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/sink.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.expand",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/expand.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.feedback",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/feedback.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.fmt",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/fmt.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.hover",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/hover.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.lint",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lint.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.llm_canonical_parser",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.project",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/project.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.recover.effect",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.recover",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.recover.policy",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/policy.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.semantic",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.span",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/span.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.sync",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/sync.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      },
+      {
+        "target_nodule": "lsp.wire",
+        "operation": "Keep",
+        "sources": [
+          {
+            "rust_path": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+            "rust_span": null,
+            "moved_items": []
+          }
+        ],
+        "rationale": "structure-preserving 1:1 (DN-109 §5.3-B v0 default: every emitted nodule keeps its source file's mod-tree position, no restructuring proposed)",
+        "safety": "Safe",
+        "api_surface_changed": false,
+        "identity_neutral": true,
+        "guarantee": "Declared"
+      }
+    ],
+    "idiom_choices": []
+  }
+}

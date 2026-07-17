@@ -1,0 +1,107 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+  "emitted_items": [
+    "co-include:LexKind",
+    "T_KEYWORD",
+    "T_TYPE",
+    "T_ENUM_MEMBER",
+    "T_VARIABLE",
+    "T_NUMBER",
+    "T_OPERATOR",
+    "T_COMMENT",
+    "T_STRING"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde_json :: { json , Value } ;",
+      "reason": "`use serde_json::json` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde_json::Value` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_l1 :: token :: Tok ;",
+      "reason": "`use mycelium_l1.token::Tok` — `mycelium_l1.token` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: span :: { lex_items , LexItem , LexKind } ;",
+      "reason": "`use span::lex_items` — `lex_items` is not among sibling `span`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:LexKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: span :: { lex_items , LexItem , LexKind } ;",
+      "reason": "`use span::LexItem` — `LexItem` is not among sibling `span`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:LexKind"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 29,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The semantic-token **type legend**, in index order. The encoded stream's `tokenType` field is an\"] # [doc = \" index into this list (LSP §`semanticTokens`). These are the standard LSP token types the ratified\"] # [doc = \" RFC-0026 §3.2 table maps each lexer bucket to (the TextMate/tree-sitter names of the same table\"] # [doc = \" live in `tools/grammar/`), **plus `string`** (index 8, M-975): RFC-0026 §3.2's table predates the\"] # [doc = \" textual-string-literal token ([`Tok::StrLit`], M-910/M-911) and has no bucket for it. `string` is\"] # [doc = \" still a **standard, unsuffixed** LSP semantic-token type (the same naming convention the ratified\"] # [doc = \" table already follows), added here **additively** (appended, not renumbering any existing index)\"] # [doc = \" so this classifier can honestly tag `StrLit` rather than silently dropping it (G2). This mirrors\"] # [doc = \" the §3.2 coverage note's own precedent: `operator`/`identifier` already ship **LSP-only**, ahead\"] # [doc = \" of the other layers. FLAG (Declared, not yet ratified): a future RFC-0026 amendment/supersession\"] # [doc = \" should fold `string` into the normative table so the TextMate/tree-sitter layers can pick it up too.\"] pub const TOKEN_TYPES : & [& str] = & [\"keyword\" , \"type\" , \"enumMember\" , \"function\" , \"variable\" , \"number\" , \"operator\" , \"comment\" , \"string\" ,] ;",
+      "reason": "top-level `const TOKEN_TYPES` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "TOKEN_TYPES"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 64,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" The `legend` advertised in the server's `semanticTokensProvider` capability: the type list above\"] # [doc = \" and an empty modifier list (no modifiers are emitted — honest about scope).\"] # [must_use] pub fn semantic_tokens_legend () -> Value { json ! ({ \"tokenTypes\" : TOKEN_TYPES , \"tokenModifiers\" : [] , }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "semantic_tokens_legend"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 74,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Classify one lexical item to its [`TOKEN_TYPES`] index, or `None` for items that carry no\"] # [doc = \" highlight (delimiters, `Eof`). Delimiters (`()[]{}`, `:` `,` `.`) are intentionally unclassified:\"] # [doc = \" editors colour them via the grammar, not semantic tokens. `<`/`>` are **not** in that set — since\"] # [doc = \" RFC-0037 D1 moved type-argument lists to `[…]`, [`Tok::LAngle`]/[`Tok::RAngle`] are pure infix\"] # [doc = \" comparison operators (`lt`/`gt`), so they classify with the other operators below (never silently\"] # [doc = \" dropped, G2).\"] # [doc = \"\"] # [doc = \" **Never-silent completeness (M-975):** every [`Tok`] variant is either matched below or falls into\"] # [doc = \" the documented delimiter/`Eof` `None` arm — there is no wildcard catch-all arm, so the match is\"] # [doc = \" exhaustive over every [`Tok`] variant the compiler knows about: a future lexer token that isn't\"] # [doc = \" added here fails to **compile**, rather than silently falling through unhighlighted (G2).\"] # [doc = \"\"] # [doc = \" `pub(crate)` (not public API) so the in-crate test module (`src/tests/semantic.rs`) can exercise\"] # [doc = \" it directly.\"] pub (crate) fn classify (kind : & LexKind) -> Option < u32 > { let tok = match kind { LexKind :: Comment => return Some (T_COMMENT) , LexKind :: Token (t) => t , } ; let idx = match tok { Tok :: Nodule | Tok :: Phylum | Tok :: Colony | Tok :: Hypha | Tok :: Fuse | Tok :: Mesh | Tok :: Graft | Tok :: Cyst | Tok :: Xloc | Tok :: Forage | Tok :: Backbone | Tok :: Tier | Tok :: Reclaim | Tok :: Consume | Tok :: Grow | Tok :: Derive | Tok :: Use | Tok :: Pub | Tok :: Priv | Tok :: Type | Tok :: Trait | Tok :: Impl | Tok :: Fn | Tok :: Matured | Tok :: Thaw | Tok :: Let | Tok :: In | Tok :: If | Tok :: Then | Tok :: Else | Tok :: Match | Tok :: For | Tok :: Swap | Tok :: Default | Tok :: Paradigm | Tok :: With | Tok :: Wild | Tok :: Spore | Tok :: Wrapping | Tok :: To | Tok :: Policy | Tok :: Lambda | Tok :: Object | Tok :: Via | Tok :: Lower => T_KEYWORD , Tok :: Binary | Tok :: Ternary | Tok :: Dense | Tok :: Vsa | Tok :: BinShort | Tok :: TernShort | Tok :: EmbShort | Tok :: HvecShort | Tok :: Seq | Tok :: Bytes | Tok :: Float | Tok :: Substrate | Tok :: Sparse | Tok :: Scalar (_) => T_TYPE , Tok :: Strength (_) => T_ENUM_MEMBER , Tok :: Ident (_) => T_VARIABLE , Tok :: BinLit (_) | Tok :: TritLit (_) | Tok :: Int (_) | Tok :: BytesLit (_) | Tok :: FloatLit (_) => { T_NUMBER } Tok :: StrLit (_) => T_STRING , Tok :: Plus | Tok :: Minus | Tok :: Star | Tok :: Slash | Tok :: Percent | Tok :: Question | Tok :: Caret | Tok :: Amp | Tok :: AmpAmp | Tok :: Eq | Tok :: EqEq | Tok :: Arrow | Tok :: FatArrow | Tok :: Bang | Tok :: BangEq | Tok :: Pipe | Tok :: PipePipe | Tok :: At | Tok :: AtStdSys | Tok :: LAngle | Tok :: RAngle | Tok :: Shl | Tok :: Shr => T_OPERATOR , Tok :: LParen | Tok :: RParen | Tok :: LBrace | Tok :: RBrace | Tok :: LBracket | Tok :: RBracket | Tok :: Colon | Tok :: ColonColon | Tok :: Comma | Tok :: Semi | Tok :: Dot | Tok :: Eof => return None , } ; Some (idx) }",
+      "reason": "unsupported expression form `return Some (T_COMMENT)`",
+      "item_name": "classify"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 217,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Build the `textDocument/semanticTokens/full` result for `src`: the LSP relative-delta encoding\"] # [doc = \" (`{ \\\"data\\\": [deltaLine, deltaStartChar, length, tokenType, tokenModifiers, …] }`).\"] # [doc = \"\"] # [doc = \" The encoding is relative to the previous emitted token (LSP §`semanticTokens` \\\"Integer Encoding\\\"):\"] # [doc = \" `deltaLine` is the line gap; `deltaStartChar` is the column gap when on the same line, else the\"] # [doc = \" absolute 0-based start column; `length`/`tokenType` are the item's char length and legend index;\"] # [doc = \" `tokenModifiers` is always `0`. Items are emitted in source order (already sorted by line/col).\"] # [doc = \" Unclassified items (delimiters) are skipped. **Never-silent:** an un-lexable document yields\"] # [doc = \" `{ \\\"data\\\": [] }` (the diagnostics channel reports the error), never a fabricated stream (G2).\"] # [must_use] pub fn semantic_tokens_full (src : & str) -> Value { json ! ({ \"data\" : encode (& lex_items (src)) }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "semantic_tokens_full"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/semantic.rs",
+      "line": 231,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The flat `u32` delta-stream for `items` (the body of [`semantic_tokens_full`], exposed for tests).\"] # [must_use] pub (crate) fn encode (items : & [LexItem]) -> Vec < u32 > { let mut data = Vec :: new () ; let mut prev_line = 0u32 ; let mut prev_col0 = 0u32 ; for it in items { let Some (ttype) = classify (& it . kind) else { continue ; } ; let line0 = it . line . saturating_sub (1) ; let col0 = it . col . saturating_sub (1) ; let delta_line = line0 - prev_line ; let delta_col = if delta_line == 0 { col0 - prev_col0 } else { col0 } ; data . extend_from_slice (& [delta_line , delta_col , it . len , ttype , 0]) ; prev_line = line0 ; prev_col0 = col0 ; } data }",
+      "reason": "qualified/associated-function call `Vec :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "encode"
+    }
+  ],
+  "total_top_level_items": 16
+}

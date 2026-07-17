@@ -1,0 +1,31 @@
+// nodule: lsp.feedback
+// The **LSP feedback facade** (M-140; FR-S5; Foundation §5.8; SC-5 channel).
+//
+// One call, one surface, the **four** semantic-feedback artifact kinds the dual-intelligibility
+// goal delivers (the same surface serves human IDEs and AI co-authors):
+//
+// 1. **typecheck/invariant diagnostics** — from the linter ([`mod@crate::lint`]);
+// 2. **swap certificates** — the inspectable `SwapCertificate` for each statically-resolvable swap
+//    site (`mycelium-cert`);
+// 3. **bound/guarantee annotations** — the per-value honesty tag + bound (RFC-0001 §4.3/§4.7);
+// 4. **lowering-stage dumps** — the dumpable/diffable stages (`mycelium-core::lower`, M-112).
+//
+// Since **M-221** the facade also surfaces the fifth kind, **selection EXPLAIN traces**
+// (RFC-0005 §2.2/§4; SC-5): [`analyze_with`] takes a [`PolicyRegistry`] and, at every swap site
+// whose `PolicyRef` resolves and whose source is statically known, re-derives the deterministic
+// [`Explanation`] — answering *"why was this representation chosen?"* in-editor. When the policy's
+// own choice disagrees with the node's recorded target, a `policy-divergence` warning surfaces it
+// (an override or a stale policy — visible either way, never silent).
+//
+// This is the in-process surface: a scripted client drives [`analyze`]/[`analyze_with`] and reads
+// the channels. The LSP **wire protocol** over stdio (JSON-RPC framing + LSP-shaped diagnostics +
+// the lifecycle handshake) lives in [`crate::wire`] (M-310); the remaining gap to a full server is
+// document sync, which needs a text → `Node` path (the L1 surface, M-320).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.feedback;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.lint) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Severity = Error | Warning;
+type Diagnostic = Diagnostic(Bytes, Severity, Bytes, Bytes);

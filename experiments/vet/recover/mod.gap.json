@@ -1,0 +1,130 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+  "emitted_items": [
+    "co-include:ClassName",
+    "Outcome"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 25,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod effect ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "effect"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 26,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod policy ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "policy"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 28,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use mycelium_core :: { ContentHash , GuaranteeStrength , Value } ;",
+      "reason": "`use mycelium_core::ContentHash` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::GuaranteeStrength` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_core::Value` — `mycelium_core` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 31,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use effect :: Budgets ;",
+      "reason": "`use effect::Budgets` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 32,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use policy :: RecoveryAction ;",
+      "reason": "`use policy::RecoveryAction` — `policy` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use effect :: { check_effects , Budgets as EffectBudgets , EffectBudget , EffectBudgetExhausted , EffectKind , EffectSet , UndeclaredEffect , } ;",
+      "reason": "`use effect::check_effects` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use effect::Budgets as EffectBudgets` — a renamed cross-nodule import is out of this increment's scope (the alias would need threading through every downstream reference to `EffectBudgets` in this file's body); flagged, not guessed (VR-5/G2); `use effect::EffectBudget` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use effect::EffectBudgetExhausted` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use effect::EffectKind` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use effect::EffectSet` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use effect::UndeclaredEffect` — `effect` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 38,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use policy :: { RecoveryAction as Action , RecoveryPolicy } ;",
+      "reason": "`use policy::RecoveryAction as Action` — a renamed cross-nodule import is out of this increment's scope (the alias would need threading through every downstream reference to `Action` in this file's body); flagged, not guessed (VR-5/G2); `use policy::RecoveryPolicy` — `policy` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 40,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The structured error value — the `Err` payload of the result sum (RFC-0001; the same structured\"] # [doc = \" error RFC-0013 *presents*). Its class is a registry-resolved [`ClassName`] (X1).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct StructuredError { # [doc = \" The error class (registry-resolved).\"] pub class : ClassName , # [doc = \" The refusal reason.\"] pub message : String , # [doc = \" The site.\"] pub site : String , }",
+      "reason": "struct `StructuredError` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "StructuredError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 52,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl StructuredError { # [doc = \" A structured error.\"] # [must_use] pub fn new (class : ClassName , message : impl Into < String > , site : impl Into < String >) -> Self { StructuredError { class , message : message . into () , site : site . into () , } } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `new` signature: unsupported Rust type form `impl Into < String >`",
+      "item_name": "StructuredError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 64,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" The result sum `Ok(τ) | Err(ε)` (RFC-0014 §4.1). v0's success domain is a kernel [`Value`]; the\"] # [doc = \" `Err` payload is a [`StructuredError`]. Errors propagate by default — there is no silent unwind.\"] # [derive (Debug , Clone , PartialEq)] pub enum Outcome { # [doc = \" Success.\"] Ok (Value) , # [doc = \" An explicit, propagating error.\"] Err (StructuredError) , }",
+      "reason": "enum `Outcome` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 74,
+      "col": 1,
+      "category": "PayloadVariant",
+      "rust_construct": "PayloadVariant",
+      "snippet": "# [doc = \" The outcome of handling: an error is **either recovered** (an explicit value with an honest\"] # [doc = \" guarantee) **or re-propagated** (an explicit error — possibly transformed). There is deliberately\"] # [doc = \" **no \\\"dropped\\\" variant**: never-silent (I1) is a property of this type, so a mutant handler that\"] # [doc = \" discarded an error could not be expressed here.\"] # [derive (Debug , Clone , PartialEq)] pub enum Resolution { # [doc = \" Recovered with an explicit value, honestly tagged (a substituted fallback is `Declared` — I2).\"] Recovered { # [doc = \" The recovered value.\"] value : Value , # [doc = \" Its honest guarantee (downgrade-only; never upgraded — VR-5).\"] guarantee : GuaranteeStrength , # [doc = \" The `PolicyRef` of the policy that recovered it, if any.\"] policy : Option < ContentHash > , } , # [doc = \" Re-propagated — the error continues to surface (additive over the explicit error — I1).\"] Propagated { # [doc = \" The propagating error (possibly transformed/escalated).\"] error : StructuredError , # [doc = \" The `PolicyRef` of the policy that acted, if any.\"] policy : Option < ContentHash > , } , }",
+      "reason": "enum `Resolution` has a named-field variant referencing a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "Resolution"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/mod.rs",
+      "line": 98,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Handle an [`Outcome`] under a reified recovery `policy`, drawing on a budget ledger and an\"] # [doc = \" `attempt` thunk (re-run for `retry`). The result is **always** [`Resolution::Recovered`] or\"] # [doc = \" [`Resolution::Propagated`] — never a drop (I1):\"] # [doc = \"\"] # [doc = \" - `Ok(v)` passes through as `Recovered` carrying the value's own guarantee (nothing was recovered).\"] # [doc = \" - `Err(e)` with **no** matching rule re-propagates `e` **unchanged** (I1).\"] # [doc = \" - `fallback` recovers with an honest `Declared` value (I2/VR-5).\"] # [doc = \" - `retry(<=N)` re-attempts up to `N` times; if all fail the **original error propagates** (additive).\"] # [doc = \" - `escalate(c')` re-propagates a transformed error (still explicit).\"] # [doc = \" - `cleanup_then_propagate` runs a **bounded** effect (a budget overrun is a graceful\"] # [doc = \"   `EffectBudgetExhausted`, swallowed *for the cleanup only*) and then propagates the original error.\"] # [must_use] pub fn handle (outcome : Outcome , policy : & RecoveryPolicy , budgets : & mut Budgets , mut attempt : impl FnMut () -> Outcome ,) -> Resolution { let error = match outcome { Outcome :: Ok (value) => { let guarantee = value . meta () . guarantee () ; return Resolution :: Recovered { value , guarantee , policy : None , } ; } Outcome :: Err (e) => e , } ; let Some (action) = policy . action_for (& error . class) else { return Resolution :: Propagated { error , policy : None , } ; } ; let pref = Some (policy . content_id ()) ; match action { RecoveryAction :: Fallback { value } => Resolution :: Recovered { value : value . as_ref () . clone () , guarantee : GuaranteeStrength :: Declared , policy : pref , } , RecoveryAction :: Retry { max_attempts } => { for _ in 0 .. * max_attempts { if let Outcome :: Ok (value) = attempt () { let guarantee = value . meta () . guarantee () ; return Resolution :: Recovered { value , guarantee , policy : pref , } ; } } Resolution :: Propagated { error , policy : pref , } } RecoveryAction :: Escalate { to } => Resolution :: Propagated { error : StructuredError { class : to . clone () , message : format ! (\"escalated from {}: {}\" , error . class , error . message) , site : error . site , } , policy : pref , } , RecoveryAction :: CleanupThenPropagate { effect } => { let _ = budgets . consume (effect . clone () , 1) ; Resolution :: Propagated { error , policy : pref , } } } }",
+      "reason": "unsupported Rust type form `impl FnMut () -> Outcome`",
+      "item_name": "handle"
+    }
+  ],
+  "total_top_level_items": 13
+}

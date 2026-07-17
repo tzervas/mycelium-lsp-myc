@@ -1,0 +1,51 @@
+// nodule: lsp.diagnostics.registry
+// The **error-class registry** (RFC-0013 §4.5, exclusion X1) — error-class names resolve through a
+// **known set**, never an evaluated string.
+//
+// DynEL turned config strings into exception classes with `eval(exception_str)` — arbitrary code
+// execution from a config file (DN-04 §6). Mycelium maps an error-class *name* through this registry:
+// a [`ClassName`] can be obtained **only** via [`ClassRegistry::resolve`], so there is no path from
+// configuration text to a class without a lookup, and **no `eval`** anywhere. An unknown name is an
+// explicit [`UnknownClass`] error — never silently ignored, never coerced (G2).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.diagnostics.registry;
+
+// A **resolved** error-class name. The only constructor is [`ClassRegistry::resolve`]; you cannot
+// fabricate one from arbitrary text without a registry lookup (X1). This makes "looked up, never
+// evaluated" a type-level property, not a convention.
+pub type ClassName = ClassName(Bytes);
+
+impl Show[ClassName] for ClassName {
+  fn render(x: ClassName) => Bytes =
+    match x { ClassName(p0) => bytes_concat(bytes_concat("ClassName(", render(p0)), ")") };
+};
+
+fn eq_ClassName(a: ClassName, b: ClassName) => Binary{1} =
+    match a { ClassName(p0) => match b { ClassName(q0) => bytes_eq(p0, q0) } };
+
+impl Ord3[ClassName] for ClassName {
+  fn cmp(a: ClassName, b: ClassName) => Binary{8} =
+    match a { ClassName(p0) => match b { ClassName(q0) => cmp(p0, q0) } };
+};
+
+fn hash_ClassName(a: ClassName) => Bytes =
+    match a { ClassName(p0) => hash_blake3(bytes_concat("ClassName", hash_blake3(p0))) };
+
+impl ClassName {
+  // The class name as a string.
+  fn as_str(self: ClassName) => Bytes = (match self { ClassName(p0) => p0 });
+};
+
+// Resolving an error-class name not in the registry — an **explicit** configuration error (X1: never
+// silently ignored, never coerced into code).
+pub type UnknownClass = UnknownClass(Bytes);
+
+impl Show[UnknownClass] for UnknownClass {
+  fn render(x: UnknownClass) => Bytes =
+    match x { UnknownClass(p0) => bytes_concat(bytes_concat("UnknownClass(", render(p0)), ")") };
+};
+
+fn eq_UnknownClass(a: UnknownClass, b: UnknownClass) => Binary{1} =
+    match a { UnknownClass(p0) => match b { UnknownClass(q0) => bytes_eq(p0, q0) } };

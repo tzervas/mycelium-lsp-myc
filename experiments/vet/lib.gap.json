@@ -1,0 +1,503 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+  "emitted_items": [
+    "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS",
+    "co-include:CompletionItem",
+    "co-include:Diagnostic,Severity",
+    "co-include+use:ParseError,DEPTH_LIMIT",
+    "co-include:Outcome"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 10,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod baseline ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "baseline"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 11,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod completions ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "completions"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 12,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod definition ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "definition"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 13,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod diagnostics ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "diagnostics"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 14,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod expand ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "expand"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 15,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod feedback ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "feedback"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 16,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod fmt ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "fmt"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 17,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod hover ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "hover"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 18,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod lint ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "lint"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 19,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod llm_canonical_parser ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "llm_canonical_parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 20,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod project ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "project"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 21,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod recover ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "recover"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 22,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod semantic ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "semantic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 23,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "mod span ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "span"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 24,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod sync ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "sync"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 25,
+      "col": 1,
+      "category": "ModuleDecl",
+      "rust_construct": "ModuleDecl",
+      "snippet": "pub mod wire ;",
+      "reason": "external `mod foo;` declaration — file-linkage, not translatable library surface (Mycelium's nodule-per-file model makes the module tree implicit in the file layout; the sibling file transpiles as its own nodule). Excluded from the expressible-fraction denominator, recorded not dropped",
+      "item_name": "wire"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 27,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests ;",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::baseline_for_class` — `baseline_for_class` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::derive_baseline` — `derive_baseline` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::derive_baseline_for` — `derive_baseline_for` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::explain_baseline` — `explain_baseline` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::recovery_profile` — `recovery_profile` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use baseline :: { baseline_for_class , derive_baseline , derive_baseline_for , explain_baseline , recovery_profile , BaselineRule , RecoveryProfile , RESILIENT_MAX_ATTEMPTS , } ;",
+      "reason": "`use baseline::BaselineRule` — `BaselineRule` is not among sibling `baseline`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:RecoveryProfile,RESILIENT_MAX_ATTEMPTS"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use completions :: { completion_list , CompletionItem , KEYWORD_COMPLETIONS , SNIPPET_COMPLETIONS } ;",
+      "reason": "`use completions::completion_list` — `completion_list` is not among sibling `completions`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:CompletionItem"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use completions :: { completion_list , CompletionItem , KEYWORD_COMPLETIONS , SNIPPET_COMPLETIONS } ;",
+      "reason": "`use completions::KEYWORD_COMPLETIONS` — `KEYWORD_COMPLETIONS` is not among sibling `completions`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:CompletionItem"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 34,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use completions :: { completion_list , CompletionItem , KEYWORD_COMPLETIONS , SNIPPET_COMPLETIONS } ;",
+      "reason": "`use completions::SNIPPET_COMPLETIONS` — `SNIPPET_COMPLETIONS` is not among sibling `completions`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:CompletionItem"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 35,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use definition :: definition ;",
+      "reason": "`use definition::definition` — `definition` is not among sibling `definition`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 36,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use diagnostics :: { present , AuditView , ClassRegistry , Crossing , DiagnosticPolicy , DiagnosticRecord , Level , Presentation , ReasonedError , Rule , UnknownClass , } ;",
+      "reason": "`use diagnostics::present` — `present` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::AuditView` — `AuditView` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::ClassRegistry` — `ClassRegistry` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::Crossing` — `Crossing` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::DiagnosticPolicy` — `DiagnosticPolicy` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::DiagnosticRecord` — `DiagnosticRecord` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::Level` — `Level` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::Presentation` — `Presentation` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::ReasonedError` — `ReasonedError` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::Rule` — `Rule` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use diagnostics::UnknownClass` — `UnknownClass` is not among sibling `diagnostics`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 40,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use expand :: expand_ambient ;",
+      "reason": "`use expand::expand_ambient` — `expand_ambient` is not among sibling `expand`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use feedback :: { analyze , analyze_with , ExplainSite , Feedback , FeedbackSummary , GuaranteeAnnotation , SwapSite , } ;",
+      "reason": "`use feedback::analyze` — `analyze` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::analyze_with` — `analyze_with` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::ExplainSite` — `ExplainSite` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::Feedback` — `Feedback` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::FeedbackSummary` — `FeedbackSummary` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::GuaranteeAnnotation` — `GuaranteeAnnotation` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use feedback::SwapSite` — `SwapSite` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 44,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use fmt :: format ;",
+      "reason": "`use fmt::format` — `format` is not among sibling `fmt`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 45,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use hover :: hover ;",
+      "reason": "`use hover::hover` — `hover` is not among sibling `hover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use lint :: { has_errors , lint , lint_nodule_header , lint_structured_header , Diagnostic , Severity , } ;",
+      "reason": "`use lint::has_errors` — `has_errors` is not among sibling `lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Diagnostic,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use lint :: { has_errors , lint , lint_nodule_header , lint_structured_header , Diagnostic , Severity , } ;",
+      "reason": "`use lint::lint` — `lint` is not among sibling `lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Diagnostic,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use lint :: { has_errors , lint , lint_nodule_header , lint_structured_header , Diagnostic , Severity , } ;",
+      "reason": "`use lint::lint_nodule_header` — `lint_nodule_header` is not among sibling `lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Diagnostic,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 46,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use lint :: { has_errors , lint , lint_nodule_header , lint_structured_header , Diagnostic , Severity , } ;",
+      "reason": "`use lint::lint_structured_header` — `lint_structured_header` is not among sibling `lint`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Diagnostic,Severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 49,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use llm_canonical_parser :: { parse_llm_canonical , ParseError , DEPTH_LIMIT } ;",
+      "reason": "`use llm_canonical_parser::parse_llm_canonical` — `parse_llm_canonical` is not among sibling `llm_canonical_parser`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include+use:ParseError,DEPTH_LIMIT"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::check_effects` — `check_effects` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::handle` — `handle` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::EffectBudget` — `EffectBudget` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::EffectBudgetExhausted` — `EffectBudgetExhausted` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::EffectKind` — `EffectKind` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::RecoveryPolicy` — `RecoveryPolicy` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::Resolution` — `Resolution` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::StructuredError` — `StructuredError` is not among sibling `recover`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 50,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use recover :: { check_effects , handle , EffectBudget , EffectBudgetExhausted , EffectKind , Outcome , RecoveryPolicy , Resolution , StructuredError , UndeclaredEffect as RecoverUndeclaredEffect , } ;",
+      "reason": "`use recover::UndeclaredEffect as RecoverUndeclaredEffect` — a renamed cross-nodule import is out of this increment's scope (the alias would need threading through every downstream reference to `RecoverUndeclaredEffect` in this file's body); flagged, not guessed (VR-5/G2)",
+      "item_name": "co-include:Outcome"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 54,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use semantic :: { semantic_tokens_full , semantic_tokens_legend , TOKEN_TYPES } ;",
+      "reason": "`use semantic::semantic_tokens_full` — `semantic_tokens_full` is not among sibling `semantic`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use semantic::semantic_tokens_legend` — `semantic_tokens_legend` is not among sibling `semantic`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use semantic::TOKEN_TYPES` — `TOKEN_TYPES` is not among sibling `semantic`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 55,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use sync :: { publish_for_source , resilient_publish_for_source , resilient_source_diagnostics , source_diagnostics , DocumentStore , } ;",
+      "reason": "`use sync::publish_for_source` — `publish_for_source` is not among sibling `sync`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use sync::resilient_publish_for_source` — `resilient_publish_for_source` is not among sibling `sync`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use sync::resilient_source_diagnostics` — `resilient_source_diagnostics` is not among sibling `sync`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use sync::source_diagnostics` — `source_diagnostics` is not among sibling `sync`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use sync::DocumentStore` — `DocumentStore` is not among sibling `sync`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/lib.rs",
+      "line": 59,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use wire :: { publish_diagnostics_notification , read_message , serve , serve_stdio , to_lsp_diagnostic , write_message , } ;",
+      "reason": "`use wire::publish_diagnostics_notification` — `publish_diagnostics_notification` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use wire::read_message` — `read_message` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use wire::serve` — `serve` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use wire::serve_stdio` — `serve_stdio` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use wire::to_lsp_diagnostic` — `to_lsp_diagnostic` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2); `use wire::write_message` — `write_message` is not among sibling `wire`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    }
+  ],
+  "total_top_level_items": 31
+}

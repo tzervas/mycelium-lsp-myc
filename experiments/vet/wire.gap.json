@@ -1,0 +1,210 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+  "emitted_items": [
+    "co-include:Diagnostic,Severity",
+    "lsp_severity"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 23,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: io :: { self , BufRead , Write } ;",
+      "reason": "`use std.io::{self, ..}` — `self` binds the module ITSELF as a local name; there is no \"import a nodule as a name\" construct in this grammar, so this leaf cannot resolve (distinct from an ordinary lookup miss); `use std.io::BufRead` — `std.io` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use std.io::Write` — `std.io` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 25,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use serde_json :: { json , Value } ;",
+      "reason": "`use serde_json::json` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use serde_json::Value` — `serde_json` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use crate :: feedback :: Feedback ;",
+      "reason": "`use feedback::Feedback` — `Feedback` is not among sibling `feedback`'s successfully-emitted surface in this batch (the sibling file itself gapped it rather than emitting it). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 30,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The advertised server name (LSP `serverInfo.name`).\"] pub const SERVER_NAME : & str = \"mycelium-lsp\" ;",
+      "reason": "top-level `const SERVER_NAME` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "SERVER_NAME"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 33,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" LSP `DiagnosticSeverity` code for a [`Severity`] (LSP spec: Error=1, Warning=2, Information=3,\"] # [doc = \" Hint=4). The lint lattice only has Error/Warning, mapped to 1/2.\"] # [must_use] pub fn lsp_severity (severity : Severity) -> u8 { match severity { Severity :: Error => 1 , Severity :: Warning => 2 , } }",
+      "reason": "dropped non-doc attribute(s) on fn `lsp_severity`: # [must_use]",
+      "item_name": "lsp_severity"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 43,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Map a [`Diagnostic`] to an LSP-`Diagnostic` JSON value. The `range` is a **zero placeholder**\"] # [doc = \" (L0 Core IR has no source spans yet) and the navigable location is the structured breadcrumb in\"] # [doc = \" `data.breadcrumb` — never a fabricated line/column (M-310; spans arrive with the L1 surface).\"] # [must_use] pub fn to_lsp_diagnostic (diag : & Diagnostic) -> Value { json ! ({ \"range\" : { \"start\" : { \"line\" : 0 , \"character\" : 0 } , \"end\" : { \"line\" : 0 , \"character\" : 0 } , } , \"severity\" : lsp_severity (diag . severity) , \"code\" : diag . code , \"source\" : SERVER_NAME , \"message\" : diag . message , \"data\" : { \"breadcrumb\" : diag . path () } , }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "to_lsp_diagnostic"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 62,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" The `params` of a `textDocument/publishDiagnostics` notification for `feedback` at `uri`.\"] # [must_use] pub fn publish_diagnostics_params (uri : & str , feedback : & Feedback) -> Value { json ! ({ \"uri\" : uri , \"diagnostics\" : feedback . diagnostics . iter () . map (to_lsp_diagnostic) . collect ::< Vec < _ >> () , }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "publish_diagnostics_params"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 75,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" Build the full `textDocument/publishDiagnostics` JSON-RPC **notification** (server → client) that\"] # [doc = \" reports `feedback`'s diagnostics for the document `uri`. This is the LSP wrapping of the M-140\"] # [doc = \" diagnostics channel; the (future) document-analysis path emits it after each [`crate::analyze`].\"] # [must_use] pub fn publish_diagnostics_notification (uri : & str , feedback : & Feedback) -> Value { json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"textDocument/publishDiagnostics\" , \"params\" : publish_diagnostics_params (uri , feedback) , }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "publish_diagnostics_notification"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 87,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "# [doc = \" The `initialize` result: the server's advertised capabilities. Now that the text → `Node`\"] # [doc = \" pipeline exists (M-310; RFC-0011 r3 / RFC-0001 r4), the server advertises **`textDocumentSync: 1`**\"] # [doc = \" (`TextDocumentSyncKind.Full`) — it re-analyzes the whole document on each edit ([`crate::sync`])\"] # [doc = \" and pushes diagnostics via [`publish_diagnostics_notification`] / `crate::sync::publish_for_source`.\"] # [doc = \"\"] # [doc = \" Also advertises **`completionProvider`** for the lexical/scaffolding completion provider\"] # [doc = \" ([`crate::completions`]). The trigger characters `[\\\"/\\\", \\\"@\\\"]` prompt completion while editing\"] # [doc = \" the `// nodule:` / `// @key:` header forms; the provider is otherwise token-prefix-triggered.\"] # [doc = \" Scope is `Declared` — lexical/scaffolding only, no semantic/type-aware resolution.\"] # [must_use] pub fn initialize_result () -> Value { json ! ({ \"capabilities\" : { \"textDocumentSync\" : 1 , \"completionProvider\" : { \"resolveProvider\" : false , \"triggerCharacters\" : [\"/\" , \"@\"] , } , \"hoverProvider\" : true , \"definitionProvider\" : true , \"semanticTokensProvider\" : { \"legend\" : crate :: semantic :: semantic_tokens_legend () , \"full\" : true , } , } , \"serverInfo\" : { \"name\" : SERVER_NAME , \"version\" : env ! (\"CARGO_PKG_VERSION\") } , }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "initialize_result"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 122,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Read one JSON-RPC message off `reader`, decoding the `Content-Length` header framing. Returns\"] # [doc = \" `Ok(None)` at a **clean** EOF (no partial header), and an `io::Error` for a malformed frame\"] # [doc = \" (truncated body, missing/invalid `Content-Length`, or non-JSON body) — never a silent drop.\"] pub fn read_message < R : BufRead > (reader : & mut R) -> io :: Result < Option < Value > > { let mut content_length : Option < usize > = None ; let mut line = String :: new () ; loop { line . clear () ; if reader . read_line (& mut line) ? == 0 { return if content_length . is_some () { Err (io :: Error :: new (io :: ErrorKind :: UnexpectedEof , \"EOF inside LSP message headers\" ,)) } else { Ok (None) } ; } let trimmed = line . trim_end_matches (['\\r' , '\\n']) ; if trimmed . is_empty () { break ; } if let Some (rest) = trimmed . strip_prefix (\"Content-Length:\") { let n = rest . trim () . parse :: < usize > () . map_err (| _ | { io :: Error :: new (io :: ErrorKind :: InvalidData , \"invalid Content-Length\") }) ? ; content_length = Some (n) ; } } let len = content_length . ok_or_else (| | { io :: Error :: new (io :: ErrorKind :: InvalidData , \"missing Content-Length header\") }) ? ; let mut buf = vec ! [0u8 ; len] ; reader . read_exact (& mut buf) ? ; let value = serde_json :: from_slice (& buf) . map_err (| e | io :: Error :: new (io :: ErrorKind :: InvalidData , e)) ? ; Ok (Some (value)) }",
+      "reason": "type parameter `R` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "read_message"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 163,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Write one JSON-RPC message to `writer` with the `Content-Length` framing, then flush.\"] pub fn write_message < W : Write > (writer : & mut W , msg : & Value) -> io :: Result < () > { let body = serde_json :: to_vec (msg) ? ; write ! (writer , \"Content-Length: {}\\r\\n\\r\\n\" , body . len ()) ? ; writer . write_all (& body) ? ; writer . flush () }",
+      "reason": "type parameter `W` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "write_message"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 171,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "fn response (id : Value , result : Value) -> Value { json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : id , \"result\" : result }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "response"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 175,
+      "col": 1,
+      "category": "MacroInvocation",
+      "rust_construct": "MacroInvocation",
+      "snippet": "fn error_response (id : Value , code : i64 , message : & str) -> Value { json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : id , \"error\" : { \"code\" : code , \"message\" : message } }) }",
+      "reason": "expression-position macro `json` — no macro system in this grammar fragment (`write!`/`format!` lower to pure `Bytes` per DN-127/M-1090 WU-3)",
+      "item_name": "error_response"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 179,
+      "col": 1,
+      "category": "GenericBound",
+      "rust_construct": "GenericBound",
+      "snippet": "# [doc = \" Drive the LSP lifecycle **with document sync** (M-310) over `reader`/`writer` (stdio in the real\"] # [doc = \" server): answer `initialize` with [`initialize_result`], acknowledge `shutdown`, stop on `exit`,\"] # [doc = \" reply to any other **request** (a message carrying an `id`) with JSON-RPC `MethodNotFound`\"] # [doc = \" (-32601) — never silently — and ignore unknown notifications, as the protocol requires.\"] # [doc = \"\"] # [doc = \" On `textDocument/didOpen` and `didChange` (full sync) it stores the document's text and **pushes\"] # [doc = \" a `textDocument/publishDiagnostics`** computed through the text → `Node` pipeline\"] # [doc = \" ([`crate::sync::resilient_publish_for_source`]: parse → check, with an analysis panic isolated as\"] # [doc = \" an `internal` diagnostic per RFC-0013 I1 — a pathological document never kills the session);\"] # [doc = \" `didClose` drops the document and clears its diagnostics. Returns when the stream ends or `exit`\"] # [doc = \" is received. A *malformed transport frame* is a different matter — it is an explicit\"] # [doc = \" [`read_message`] `io::Error` (the byte stream is unrecoverable), surfaced to the caller, never a\"] # [doc = \" silent drop.\"] pub fn serve < R : BufRead , W : Write > (reader : & mut R , writer : & mut W) -> io :: Result < () > { let mut store = crate :: sync :: DocumentStore :: new () ; while let Some (msg) = read_message (reader) ? { let method = msg . get (\"method\") . and_then (Value :: as_str) . unwrap_or_default () ; let id = msg . get (\"id\") . cloned () ; match (method , id) { (\"initialize\" , Some (id)) => write_message (writer , & response (id , initialize_result ())) ? , (\"shutdown\" , Some (id)) => write_message (writer , & response (id , Value :: Null)) ? , (\"exit\" , _) => break , (\"textDocument/didOpen\" , _) => { if let Some ((uri , text)) = did_open_params (& msg) { store . set (uri . clone () , text . clone ()) ; write_message (writer , & crate :: sync :: resilient_publish_for_source (& uri , & text) ,) ? ; } } (\"textDocument/didChange\" , _) => { if let Some ((uri , text)) = did_change_params (& msg) { store . set (uri . clone () , text . clone ()) ; write_message (writer , & crate :: sync :: resilient_publish_for_source (& uri , & text) ,) ? ; } } (\"textDocument/didClose\" , _) => { if let Some (uri) = doc_uri (& msg) { store . remove (& uri) ; write_message (writer , & serde_json :: json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"textDocument/publishDiagnostics\" , \"params\" : { \"uri\" : uri , \"diagnostics\" : [] } , }) ,) ? ; } } (\"textDocument/completion\" , Some (id)) => { write_message (writer , & response (id , crate :: completions :: completion_list ())) ? ; } (\"textDocument/hover\" , Some (id)) => { let result = position_params (& msg) . and_then (| (uri , line , ch) | { store . text (& uri) . map (| t | crate :: hover :: hover (t , line , ch)) }) . unwrap_or (Value :: Null) ; write_message (writer , & response (id , result)) ? ; } (\"textDocument/definition\" , Some (id)) => { let result = position_params (& msg) . and_then (| (uri , line , ch) | { store . text (& uri) . map (| t | crate :: definition :: definition (& uri , t , line , ch)) }) . unwrap_or (Value :: Null) ; write_message (writer , & response (id , result)) ? ; } (\"textDocument/semanticTokens/full\" , Some (id)) => { let result = doc_uri (& msg) . and_then (| uri | store . text (& uri) . map (crate :: semantic :: semantic_tokens_full)) . unwrap_or_else (| | serde_json :: json ! ({ \"data\" : [] })) ; write_message (writer , & response (id , result)) ? ; } (other , Some (id)) => write_message (writer , & error_response (id , - 32601 , & format ! (\"method not handled: {other}\")) ,) ? , (_ , None) => { } } } Ok (()) }",
+      "reason": "type parameter `R` carries a bound — type_params/fn generics are bare identifiers only in this grammar fragment",
+      "item_name": "serve"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 287,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" Run [`serve`] over the process's **real stdio** — the entry point an editor launches\"] # [doc = \" (`mycelium-lsp` over stdin/stdout, the transport every LSP client speaks). Locks stdin/stdout\"] # [doc = \" once for the session and drives the loop to a clean `exit` (or stream end). A transport-level\"] # [doc = \" `io::Error` (a malformed frame, a broken pipe) propagates to the caller — the binary reports it\"] # [doc = \" on stderr and exits non-zero rather than dropping it silently.\"] pub fn serve_stdio () -> io :: Result < () > { let stdin = io :: stdin () ; let stdout = io :: stdout () ; let mut reader = stdin . lock () ; let mut writer = stdout . lock () ; serve (& mut reader , & mut writer) }",
+      "reason": "qualified type path `io :: Result < () >` — collapsing to its last segment would risk colliding with an unrelated same-named local type (e.g. `std::cmp::Ordering` vs a local `Ordering`); left an explicit gap rather than guessed (VR-5)",
+      "item_name": "serve_stdio"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 300,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `params.textDocument.uri` of a document notification.\"] fn doc_uri (msg : & Value) -> Option < String > { msg . get (\"params\") ? . get (\"textDocument\") ? . get (\"uri\") ? . as_str () . map (str :: to_owned) }",
+      "reason": "method call `.map(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__map` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `map(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "doc_uri"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 309,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `(uri, text)` from a `didOpen` notification (`params.textDocument.{uri, text}`).\"] fn did_open_params (msg : & Value) -> Option < (String , String) > { let td = msg . get (\"params\") ? . get (\"textDocument\") ? ; let uri = td . get (\"uri\") ? . as_str () ? . to_owned () ; let text = td . get (\"text\") ? . as_str () ? . to_owned () ; Some ((uri , text)) }",
+      "reason": "unsupported expression form `msg . get (\"params\") ? . get (\"textDocument\") ?`",
+      "item_name": "did_open_params"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 317,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `(uri, full text)` from a `didChange` notification under **full sync**: the whole document is the\"] # [doc = \" last content change's `text` (`params.contentChanges[..].text`); the uri is\"] # [doc = \" `params.textDocument.uri`.\"] fn did_change_params (msg : & Value) -> Option < (String , String) > { let uri = doc_uri (msg) ? ; let changes = msg . get (\"params\") ? . get (\"contentChanges\") ? . as_array () ? ; let text = changes . last () ? . get (\"text\") ? . as_str () ? . to_owned () ; Some ((uri , text)) }",
+      "reason": "unsupported expression form `doc_uri (msg) ?`",
+      "item_name": "did_change_params"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 327,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" `(uri, line, character)` (0-based position) from a `textDocument/{hover,definition}` request:\"] # [doc = \" `params.textDocument.uri` + `params.position.{line, character}`. `None` if any field is missing —\"] # [doc = \" the caller answers with a null result rather than guessing (G2).\"] fn position_params (msg : & Value) -> Option < (String , u32 , u32) > { let uri = doc_uri (msg) ? ; let position = msg . get (\"params\") ? . get (\"position\") ? ; let line = u32 :: try_from (position . get (\"line\") ? . as_u64 () ?) . ok () ? ; let character = u32 :: try_from (position . get (\"character\") ? . as_u64 () ?) . ok () ? ; Some ((uri , line , character)) }",
+      "reason": "unsupported expression form `doc_uri (msg) ?`",
+      "item_name": "position_params"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/wire.rs",
+      "line": 338,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; use std :: io :: Cursor ; # [test] fn framing_round_trips_one_and_many_messages () { let a = json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 1 , \"method\" : \"initialize\" }) ; let b = json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" }) ; let mut buf = Vec :: new () ; write_message (& mut buf , & a) . unwrap () ; write_message (& mut buf , & b) . unwrap () ; let text = String :: from_utf8 (buf . clone ()) . unwrap () ; assert ! (text . starts_with (\"Content-Length: \")) ; assert ! (text . contains (\"\\r\\n\\r\\n\")) ; let mut cur = Cursor :: new (buf) ; assert_eq ! (read_message (& mut cur) . unwrap () , Some (a)) ; assert_eq ! (read_message (& mut cur) . unwrap () , Some (b)) ; assert_eq ! (read_message (& mut cur) . unwrap () , None) ; } # [test] fn empty_stream_is_clean_eof_not_an_error () { let mut cur = Cursor :: new (Vec :: new ()) ; assert_eq ! (read_message (& mut cur) . unwrap () , None) ; } # [test] fn truncated_body_is_an_explicit_error () { let framed = b\"Content-Length: 50\\r\\n\\r\\n{\\\"jsonrpc\\\":\\\"2.0\\\"}\" . to_vec () ; let mut cur = Cursor :: new (framed) ; assert ! (read_message (& mut cur) . is_err ()) ; } # [test] fn severity_maps_to_lsp_codes () { assert_eq ! (lsp_severity (Severity :: Error) , 1) ; assert_eq ! (lsp_severity (Severity :: Warning) , 2) ; } # [test] fn publish_diagnostics_has_the_lsp_shape () { let feedback = Feedback { diagnostics : vec ! [Diagnostic { code : \"implicit-swap\" , severity : Severity :: Error , at : \"let a/swap\" . to_string () , message : \"a swap must be explicit\" . to_string () , }] , guarantees : Vec :: new () , swaps : Vec :: new () , stages : Vec :: new () , explanations : Vec :: new () , prims : Vec :: new () , } ; let note = publish_diagnostics_notification (\"mem://demo\" , & feedback) ; assert_eq ! (note [\"method\"] , \"textDocument/publishDiagnostics\") ; assert_eq ! (note [\"params\"] [\"uri\"] , \"mem://demo\") ; let d = & note [\"params\"] [\"diagnostics\"] [0] ; assert_eq ! (d [\"severity\"] , 1) ; assert_eq ! (d [\"code\"] , \"implicit-swap\") ; assert_eq ! (d [\"source\"] , SERVER_NAME) ; assert_eq ! (d [\"range\"] [\"start\"] [\"line\"] , 0) ; assert_eq ! (d [\"data\"] [\"breadcrumb\"] , json ! ([\"let a\" , \"swap\"])) ; } # [test] fn serve_answers_initialize_and_shutdown_then_exits () { let mut input = Vec :: new () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 1 , \"method\" : \"initialize\" , \"params\" : { } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 2 , \"method\" : \"shutdown\" }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" })) . unwrap () ; let mut reader = Cursor :: new (input) ; let mut out = Vec :: new () ; serve (& mut reader , & mut out) . unwrap () ; let mut rout = Cursor :: new (out) ; let init = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (init [\"id\"] , 1) ; assert_eq ! (init [\"result\"] [\"serverInfo\"] [\"name\"] , SERVER_NAME) ; assert_eq ! (init [\"result\"] [\"capabilities\"] [\"textDocumentSync\"] , 1) ; let shut = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (shut [\"id\"] , 2) ; assert_eq ! (shut [\"result\"] , Value :: Null) ; assert_eq ! (read_message (& mut rout) . unwrap () , None) ; } # [test] fn serve_publishes_diagnostics_on_did_open_and_did_change () { let mut input = Vec :: new () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"textDocument/didOpen\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://x\" , \"languageId\" : \"mycelium\" , \"version\" : 1 , \"text\" : \"nodule d;\\nfn bad() => Binary{8} = add(0b0000_0001, 0b0000_0010);\" } } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"textDocument/didChange\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://x\" , \"version\" : 2 } , \"contentChanges\" : [{ \"text\" : \"nodule d;\\nfn main() => Binary{8} = not(0b0000_0001);\" }] } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" })) . unwrap () ; let mut reader = Cursor :: new (input) ; let mut out = Vec :: new () ; serve (& mut reader , & mut out) . unwrap () ; let mut rout = Cursor :: new (out) ; let open = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (open [\"method\"] , \"textDocument/publishDiagnostics\") ; assert_eq ! (open [\"params\"] [\"uri\"] , \"mem://x\") ; assert_eq ! (open [\"params\"] [\"diagnostics\"] [0] [\"code\"] , \"check\") ; let change = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (change [\"params\"] [\"diagnostics\"] , json ! ([])) ; assert_eq ! (read_message (& mut rout) . unwrap () , None) ; } # [test] fn unknown_request_gets_method_not_found_not_silence () { let mut input = Vec :: new () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 7 , \"method\" : \"textDocument/rename\" }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" })) . unwrap () ; let mut reader = Cursor :: new (input) ; let mut out = Vec :: new () ; serve (& mut reader , & mut out) . unwrap () ; let mut rout = Cursor :: new (out) ; let resp = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (resp [\"id\"] , 7) ; assert_eq ! (resp [\"error\"] [\"code\"] , - 32601) ; } # [test] fn completion_request_returns_keyword_and_snippet_list () { let mut input = Vec :: new () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 5 , \"method\" : \"textDocument/completion\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://t\" } , \"position\" : { \"line\" : 0 , \"character\" : 2 } , } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" })) . unwrap () ; let mut reader = Cursor :: new (input) ; let mut out = Vec :: new () ; serve (& mut reader , & mut out) . unwrap () ; let mut rout = Cursor :: new (out) ; let resp = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (resp [\"id\"] , 5) ; assert ! (resp . get (\"error\") . is_none () , \"completion must not return an error\") ; let result = & resp [\"result\"] ; assert_eq ! (result [\"isIncomplete\"] , false) ; let items = result [\"items\"] . as_array () . expect (\"items must be an array\") ; assert ! (! items . is_empty () , \"completion list must be non-empty\") ; let has_keyword = items . iter () . any (| i | i [\"kind\"] == 14) ; let has_snippet = items . iter () . any (| i | i [\"kind\"] == 15) ; assert ! (has_keyword , \"must have at least one keyword item (kind=14)\") ; assert ! (has_snippet , \"must have at least one snippet item (kind=15)\") ; let nodule = items . iter () . find (| i | i [\"label\"] == \"nodule\") ; assert ! (nodule . is_some () , \"`nodule` keyword must appear in the list\") ; assert_eq ! (nodule . unwrap () [\"kind\"] , 14) ; let swap_snip = items . iter () . find (| i | i [\"label\"] == \"swap-expr\") ; assert ! (swap_snip . is_some () , \"`swap-expr` snippet must appear in the list\") ; assert_eq ! (swap_snip . unwrap () [\"insertTextFormat\"] , 2) ; let has_phylum = items . iter () . any (| i | i [\"label\"] == \"phylum\") ; let has_colony = items . iter () . any (| i | i [\"label\"] == \"colony\") ; let has_hypha = items . iter () . any (| i | i [\"label\"] == \"hypha\") ; assert ! (! has_phylum , \"`phylum` (reserved-not-active) must not be offered\") ; assert ! (has_colony , \"`colony` is now an active keyword (M-666) and must appear in completions\") ; assert ! (has_hypha , \"`hypha` is now an active keyword (M-666) and must appear in completions\") ; assert_eq ! (read_message (& mut rout) . unwrap () , None) ; } # [test] fn initialize_result_advertises_completion_provider () { let result = initialize_result () ; assert ! (result [\"capabilities\"] [\"completionProvider\"] . is_object () , \"capabilities must include completionProvider\") ; assert_eq ! (result [\"capabilities\"] [\"completionProvider\"] [\"resolveProvider\"] , false , \"resolveProvider must be false (static list, no resolve step)\") ; let triggers = result [\"capabilities\"] [\"completionProvider\"] [\"triggerCharacters\"] . as_array () . expect (\"triggerCharacters must be an array\") ; assert ! (triggers . iter () . any (| t | t == \"/\") , \"triggerCharacters must include '/' for the nodule-header snippet\") ; } # [test] fn initialize_result_advertises_the_m730_providers () { let caps = & initialize_result () [\"capabilities\"] ; assert_eq ! (caps [\"hoverProvider\"] , true) ; assert_eq ! (caps [\"definitionProvider\"] , true) ; assert_eq ! (caps [\"semanticTokensProvider\"] [\"full\"] , true) ; let types = caps [\"semanticTokensProvider\"] [\"legend\"] [\"tokenTypes\"] . as_array () . expect (\"semantic-token legend must list token types\") ; assert ! (types . iter () . any (| t | t == \"keyword\")) ; } # [test] fn serve_answers_hover_definition_and_semantic_tokens_after_did_open () { let src = \"nodule d\\nfn g() -> Binary{8} = 0b0\\nfn h() = g()\\n\" ; let mut input = Vec :: new () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"textDocument/didOpen\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://d.myc\" , \"text\" : src } } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 10 , \"method\" : \"textDocument/hover\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://d.myc\" } , \"position\" : { \"line\" : 1 , \"character\" : 0 } } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 11 , \"method\" : \"textDocument/definition\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://d.myc\" } , \"position\" : { \"line\" : 2 , \"character\" : 9 } } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"id\" : 12 , \"method\" : \"textDocument/semanticTokens/full\" , \"params\" : { \"textDocument\" : { \"uri\" : \"mem://d.myc\" } } }) ,) . unwrap () ; write_message (& mut input , & json ! ({ \"jsonrpc\" : \"2.0\" , \"method\" : \"exit\" })) . unwrap () ; let mut reader = Cursor :: new (input) ; let mut out = Vec :: new () ; serve (& mut reader , & mut out) . unwrap () ; let mut rout = Cursor :: new (out) ; let first = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (first [\"method\"] , \"textDocument/publishDiagnostics\") ; let hover = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (hover [\"id\"] , 10) ; assert ! (hover [\"result\"] [\"contents\"] [\"value\"] . as_str () . unwrap () . contains (\"function\") , \"hover on `fn` must describe it\") ; let def = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (def [\"id\"] , 11) ; assert_eq ! (def [\"result\"] [\"range\"] [\"start\"] [\"line\"] , 1 , \"g is declared on line 2 (0-based 1)\") ; let sem = read_message (& mut rout) . unwrap () . unwrap () ; assert_eq ! (sem [\"id\"] , 12) ; assert ! (! sem [\"result\"] [\"data\"] . as_array () . unwrap () . is_empty () , \"semantic tokens must be non-empty for a real nodule\") ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 21
+}

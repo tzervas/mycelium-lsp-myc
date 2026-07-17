@@ -1,0 +1,17 @@
+// nodule: lsp.fmt
+// The **canonical formatter** (M-142; RFC-0001 §4.8; ADR-003).
+//
+// Reformatting is a *projection*: it produces a canonical textual normal form and **never changes
+// a definition's content-addressed identity** (RFC-0001 §4.6; ADR-003). The canonical form
+// α-normalizes binder names (`v0, v1, …`), so two definitions that differ only in names — the
+// essence of a reformatting — render to the *same* text and share the *same* [`content_hash`]. The
+// heavy lifting lives in [`mycelium_core::lower::format`] (the IR-level canonical dump, §4.8); this
+// module is the toolchain-facing entry plus its identity guarantees.
+//
+// [`content_hash`]: mycelium_core::Node::content_hash
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.fmt;
+
+

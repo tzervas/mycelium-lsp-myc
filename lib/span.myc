@@ -1,0 +1,42 @@
+// nodule: lsp.span
+// Shared **lexical span resolution** for the position-aware LSP providers (M-730): semantic
+// tokens ([`crate::semantic`]), hover ([`crate::hover`]), and go-to-definition
+// ([`crate::definition`]).
+//
+// Scope and honesty (`Declared`): this is a **purely lexical** layer. It runs the canonical L1
+// lexer ([`mycelium_l1::lexer::lex_with_comments`]) and resolves each token/comment to a
+// character span on a single source line. It has **no** semantic context — it does not know a
+// token's type, its scope, or its binding. The providers built on it therefore classify by token
+// kind only; they never claim type-aware inference (VR-5 / G2).
+//
+// ## Span resolution (no lexer duplication)
+// The L1 lexer records only each token's **start** [`Pos`](mycelium_l1::token::Pos), not its
+// length. Rather than re-implement lexeme scanning (a drift risk), this module recovers each
+// token's length from the **next lexical boundary**: every token in this lexer occupies exactly
+// one line, and the only thing between two adjacent lexical items is whitespace or a comment
+// (itself a boundary). So a token's text runs from its start column to the next item's start (or
+// end-of-line), with trailing whitespace trimmed against the real source line. This is exact for
+// ASCII source.
+//
+// ## Position encoding (UTF-16 stopgap)
+// LSP `Position.character` is **UTF-16 code units** by default; this module measures spans in
+// **Unicode scalar values**, which agree with UTF-16 only for ASCII. The L1 lexer accepts non-ASCII
+// in `//` comments, so rather than hand a standard client mis-counted offsets, [`lex_items`]
+// **refuses** a non-ASCII source — it returns no spans (hover/definition/tokens yield nothing for
+// that file), never a silent mis-offset (G2). The proper fix — UTF-16 length accounting or
+// position-encoding negotiation (`utf-8`/`utf-16`) — is the follow-up; this is the honest interim.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.span;
+
+// What a [`LexItem`] is: a real token, or a `//` line comment.
+pub type LexKind = Token(Tok) | Comment;
+
+impl Show[LexKind] for LexKind {
+  fn render(x: LexKind) => Bytes =
+    match x { Token(p0) => bytes_concat(bytes_concat("Token(", render(p0)), ")"), Comment => "Comment" };
+};
+
+fn eq_LexKind(a: LexKind, b: LexKind) => Binary{1} =
+  match a { Token(p0) => match b { Token(q0) => eq_Tok(p0, q0), _ => 0b0 }, Comment => match b { Comment => 0b1, _ => 0b0 } };

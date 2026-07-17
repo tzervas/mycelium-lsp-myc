@@ -1,0 +1,97 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 19,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeSet ;",
+      "reason": "`use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 20,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: fmt ;",
+      "reason": "`use std::fmt` — `std` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 24,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "pub use mycelium_interp :: budget :: { Budgets , EffectBudget , EffectBudgetExhausted , EffectKind } ;",
+      "reason": "`use mycelium_interp.budget::Budgets` — `mycelium_interp.budget` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_interp.budget::EffectBudget` — `mycelium_interp.budget` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_interp.budget::EffectBudgetExhausted` — `mycelium_interp.budget` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2); `use mycelium_interp.budget::EffectKind` — `mycelium_interp.budget` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 26,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" A definition's **declared** effect set (§4.5 I3) — what it says it can do, on its signature.\"] pub type EffectSet = BTreeSet < EffectKind > ;",
+      "reason": "`type EffectSet = ...` alias — Mycelium's `type_item` always introduces a new nominal sum type via `'=' constructor ('|' constructor)*`; a bare alias to an existing type would fabricate a sum type where none exists semantically",
+      "item_name": "EffectSet"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 29,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" An effect a definition performs but did **not** declare (I3) — an explicit checker error, never\"] # [doc = \" silent. This is the \\\"no unknown side effects\\\" guarantee. A *checker* concern (tooling layer), not a\"] # [doc = \" runtime one, so it stays here rather than in the shared `mycelium-interp` budget primitive (KC-3).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UndeclaredEffect { # [doc = \" The performed-but-undeclared effect.\"] pub effect : EffectKind , }",
+      "reason": "struct `UndeclaredEffect` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "UndeclaredEffect"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 38,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for UndeclaredEffect { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"undeclared effect {:?}: a definition may not perform an effect absent from its signature \\\n             (RFC-0014 §4.5 I3 — no unknown side effects); declare it\" , self . effect . to_string ()) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UndeclaredEffect"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 49,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl std :: error :: Error for UndeclaredEffect { }",
+      "reason": "trait-impl of non-prelude trait `Error` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UndeclaredEffect"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 51,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" The **compositional no-undeclared-effect check** (I3): every effect a definition *performs* (its own\"] # [doc = \" plus its callees', composed up the call graph) must be in its *declared* set. Returns the first\"] # [doc = \" undeclared effect, if any. This *checks* declared effects compose — it never *infers* one (an effect\"] # [doc = \" can never become implicit; §8 resolved: manual-declare + compositional-check).\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UndeclaredEffect`] for the first performed effect not in `declared`.\"] pub fn check_effects (declared : & EffectSet , performed : & EffectSet) -> Result < () , UndeclaredEffect > { for e in performed { if ! declared . contains (e) { return Err (UndeclaredEffect { effect : e . clone () }) ; } } Ok (()) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "check_effects"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/recover/effect.rs",
+      "line": 67,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [test] fn the_ledger_primitive_is_the_shared_interp_type () { let mut b = Budgets :: new () . with (EffectBudget :: Attempts (1)) ; assert ! (b . consume (EffectKind :: Retry , 1) . is_ok ()) ; let exhausted = b . consume (EffectKind :: Retry , 1) . unwrap_err () ; let as_eval : mycelium_interp :: EvalError = exhausted . into () ; assert ! (matches ! (as_eval , mycelium_interp :: EvalError :: EffectBudget (_))) ; } # [test] fn an_undeclared_effect_is_an_explicit_checker_error () { let declared : EffectSet = [EffectKind :: Alloc] . into_iter () . collect () ; let performed : EffectSet = [EffectKind :: Alloc , EffectKind :: Io] . into_iter () . collect () ; let err = check_effects (& declared , & performed) . unwrap_err () ; assert_eq ! (err . effect , EffectKind :: Io) ; } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 9
+}

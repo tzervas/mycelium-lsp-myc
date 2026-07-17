@@ -1,0 +1,293 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+  "emitted_items": [
+    "DEPTH_LIMIT",
+    "ParseError",
+    "Sexp",
+    "Parser",
+    "impl Parser"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 42,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Errors returned by [`parse_llm_canonical`] (G2: always explicit, never silent).\"] # [derive (Debug , PartialEq , Eq)] pub enum ParseError { # [doc = \" The input was empty or contained only whitespace.\"] EmptyInput , # [doc = \" A token was not recognized as a valid LlmCanonical construct.\"] UnrecognizedConstruct { # [doc = \" 1-based line number of the unrecognized token.\"] line : usize , # [doc = \" The unrecognized token text.\"] token : String , } , # [doc = \" A delimiter was opened but never closed.\"] UnclosedDelimiter { # [doc = \" 1-based line number where the delimiter was opened.\"] line : usize , # [doc = \" The unclosed delimiter character.\"] delimiter : char , } , # [doc = \" The input nesting depth exceeded [`DEPTH_LIMIT`] (banked guard #4).\"] DepthLimitExceeded { # [doc = \" The limit that was exceeded.\"] limit : usize , } , }",
+      "reason": "enum `ParseError` variant `UnrecognizedConstruct` named field(s) `line, token` emitted positionally as `UnrecognizedConstruct(Binary{64}, Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "ParseError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 42,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Errors returned by [`parse_llm_canonical`] (G2: always explicit, never silent).\"] # [derive (Debug , PartialEq , Eq)] pub enum ParseError { # [doc = \" The input was empty or contained only whitespace.\"] EmptyInput , # [doc = \" A token was not recognized as a valid LlmCanonical construct.\"] UnrecognizedConstruct { # [doc = \" 1-based line number of the unrecognized token.\"] line : usize , # [doc = \" The unrecognized token text.\"] token : String , } , # [doc = \" A delimiter was opened but never closed.\"] UnclosedDelimiter { # [doc = \" 1-based line number where the delimiter was opened.\"] line : usize , # [doc = \" The unclosed delimiter character.\"] delimiter : char , } , # [doc = \" The input nesting depth exceeded [`DEPTH_LIMIT`] (banked guard #4).\"] DepthLimitExceeded { # [doc = \" The limit that was exceeded.\"] limit : usize , } , }",
+      "reason": "enum `ParseError` variant `UnclosedDelimiter` named field(s) `line, delimiter` emitted positionally as `UnclosedDelimiter(Binary{64}, Binary{32})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "ParseError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 42,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Errors returned by [`parse_llm_canonical`] (G2: always explicit, never silent).\"] # [derive (Debug , PartialEq , Eq)] pub enum ParseError { # [doc = \" The input was empty or contained only whitespace.\"] EmptyInput , # [doc = \" A token was not recognized as a valid LlmCanonical construct.\"] UnrecognizedConstruct { # [doc = \" 1-based line number of the unrecognized token.\"] line : usize , # [doc = \" The unrecognized token text.\"] token : String , } , # [doc = \" A delimiter was opened but never closed.\"] UnclosedDelimiter { # [doc = \" 1-based line number where the delimiter was opened.\"] line : usize , # [doc = \" The unclosed delimiter character.\"] delimiter : char , } , # [doc = \" The input nesting depth exceeded [`DEPTH_LIMIT`] (banked guard #4).\"] DepthLimitExceeded { # [doc = \" The limit that was exceeded.\"] limit : usize , } , }",
+      "reason": "enum `ParseError` variant `DepthLimitExceeded` named field(s) `limit` emitted positionally as `DepthLimitExceeded(Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "ParseError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 42,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Errors returned by [`parse_llm_canonical`] (G2: always explicit, never silent).\"] # [derive (Debug , PartialEq , Eq)] pub enum ParseError { # [doc = \" The input was empty or contained only whitespace.\"] EmptyInput , # [doc = \" A token was not recognized as a valid LlmCanonical construct.\"] UnrecognizedConstruct { # [doc = \" 1-based line number of the unrecognized token.\"] line : usize , # [doc = \" The unrecognized token text.\"] token : String , } , # [doc = \" A delimiter was opened but never closed.\"] UnclosedDelimiter { # [doc = \" 1-based line number where the delimiter was opened.\"] line : usize , # [doc = \" The unclosed delimiter character.\"] delimiter : char , } , # [doc = \" The input nesting depth exceeded [`DEPTH_LIMIT`] (banked guard #4).\"] DepthLimitExceeded { # [doc = \" The limit that was exceeded.\"] limit : usize , } , }",
+      "reason": "enum `ParseError` derive(Eq): covered by co-occurring PartialEq → `fn eq_ParseError` (product-row collision policy; DN-128 / ONESHOT C2) — not a second emission",
+      "item_name": "ParseError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 68,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl std :: fmt :: Display for ParseError { fn fmt (& self , f : & mut std :: fmt :: Formatter < '_ >) -> std :: fmt :: Result { match self { ParseError :: EmptyInput => write ! (f , \"empty input\") , ParseError :: UnrecognizedConstruct { line , token } => { write ! (f , \"line {line}: unrecognized construct '{token}'\") } ParseError :: UnclosedDelimiter { line , delimiter } => { write ! (f , \"line {line}: unclosed delimiter '{delimiter}'\") } ParseError :: DepthLimitExceeded { limit } => { write ! (f , \"nesting depth limit {limit} exceeded\") } } } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "ParseError"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 85,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Parse a LlmCanonical source string into a normalized Core-IR S-expression string.\"] # [doc = \"\"] # [doc = \" Returns `Ok(ir_sexp)` on success. On failure returns an explicit `Err(ParseError)` —\"] # [doc = \" never a partial or silent result (G2).\"] # [doc = \"\"] # [doc = \" # Guarantee tag: `Empirical`\"] # [doc = \" This is a heuristic token/bracket approach over the closed v0 grammar (research/11\"] # [doc = \" T11.4). It is **not** a proven-sound parser. The result is suitable as input to\"] # [doc = \" `myc-check` for scoring, but do not rely on it for semantics-preserving transforms.\"] pub fn parse_llm_canonical (source : & str) -> Result < String , ParseError > { if source . trim () . is_empty () { return Err (ParseError :: EmptyInput) ; } let mut parser = Parser :: new (source) ; let sexp = parser . read_sexp (0) ? ; let result = normalize_sexp (& sexp , 0) ? ; parser . skip_whitespace () ; if parser . pos < parser . chars . len () { let mut forms = vec ! [result] ; loop { parser . skip_whitespace () ; if parser . pos >= parser . chars . len () { break ; } let next_sexp = parser . read_sexp (0) ? ; let next = normalize_sexp (& next_sexp , 0) ? ; forms . push (next) ; } if forms . len () == 1 { Ok (forms . remove (0)) } else { Ok (format ! (\"(seq {})\" , forms . join (\" \"))) } } else { Ok (result) } }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "parse_llm_canonical"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 130,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" S-expression tree (internal representation before normalization).\"] # [derive (Debug)] enum Sexp { # [doc = \" An atom (identifier, keyword, literal).\"] Atom { text : String , _line : usize } , # [doc = \" A parenthesized list.\"] List { items : Vec < Sexp > , # [doc = \" Line where the opening `(` appeared.\"] open_line : usize , } , # [doc = \" A bracketed list `[…]` (used for let/fn binders).\"] Bracket { items : Vec < Sexp > , _open_line : usize } , }",
+      "reason": "enum `Sexp` variant `Atom` named field(s) `text, _line` emitted positionally as `Atom(Bytes, Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Sexp"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 130,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" S-expression tree (internal representation before normalization).\"] # [derive (Debug)] enum Sexp { # [doc = \" An atom (identifier, keyword, literal).\"] Atom { text : String , _line : usize } , # [doc = \" A parenthesized list.\"] List { items : Vec < Sexp > , # [doc = \" Line where the opening `(` appeared.\"] open_line : usize , } , # [doc = \" A bracketed list `[…]` (used for let/fn binders).\"] Bracket { items : Vec < Sexp > , _open_line : usize } , }",
+      "reason": "enum `Sexp` variant `List` named field(s) `items, open_line` emitted positionally as `List(Vec[Sexp], Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Sexp"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 130,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" S-expression tree (internal representation before normalization).\"] # [derive (Debug)] enum Sexp { # [doc = \" An atom (identifier, keyword, literal).\"] Atom { text : String , _line : usize } , # [doc = \" A parenthesized list.\"] List { items : Vec < Sexp > , # [doc = \" Line where the opening `(` appeared.\"] open_line : usize , } , # [doc = \" A bracketed list `[…]` (used for let/fn binders).\"] Bracket { items : Vec < Sexp > , _open_line : usize } , }",
+      "reason": "enum `Sexp` variant `Bracket` named field(s) `items, _open_line` emitted positionally as `Bracket(Vec[Sexp], Binary{64})` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped",
+      "item_name": "Sexp"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 149,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "struct Parser { chars : Vec < char > , pos : usize , # [doc = \" Line number at each char position (1-based).\"] line_at : Vec < usize > , }",
+      "reason": "struct `Parser` named field(s) `chars, pos, line_at` emitted positionally as `Parser(Vec[Binary{32}], Binary{64}, Vec[Binary{64}])` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 156,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "impl Parser { fn new (source : & str) -> Self { let chars : Vec < char > = source . chars () . collect () ; let mut line_at = Vec :: with_capacity (chars . len () + 1) ; let mut ln = 1usize ; for & c in & chars { line_at . push (ln) ; if c == '\\n' { ln += 1 ; } } line_at . push (ln) ; Self { chars , pos : 0 , line_at , } } fn peek_char (& self) -> Option < char > { self . chars . get (self . pos) . copied () } fn current_line (& self) -> usize { self . line_at . get (self . pos) . copied () . unwrap_or (1) } fn advance (& mut self) { self . pos += 1 ; } fn skip_whitespace (& mut self) { loop { match self . peek_char () { Some (c) if c . is_whitespace () => { self . advance () ; } Some (';') => { while let Some (cc) = self . peek_char () { self . advance () ; if cc == '\\n' { break ; } } } _ => break , } } } # [doc = \" Read a raw S-expression tree (no semantic validation yet).\"] fn read_sexp (& mut self , depth : usize) -> Result < Sexp , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } self . skip_whitespace () ; match self . peek_char () { None => { let line = self . current_line () ; Err (ParseError :: UnrecognizedConstruct { line , token : \"<EOF>\" . into () , }) } Some ('(') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '(' , }) ; } Some (')') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: List { items , open_line }) } Some ('[') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '[' , }) ; } Some (']') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: Bracket { items , _open_line : open_line , }) } Some ('<') => { let line = self . current_line () ; let mut text = String :: new () ; text . push ('<') ; self . advance () ; let mut found_close = false ; loop { match self . peek_char () { None => break , Some ('>') => { text . push ('>') ; self . advance () ; found_close = true ; break ; } Some (c) => { text . push (c) ; self . advance () ; } } } if ! found_close { return Err (ParseError :: UnclosedDelimiter { line , delimiter : '<' , }) ; } Ok (Sexp :: Atom { text , _line : line }) } Some (_) => { let line = self . current_line () ; let mut text = String :: new () ; loop { match self . peek_char () { None => break , Some (c) if c . is_whitespace () || c == '(' || c == ')' || c == '[' || c == ']' => { break ; } Some (c) => { text . push (c) ; self . advance () ; } } } Ok (Sexp :: Atom { text , _line : line }) } } } }",
+      "reason": "impl method `new` body: `let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "impl Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Parser { fn new (source : & str) -> Self { let chars : Vec < char > = source . chars () . collect () ; let mut line_at = Vec :: with_capacity (chars . len () + 1) ; let mut ln = 1usize ; for & c in & chars { line_at . push (ln) ; if c == '\\n' { ln += 1 ; } } line_at . push (ln) ; Self { chars , pos : 0 , line_at , } } fn peek_char (& self) -> Option < char > { self . chars . get (self . pos) . copied () } fn current_line (& self) -> usize { self . line_at . get (self . pos) . copied () . unwrap_or (1) } fn advance (& mut self) { self . pos += 1 ; } fn skip_whitespace (& mut self) { loop { match self . peek_char () { Some (c) if c . is_whitespace () => { self . advance () ; } Some (';') => { while let Some (cc) = self . peek_char () { self . advance () ; if cc == '\\n' { break ; } } } _ => break , } } } # [doc = \" Read a raw S-expression tree (no semantic validation yet).\"] fn read_sexp (& mut self , depth : usize) -> Result < Sexp , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } self . skip_whitespace () ; match self . peek_char () { None => { let line = self . current_line () ; Err (ParseError :: UnrecognizedConstruct { line , token : \"<EOF>\" . into () , }) } Some ('(') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '(' , }) ; } Some (')') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: List { items , open_line }) } Some ('[') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '[' , }) ; } Some (']') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: Bracket { items , _open_line : open_line , }) } Some ('<') => { let line = self . current_line () ; let mut text = String :: new () ; text . push ('<') ; self . advance () ; let mut found_close = false ; loop { match self . peek_char () { None => break , Some ('>') => { text . push ('>') ; self . advance () ; found_close = true ; break ; } Some (c) => { text . push (c) ; self . advance () ; } } } if ! found_close { return Err (ParseError :: UnclosedDelimiter { line , delimiter : '<' , }) ; } Ok (Sexp :: Atom { text , _line : line }) } Some (_) => { let line = self . current_line () ; let mut text = String :: new () ; loop { match self . peek_char () { None => break , Some (c) if c . is_whitespace () || c == '(' || c == ')' || c == '[' || c == ']' => { break ; } Some (c) => { text . push (c) ; self . advance () ; } } } Ok (Sexp :: Atom { text , _line : line }) } } } }",
+      "reason": "impl method `peek_char` body: method call `.copied(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__copied` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `copied(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "impl Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Parser { fn new (source : & str) -> Self { let chars : Vec < char > = source . chars () . collect () ; let mut line_at = Vec :: with_capacity (chars . len () + 1) ; let mut ln = 1usize ; for & c in & chars { line_at . push (ln) ; if c == '\\n' { ln += 1 ; } } line_at . push (ln) ; Self { chars , pos : 0 , line_at , } } fn peek_char (& self) -> Option < char > { self . chars . get (self . pos) . copied () } fn current_line (& self) -> usize { self . line_at . get (self . pos) . copied () . unwrap_or (1) } fn advance (& mut self) { self . pos += 1 ; } fn skip_whitespace (& mut self) { loop { match self . peek_char () { Some (c) if c . is_whitespace () => { self . advance () ; } Some (';') => { while let Some (cc) = self . peek_char () { self . advance () ; if cc == '\\n' { break ; } } } _ => break , } } } # [doc = \" Read a raw S-expression tree (no semantic validation yet).\"] fn read_sexp (& mut self , depth : usize) -> Result < Sexp , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } self . skip_whitespace () ; match self . peek_char () { None => { let line = self . current_line () ; Err (ParseError :: UnrecognizedConstruct { line , token : \"<EOF>\" . into () , }) } Some ('(') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '(' , }) ; } Some (')') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: List { items , open_line }) } Some ('[') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '[' , }) ; } Some (']') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: Bracket { items , _open_line : open_line , }) } Some ('<') => { let line = self . current_line () ; let mut text = String :: new () ; text . push ('<') ; self . advance () ; let mut found_close = false ; loop { match self . peek_char () { None => break , Some ('>') => { text . push ('>') ; self . advance () ; found_close = true ; break ; } Some (c) => { text . push (c) ; self . advance () ; } } } if ! found_close { return Err (ParseError :: UnclosedDelimiter { line , delimiter : '<' , }) ; } Ok (Sexp :: Atom { text , _line : line }) } Some (_) => { let line = self . current_line () ; let mut text = String :: new () ; loop { match self . peek_char () { None => break , Some (c) if c . is_whitespace () || c == '(' || c == ')' || c == '[' || c == ']' => { break ; } Some (c) => { text . push (c) ; self . advance () ; } } } Ok (Sexp :: Atom { text , _line : line }) } } } }",
+      "reason": "impl method `current_line` body: method call `.unwrap_or(...)` has no proven-emitted free-fn referent in this file (neither a D4-mangled inherent `Type__unwrap_or` nor a bare inherent recorded by this file's left-to-right pass, nor a prim_map / combinator row). Emitting bare `unwrap_or(recv, …)` would fabricate an unknown prim and file-poison myc-check (G-β Rank A / G2/VR-5; residual when the method body itself gapped — e.g. M-1037 `.to_vec()` inside `read_to_end` — so the declaration was never registered)",
+      "item_name": "impl Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Parser { fn new (source : & str) -> Self { let chars : Vec < char > = source . chars () . collect () ; let mut line_at = Vec :: with_capacity (chars . len () + 1) ; let mut ln = 1usize ; for & c in & chars { line_at . push (ln) ; if c == '\\n' { ln += 1 ; } } line_at . push (ln) ; Self { chars , pos : 0 , line_at , } } fn peek_char (& self) -> Option < char > { self . chars . get (self . pos) . copied () } fn current_line (& self) -> usize { self . line_at . get (self . pos) . copied () . unwrap_or (1) } fn advance (& mut self) { self . pos += 1 ; } fn skip_whitespace (& mut self) { loop { match self . peek_char () { Some (c) if c . is_whitespace () => { self . advance () ; } Some (';') => { while let Some (cc) = self . peek_char () { self . advance () ; if cc == '\\n' { break ; } } } _ => break , } } } # [doc = \" Read a raw S-expression tree (no semantic validation yet).\"] fn read_sexp (& mut self , depth : usize) -> Result < Sexp , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } self . skip_whitespace () ; match self . peek_char () { None => { let line = self . current_line () ; Err (ParseError :: UnrecognizedConstruct { line , token : \"<EOF>\" . into () , }) } Some ('(') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '(' , }) ; } Some (')') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: List { items , open_line }) } Some ('[') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '[' , }) ; } Some (']') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: Bracket { items , _open_line : open_line , }) } Some ('<') => { let line = self . current_line () ; let mut text = String :: new () ; text . push ('<') ; self . advance () ; let mut found_close = false ; loop { match self . peek_char () { None => break , Some ('>') => { text . push ('>') ; self . advance () ; found_close = true ; break ; } Some (c) => { text . push (c) ; self . advance () ; } } } if ! found_close { return Err (ParseError :: UnclosedDelimiter { line , delimiter : '<' , }) ; } Ok (Sexp :: Atom { text , _line : line }) } Some (_) => { let line = self . current_line () ; let mut text = String :: new () ; loop { match self . peek_char () { None => break , Some (c) if c . is_whitespace () || c == '(' || c == ')' || c == '[' || c == ']' => { break ; } Some (c) => { text . push (c) ; self . advance () ; } } } Ok (Sexp :: Atom { text , _line : line }) } } } }",
+      "reason": "impl method `skip_whitespace` body: mutating method's tail expression is neither a threaded-binding field/whole-value re-assignment nor (with the method's original return type already `()`/self-chain, and either multiple threaded bindings or one already assigned) an extra value — value-threading only supports a flat sequence of `self.<field> = ..`/`*<param> = ..` re-assignments plus, when the source return type is non-unit, one trailing value expression (DN-125 §5, conservative scope per §6.1)",
+      "item_name": "impl Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 156,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "impl Parser { fn new (source : & str) -> Self { let chars : Vec < char > = source . chars () . collect () ; let mut line_at = Vec :: with_capacity (chars . len () + 1) ; let mut ln = 1usize ; for & c in & chars { line_at . push (ln) ; if c == '\\n' { ln += 1 ; } } line_at . push (ln) ; Self { chars , pos : 0 , line_at , } } fn peek_char (& self) -> Option < char > { self . chars . get (self . pos) . copied () } fn current_line (& self) -> usize { self . line_at . get (self . pos) . copied () . unwrap_or (1) } fn advance (& mut self) { self . pos += 1 ; } fn skip_whitespace (& mut self) { loop { match self . peek_char () { Some (c) if c . is_whitespace () => { self . advance () ; } Some (';') => { while let Some (cc) = self . peek_char () { self . advance () ; if cc == '\\n' { break ; } } } _ => break , } } } # [doc = \" Read a raw S-expression tree (no semantic validation yet).\"] fn read_sexp (& mut self , depth : usize) -> Result < Sexp , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } self . skip_whitespace () ; match self . peek_char () { None => { let line = self . current_line () ; Err (ParseError :: UnrecognizedConstruct { line , token : \"<EOF>\" . into () , }) } Some ('(') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '(' , }) ; } Some (')') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: List { items , open_line }) } Some ('[') => { let open_line = self . current_line () ; self . advance () ; let mut items = Vec :: new () ; loop { self . skip_whitespace () ; match self . peek_char () { None => { return Err (ParseError :: UnclosedDelimiter { line : open_line , delimiter : '[' , }) ; } Some (']') => { self . advance () ; break ; } _ => { items . push (self . read_sexp (depth + 1) ?) ; } } } Ok (Sexp :: Bracket { items , _open_line : open_line , }) } Some ('<') => { let line = self . current_line () ; let mut text = String :: new () ; text . push ('<') ; self . advance () ; let mut found_close = false ; loop { match self . peek_char () { None => break , Some ('>') => { text . push ('>') ; self . advance () ; found_close = true ; break ; } Some (c) => { text . push (c) ; self . advance () ; } } } if ! found_close { return Err (ParseError :: UnclosedDelimiter { line , delimiter : '<' , }) ; } Ok (Sexp :: Atom { text , _line : line }) } Some (_) => { let line = self . current_line () ; let mut text = String :: new () ; loop { match self . peek_char () { None => break , Some (c) if c . is_whitespace () || c == '(' || c == ')' || c == '[' || c == ']' => { break ; } Some (c) => { text . push (c) ; self . advance () ; } } } Ok (Sexp :: Atom { text , _line : line }) } } } }",
+      "reason": "impl method `read_sexp` body: mutating method body statement is neither a `let`, a supported `self.<field>`/`*<param>` re-assignment, nor (in tail position) the method's own return value — value-threading deliberately refuses any shape outside a flat re-assignment sequence rather than risk an unsound rebind (DN-125 §6.1, never-silent G2/VR-5)",
+      "item_name": "impl Parser"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 330,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "# [doc = \" Normalize a parsed S-expression into a canonical Core-IR S-expression string.\"] # [doc = \"\"] # [doc = \" Validates the head keyword and recursively normalizes sub-expressions.\"] # [doc = \" Returns `ParseError::UnrecognizedConstruct` for any unrecognized head.\"] fn normalize_sexp (sexp : & Sexp , depth : usize) -> Result < String , ParseError > { if depth > DEPTH_LIMIT { return Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT }) ; } match sexp { Sexp :: Atom { text , .. } => { Ok (text . clone ()) } Sexp :: Bracket { items , .. } => { let parts : Result < Vec < String > , ParseError > = items . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; Ok (format ! (\"[{}]\" , parts ?. join (\" \"))) } Sexp :: List { items , open_line } => { if items . is_empty () { return Err (ParseError :: UnrecognizedConstruct { line : * open_line , token : \"()\" . into () , }) ; } let head = match & items [0] { Sexp :: Atom { text , .. } => text . as_str () , _ => { return normalize_app (items , * open_line , depth) ; } } ; match head { \"const\" => normalize_const (items , * open_line , depth) , \"let\" => normalize_let (items , * open_line , depth) , \"op\" => normalize_op (items , * open_line , depth) , \"swap!\" => normalize_swap (items , * open_line , depth) , \"make\" => normalize_make (items , * open_line , depth) , \"match\" => normalize_match (items , * open_line , depth) , \"fn\" => normalize_fn (items , * open_line , depth) , \"fix\" => normalize_fix (items , * open_line , depth) , \"fix-group\" => normalize_fix_group (items , * open_line , depth) , \"seq\" => normalize_seq (items , * open_line , depth) , _ => normalize_app (items , * open_line , depth) , } } } }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_sexp"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 388,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_const (items : & [Sexp] , _open_line : usize , depth : usize) -> Result < String , ParseError > { let inner : Result < Vec < String > , ParseError > = items [1 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; Ok (format ! (\"(const {})\" , inner ?. join (\" \"))) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "normalize_const"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 397,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_let (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 3 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"let\" . into () , }) ; } let binder = normalize_sexp (& items [1] , depth + 1) ? ; let body = normalize_sexp (& items [2] , depth + 1) ? ; Ok (format ! (\"(let {binder} {body})\")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_let"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 410,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_op (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 2 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"op\" . into () , }) ; } let prim = normalize_sexp (& items [1] , depth + 1) ? ; let args : Result < Vec < String > , ParseError > = items [2 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; let args_str = args ? . join (\" \") ; if args_str . is_empty () { Ok (format ! (\"(op {prim})\")) } else { Ok (format ! (\"(op {prim} {args_str})\")) } }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_op"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 431,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_swap (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 6 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"swap!\" . into () , }) ; } let src = normalize_sexp (& items [1] , depth + 1) ? ; let to_kw = normalize_sexp (& items [2] , depth + 1) ? ; let repr = normalize_sexp (& items [3] , depth + 1) ? ; let policy_kw = normalize_sexp (& items [4] , depth + 1) ? ; let pol = normalize_sexp (& items [5] , depth + 1) ? ; Ok (format ! (\"(swap! {src} {to_kw} {repr} {policy_kw} {pol})\")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_swap"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 447,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_make (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 2 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"make\" . into () , }) ; } let ctor = normalize_sexp (& items [1] , depth + 1) ? ; let args : Result < Vec < String > , ParseError > = items [2 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; let args_str = args ? . join (\" \") ; if args_str . is_empty () { Ok (format ! (\"(make {ctor})\")) } else { Ok (format ! (\"(make {ctor} {args_str})\")) } }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_make"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 468,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_match (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 2 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"match\" . into () , }) ; } let scrutinee = normalize_sexp (& items [1] , depth + 1) ? ; let alts : Result < Vec < String > , ParseError > = items [2 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; let alts_str = alts ? . join (\" \") ; if alts_str . is_empty () { Ok (format ! (\"(match {scrutinee})\")) } else { Ok (format ! (\"(match {scrutinee} {alts_str})\")) } }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_match"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 489,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_fn (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 3 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"fn\" . into () , }) ; } let param = normalize_sexp (& items [1] , depth + 1) ? ; let body = normalize_sexp (& items [2] , depth + 1) ? ; Ok (format ! (\"(fn {param} {body})\")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_fn"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 502,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_fix (items : & [Sexp] , open_line : usize , depth : usize) -> Result < String , ParseError > { if items . len () < 3 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"fix\" . into () , }) ; } let name = normalize_sexp (& items [1] , depth + 1) ? ; let body = normalize_sexp (& items [2] , depth + 1) ? ; Ok (format ! (\"(fix {name} {body})\")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_fix"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 515,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_fix_group (items : & [Sexp] , open_line : usize , depth : usize ,) -> Result < String , ParseError > { if items . len () < 3 { return Err (ParseError :: UnrecognizedConstruct { line : open_line , token : \"fix-group\" . into () , }) ; } let binds = normalize_sexp (& items [1] , depth + 1) ? ; let body = normalize_sexp (& items [2] , depth + 1) ? ; Ok (format ! (\"(fix-group {binds} {body})\")) }",
+      "reason": "function body has a semicolon-terminated (value-discarding) statement expression before the tail — a `let`-chain body maps only simple `let x = e;` bindings plus a single trailing expression",
+      "item_name": "normalize_fix_group"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 532,
+      "col": 1,
+      "category": "MultiStmtBody",
+      "rust_construct": "MultiStmtBody",
+      "snippet": "fn normalize_seq (items : & [Sexp] , _open_line : usize , depth : usize) -> Result < String , ParseError > { let parts : Result < Vec < String > , ParseError > = items [1 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; Ok (format ! (\"(seq {})\" , parts ?. join (\" \"))) }",
+      "reason": "`let` binding uses an unsupported pattern (only simple `let x = e;` is supported)",
+      "item_name": "normalize_seq"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 541,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn normalize_app (items : & [Sexp] , _open_line : usize , depth : usize) -> Result < String , ParseError > { let func = normalize_sexp (& items [0] , depth + 1) ? ; let args : Result < Vec < String > , ParseError > = items [1 ..] . iter () . map (| i | normalize_sexp (i , depth + 1)) . collect () ; let args_str = args ? . join (\" \") ; Ok (format ! (\"({func} {args_str})\")) }",
+      "reason": "unsupported expression form `normalize_sexp (& items [0] , depth + 1) ?`",
+      "item_name": "normalize_app"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/llm_canonical_parser.rs",
+      "line": 556,
+      "col": 1,
+      "category": "TestItem",
+      "rust_construct": "TestItem",
+      "snippet": "# [cfg (test)] mod tests { use super :: * ; # [doc = \" `test_empty_input_is_error`: `parse_llm_canonical(\\\"\\\")` returns\"] # [doc = \" `Err(ParseError::EmptyInput)`. Exact variant — returning `Ok(\\\"\\\")` would\"] # [doc = \" make this fail (mutant witness: the empty-check guard is required).\"] # [test] fn test_empty_input_is_error () { assert_eq ! (parse_llm_canonical (\"\") , Err (ParseError :: EmptyInput)) ; assert_eq ! (parse_llm_canonical (\"   \\t\\n\") , Err (ParseError :: EmptyInput)) ; } # [doc = \" `test_depth_limit_exceeded`: 65 levels of nesting returns\"] # [doc = \" `Err(ParseError::DepthLimitExceeded { limit: 64 })`. Exact variant —\"] # [doc = \" removing the depth check causes a stack overflow on deep input (mutant\"] # [doc = \" witness: the depth guard is required; DEPTH_LIMIT == 64).\"] # [test] fn test_depth_limit_exceeded () { let nesting = DEPTH_LIMIT + 1 ; let open : String = \"(const \" . repeat (nesting) ; let close : String = \")\" . repeat (nesting) ; let deep_input = format ! (\"{open}x @Exact{close}\") ; assert_eq ! (parse_llm_canonical (& deep_input) , Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT })) ; } # [doc = \" `test_roundtrip_simple_construct`: a simple Core-IR fragment rendered by the\"] # [doc = \" LlmCanonical renderer is then parsed back. The result should be `Ok` and contain\"] # [doc = \" the key structural tokens. This is the key roundtrip property test.\"] # [test] fn test_roundtrip_simple_construct () { use crate :: project :: llm_canonical ; use mycelium_core :: Node ; let op_node = Node :: Op { prim : \"bit.not\" . into () , args : vec ! [Node :: Var (\"x\" . into ())] , } ; let rendered = llm_canonical (& op_node) . expect (\"small fixture fits the default arena ceiling\") ; let parsed = parse_llm_canonical (& rendered) ; assert ! (parsed . is_ok () , \"roundtrip parse failed: {:?} on input {:?}\" , parsed , rendered) ; let out = parsed . unwrap () ; assert ! (out . contains (\"op\") , \"roundtrip output should contain 'op': {out}\") ; assert ! (out . contains (\"bit.not\") , \"roundtrip output should contain 'bit.not': {out}\") ; assert ! (out . contains ('x') , \"roundtrip output should contain 'x': {out}\") ; } # [doc = \" `test_unrecognized_construct`: a form not in the LlmCanonical vocabulary returns\"] # [doc = \" `Err(ParseError::UnrecognizedConstruct { .. })`. We use an empty list `()`, which\"] # [doc = \" the renderer never produces, and assert the `token` field.\"] # [test] fn test_unrecognized_construct () { let result = parse_llm_canonical (\"()\") ; assert ! (matches ! (result , Err (ParseError :: UnrecognizedConstruct { ref token , .. }) if token == \"()\") , \"expected UnrecognizedConstruct with token='()': {result:?}\") ; } # [doc = \" `test_unclosed_delimiter`: unclosed `(` returns\"] # [doc = \" `Err(ParseError::UnclosedDelimiter { delimiter: '(', .. })`.\"] # [test] fn test_unclosed_delimiter () { let result = parse_llm_canonical (\"(const 0b101 @Exact\") ; assert ! (matches ! (result , Err (ParseError :: UnclosedDelimiter { delimiter : '(' , .. })) , \"expected UnclosedDelimiter for unclosed '(': {result:?}\") ; } # [doc = \" Unclosed `<` returns `UnclosedDelimiter { delimiter: '<' }`.\"] # [test] fn test_unclosed_angle () { let result = parse_llm_canonical (\"<4 trits\") ; assert ! (matches ! (result , Err (ParseError :: UnclosedDelimiter { delimiter : '<' , .. })) , \"expected UnclosedDelimiter for unclosed '<': {result:?}\") ; } # [doc = \" A valid variable reference atom parses successfully.\"] # [test] fn test_var_atom_parses () { let result = parse_llm_canonical (\"myvar\") ; assert_eq ! (result , Ok (\"myvar\" . to_string ())) ; } # [doc = \" A complete op form with depth well within the limit parses successfully.\"] # [test] fn test_op_parses () { let result = parse_llm_canonical (\"(op bit.not x)\") ; assert ! (result . is_ok () , \"op parse failed: {result:?}\") ; let out = result . unwrap () ; assert ! (out . contains (\"op\") && out . contains (\"bit.not\") && out . contains ('x')) ; } # [doc = \" `(fn [x] x)` parses as a lambda.\"] # [test] fn test_fn_parses () { let result = parse_llm_canonical (\"(fn [x] x)\") ; assert ! (result . is_ok () , \"fn parse failed: {result:?}\") ; let out = result . unwrap () ; assert ! (out . contains (\"fn\") && out . contains ('x')) ; } # [doc = \" `(fix f f)` parses as a fixed-point.\"] # [test] fn test_fix_parses () { let result = parse_llm_canonical (\"(fix f f)\") ; assert ! (result . is_ok () , \"fix parse failed: {result:?}\") ; let out = result . unwrap () ; assert ! (out . contains (\"fix\") && out . contains ('f')) ; } # [doc = \" The depth limit boundary: exactly DEPTH_LIMIT levels succeeds; DEPTH_LIMIT+1 fails.\"] # [test] fn test_depth_limit_boundary () { let mut s = \"x\" . to_string () ; for _ in 0 .. DEPTH_LIMIT { s = format ! (\"(op id {s})\") ; } let at_limit = parse_llm_canonical (& s) ; assert ! (at_limit . is_ok () , \"depth exactly at limit ({DEPTH_LIMIT} lists) should succeed: {at_limit:?}\") ; let s_over = format ! (\"(op id {s})\") ; let over_limit = parse_llm_canonical (& s_over) ; assert_eq ! (over_limit , Err (ParseError :: DepthLimitExceeded { limit : DEPTH_LIMIT })) ; } # [doc = \" Roundtrip: a let binding goes through renderer → parser without error.\"] # [test] fn test_roundtrip_let () { use crate :: project :: llm_canonical ; use mycelium_core :: { Meta , Node , Payload , Provenance , Repr , Value } ; let byte_val = Value :: new (Repr :: Binary { width : 8 } , Payload :: Bits (vec ! [true , false , true , true , false , false , true , false]) , Meta :: exact (Provenance :: Root) ,) . unwrap () ; let let_node = Node :: Let { id : \"a\" . into () , bound : Box :: new (Node :: Const (byte_val)) , body : Box :: new (Node :: Var (\"a\" . into ())) , } ; let rendered = llm_canonical (& let_node) . expect (\"small fixture fits the default arena ceiling\") ; let parsed = parse_llm_canonical (& rendered) ; assert ! (parsed . is_ok () , \"let roundtrip failed: {:?} on input {:?}\" , parsed , rendered) ; let out = parsed . unwrap () ; assert ! (out . contains (\"let\") , \"roundtrip output should contain 'let': {out}\") ; } # [doc = \" Roundtrip: swap node preserves `swap!`, `:to`, `:policy` (P3).\"] # [test] fn test_roundtrip_swap () { use crate :: project :: llm_canonical ; use mycelium_core :: { ContentHash , Meta , Node , Payload , Provenance , Repr , Value } ; let byte_val = Value :: new (Repr :: Binary { width : 8 } , Payload :: Bits (vec ! [false ; 8]) , Meta :: exact (Provenance :: Root) ,) . unwrap () ; let swap_node = Node :: Swap { src : Box :: new (Node :: Const (byte_val)) , target : Repr :: Ternary { trits : 6 } , policy : ContentHash :: parse (\"blake3:po1icy00\") . unwrap () , } ; let rendered = llm_canonical (& swap_node) . expect (\"small fixture fits the default arena ceiling\") ; let parsed = parse_llm_canonical (& rendered) ; assert ! (parsed . is_ok () , \"swap roundtrip failed: {:?} on input {:?}\" , parsed , rendered) ; let out = parsed . unwrap () ; assert ! (out . contains (\"swap!\") , \"P3: swap! must survive: {out}\") ; assert ! (out . contains (\":to\") , \"P3: :to must survive: {out}\") ; assert ! (out . contains (\":policy\") , \"P3: :policy must survive: {out}\") ; assert ! (out . contains (\"Ternary\") , \"P3: target repr must survive: {out}\") ; } # [doc = \" Roundtrip all 11 node kinds: renderer → parser succeeds for every node.\"] # [test] fn test_roundtrip_all_11_node_kinds () { use crate :: project :: llm_canonical ; use mycelium_core :: { ContentHash , CtorRef , Meta , Node , Payload , Provenance , Repr , Value } ; let byte_val = | | { Value :: new (Repr :: Binary { width : 8 } , Payload :: Bits (vec ! [true , false , true , true , false , false , true , false]) , Meta :: exact (Provenance :: Root) ,) . unwrap () } ; let ctor = CtorRef :: new (ContentHash :: parse (\"blake3:00ctor00\") . unwrap () , 0) ; let nodes : Vec < Node > = vec ! [Node :: Const (byte_val ()) , Node :: Var (\"x\" . into ()) , Node :: Let { id : \"a\" . into () , bound : Box :: new (Node :: Const (byte_val ())) , body : Box :: new (Node :: Var (\"a\" . into ())) , } , Node :: Op { prim : \"bit.not\" . into () , args : vec ! [Node :: Const (byte_val ())] , } , Node :: Swap { src : Box :: new (Node :: Const (byte_val ())) , target : Repr :: Ternary { trits : 6 } , policy : ContentHash :: parse (\"blake3:po1icy00\") . unwrap () , } , Node :: Construct { ctor : ctor . clone () , args : vec ! [Node :: Const (byte_val ())] , } , Node :: Match { scrutinee : Box :: new (Node :: Const (byte_val ())) , alts : vec ! [] , default : Some (Box :: new (Node :: Const (byte_val ()))) , } , Node :: Lam { param : \"x\" . into () , body : Box :: new (Node :: Var (\"x\" . into ())) , } , Node :: App { func : Box :: new (Node :: Var (\"f\" . into ())) , arg : Box :: new (Node :: Const (byte_val ())) , } , Node :: Fix { name : \"f\" . into () , body : Box :: new (Node :: Var (\"f\" . into ())) , } , Node :: FixGroup { defs : vec ! [(\"f\" . into () , Box :: new (Node :: Var (\"g\" . into ()))) , (\"g\" . into () , Box :: new (Node :: Var (\"f\" . into ()))) ,] , body : Box :: new (Node :: Var (\"f\" . into ())) , } ,] ; assert_eq ! (nodes . len () , 11 , \"coverage: all 11 v0 node kinds\") ; for n in & nodes { let rendered = llm_canonical (n) . expect (\"small fixture fits the default arena ceiling\") ; let parsed = parse_llm_canonical (& rendered) ; assert ! (parsed . is_ok () , \"node {:?}: roundtrip failed {:?} on input {:?}\" , std :: mem :: discriminant (n) , parsed , rendered) ; } } }",
+      "reason": "#[cfg(test)] item — out of scope for this PoC's transpilation surface (excluded from the expressible-fraction denominator, but recorded, never silently skipped)",
+      "item_name": "tests"
+    }
+  ],
+  "total_top_level_items": 20
+}

@@ -1,0 +1,17 @@
+// nodule: lsp.expand
+// **Expand ambient** (M-344; RFC-0012 §5): the toolchain projection that renders a document's
+// resolved *longhand* form on demand — the answer to "what does this paradigm-less `{…}` /
+// `default paradigm` actually mean here?". Because the ambient is pure surface elaboration
+// (RFC-0012 I2), the expanded form is the program a reader would write by hand, and it elaborates
+// to the identical L0 (identical content hash). This is the "expand ambient" the editor surfaces
+// so the elided default is never *hidden*, only *elided* (§5).
+//
+// Width resolution needs the checker, so full expansion runs the parse → resolve → check pipeline
+// ([`mycelium_l1::check_and_resolve`]) and pretty-prints the checker-resolved twin
+// ([`mycelium_l1::expand_to_source`]); a parse/check failure is reported, never a partial render.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.expand;
+
+

@@ -1,0 +1,161 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+  "emitted_items": [
+    "ClassName",
+    "impl ClassName",
+    "UnknownClass"
+  ],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 10,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: collections :: BTreeSet ;",
+      "reason": "`use std.collections::BTreeSet` — `std.collections` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 11,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: fmt ;",
+      "reason": "`use std::fmt` — `std` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 13,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" A **resolved** error-class name. The only constructor is [`ClassRegistry::resolve`]; you cannot\"] # [doc = \" fabricate one from arbitrary text without a registry lookup (X1). This makes \\\"looked up, never\"] # [doc = \" evaluated\\\" a type-level property, not a convention.\"] # [derive (Debug , Clone , PartialEq , Eq , PartialOrd , Ord , Hash)] pub struct ClassName (String) ;",
+      "reason": "struct `ClassName` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "ClassName"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 13,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" A **resolved** error-class name. The only constructor is [`ClassRegistry::resolve`]; you cannot\"] # [doc = \" fabricate one from arbitrary text without a registry lookup (X1). This makes \\\"looked up, never\"] # [doc = \" evaluated\\\" a type-level property, not a convention.\"] # [derive (Debug , Clone , PartialEq , Eq , PartialOrd , Ord , Hash)] pub struct ClassName (String) ;",
+      "reason": "struct `ClassName` derive(...) names Eq, Ord not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "ClassName"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 19,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "impl ClassName { # [doc = \" The class name as a string.\"] # [must_use] pub fn as_str (& self) -> & str { & self . 0 } }",
+      "reason": "dropped non-doc attribute(s) on method `as_str`: # [must_use]",
+      "item_name": "impl ClassName"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 27,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for ClassName { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { f . write_str (& self . 0) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "ClassName"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 33,
+      "col": 1,
+      "category": "NamedFieldDrop",
+      "rust_construct": "NamedFieldDrop",
+      "snippet": "# [doc = \" Resolving an error-class name not in the registry — an **explicit** configuration error (X1: never\"] # [doc = \" silently ignored, never coerced into code).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownClass { # [doc = \" The unrecognized name as written.\"] pub name : String , }",
+      "reason": "struct `UnknownClass` named field(s) `name` emitted positionally as `UnknownClass(Bytes)` — Mycelium's `constructor` is positional-only (no record surface); product structure preserved, field names dropped (matches `lib/std/*.myc` hand-ports)",
+      "item_name": "UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 33,
+      "col": 1,
+      "category": "DeriveSatisfied",
+      "rust_construct": "DeriveSatisfied",
+      "snippet": "# [doc = \" Resolving an error-class name not in the registry — an **explicit** configuration error (X1: never\"] # [doc = \" silently ignored, never coerced into code).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownClass { # [doc = \" The unrecognized name as written.\"] pub name : String , }",
+      "reason": "struct `UnknownClass` derive(Clone) is a satisfied no-op under Mycelium's value semantics (ADR-003 — every value already copies structurally; DN-128 §6.1) — not emitted as an impl, not a gap",
+      "item_name": "UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 33,
+      "col": 1,
+      "category": "DeriveAttr",
+      "rust_construct": "DeriveAttr",
+      "snippet": "# [doc = \" Resolving an error-class name not in the registry — an **explicit** configuration error (X1: never\"] # [doc = \" silently ignored, never coerced into code).\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct UnknownClass { # [doc = \" The unrecognized name as written.\"] pub name : String , }",
+      "reason": "struct `UnknownClass` derive(...) names Eq not in the DN-128 standard-derive set this leaf builds (Debug/Default/Clone/Copy/PartialEq/PartialOrd/Hash all recognized; bare Eq/Ord are deliberately NOT recognized — see emit/derives/mod.rs::TABLE's doc for why) — dropped, no confirmed Mycelium surface",
+      "item_name": "UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 41,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl fmt :: Display for UnknownClass { fn fmt (& self , f : & mut fmt :: Formatter < '_ >) -> fmt :: Result { write ! (f , \"unknown error class {:?}: not in the registry (names are looked up, never evaluated — \\\n             RFC-0013 §4.5 X1); register it first or correct the name\" , self . name) } }",
+      "reason": "trait-impl of non-prelude trait `Display` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 52,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl std :: error :: Error for UnknownClass { }",
+      "reason": "trait-impl of non-prelude trait `Error` — no ambient trait definition and synthetic trait emission is refused (DN-34 §8.8 / DN-122 MVP); gapped the whole impl so the residual cannot file-poison myc-check (G2; express gap-close 2026-07-16)",
+      "item_name": "UnknownClass"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 54,
+      "col": 1,
+      "category": "Struct",
+      "rust_construct": "Struct",
+      "snippet": "# [doc = \" The known set of error-class names a policy may name (RFC-0013 §4.5). The membership and extension\"] # [doc = \" discipline is the implementation-task-open question RFC-0013 §8 left; v0 seeds the set from the\"] # [doc = \" explicit errors the kernel + checker + linter already emit (the lint codes and the `SwapError`\"] # [doc = \" family), and allows a downstream module to [`register`](Self::register) its own — still by\"] # [doc = \" known-set lookup, never `eval`.\"] # [derive (Debug , Clone , PartialEq , Eq)] pub struct ClassRegistry { classes : BTreeSet < String > , }",
+      "reason": "struct `ClassRegistry` uses named fields and references a type not resolvable in-file — emitting it positionally would introduce an unresolved reference that poisons the file's `myc check`; left gapped under the M-1006 resolvability gate (VR-5/G2)",
+      "item_name": "ClassRegistry"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 64,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "# [doc = \" The v0 built-in error classes — grounded in the explicit errors Mycelium already surfaces:\"] # [doc = \" the `mycelium-lsp` lint codes, the `mycelium-cert::SwapError` family, and the\"] # [doc = \" `CheckVerdict::NotValidated` refusal (RFC-0001/0002; RFC-0013 §1).\"] const BUILTIN_CLASSES : & [& str] = & [\"SwapOutOfRange\" , \"SwapIllegalPair\" , \"SwapWrongSource\" , \"SwapNonFinite\" , \"SwapApproximateSource\" , \"SwapInsufficientCapacity\" , \"SwapAmbiguousDecode\" , \"UnsupportedSwapPair\" , \"ImplicitSwap\" , \"UnverifiedBound\" , \"PlaceholderPolicy\" , \"FreeVariable\" , \"PolicyDivergence\" , \"NotValidated\" , \"TypeMismatch\" , \"UnresolvedName\" ,] ;",
+      "reason": "top-level `const BUILTIN_CLASSES` — co-emit (ORACLE-R1 A4) only covers plain unsigned integer types (`u8`/`u16`/`u32`/`u64`/`u128`/`usize`); other types have no const item production and no faithful zero-arg-fn encoding (gap, never fabricate)",
+      "item_name": "BUILTIN_CLASSES"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 89,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl ClassRegistry { # [doc = \" An empty registry — resolves nothing until classes are registered.\"] # [must_use] pub fn new () -> Self { ClassRegistry { classes : BTreeSet :: new () , } } # [doc = \" The registry seeded with the v0 built-in classes (`BUILTIN_CLASSES`).\"] # [must_use] pub fn with_builtins () -> Self { ClassRegistry { classes : BUILTIN_CLASSES . iter () . map (| s | (* s) . to_owned ()) . collect () , } } # [doc = \" Register a downstream error class. Returns `true` if newly added. Extension is still\"] # [doc = \" known-set membership — never an `eval` path (X1).\"] pub fn register (& mut self , name : impl Into < String >) -> bool { self . classes . insert (name . into ()) } # [doc = \" Whether `name` is a known class.\"] # [must_use] pub fn contains (& self , name : & str) -> bool { self . classes . contains (name) } # [doc = \" Resolve a name to a [`ClassName`] **through the registry** — the only way to obtain one. An\"] # [doc = \" unknown name is an explicit [`UnknownClass`] error (X1; never silent).\"] # [doc = \"\"] # [doc = \" # Errors\"] # [doc = \" Returns [`UnknownClass`] if `name` is not registered.\"] pub fn resolve (& self , name : & str) -> Result < ClassName , UnknownClass > { if self . classes . contains (name) { Ok (ClassName (name . to_owned ())) } else { Err (UnknownClass { name : name . to_owned () , }) } } # [doc = \" The known class names, sorted (deterministic).\"] pub fn classes (& self) -> impl Iterator < Item = & str > { self . classes . iter () . map (String :: as_str) } }",
+      "reason": "no member of this impl block could be transpiled (6 sub-issue(s)): impl method `new` body: struct literal `ClassRegistry { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `with_builtins` body: struct literal `ClassRegistry { .. }` — not an in-file single-ctor struct or enum struct-variant that emits (no constructor to build; a cross-nodule variant is an honest DN-113/DN-134-OQ-2 resolvability gap, never a fabricated out-of-file reference — VR-5/G2); impl method `register` signature: unsupported Rust type form `impl Into < String >`; impl method `contains` body: Rust `.contains()` has no verified bare-call kernel prim mapping in this pipeline; desugaring to `contains(recv, …)` would fabricate an unknown prim — gapped never-silently (M-1037, G2/VR-5); impl method `resolve` body: Rust `.contains()` has no verified bare-call kernel prim mapping in this pipeline; desugaring to `contains(recv, …)` would fabricate an unknown prim — gapped never-silently (M-1037, G2/VR-5); impl method `classes` signature: unsupported Rust type form `impl Iterator < Item = & str >`",
+      "item_name": "ClassRegistry"
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/diagnostics/registry.rs",
+      "line": 139,
+      "col": 1,
+      "category": "Impl",
+      "rust_construct": "Impl",
+      "snippet": "impl Default for ClassRegistry { fn default () -> Self { Self :: new () } }",
+      "reason": "no member of this impl block could be transpiled (1 sub-issue(s)): impl method `default` body: qualified/associated-function call `Self :: new` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "ClassRegistry"
+    }
+  ],
+  "total_top_level_items": 12
+}

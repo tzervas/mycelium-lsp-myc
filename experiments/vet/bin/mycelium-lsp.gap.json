@@ -1,0 +1,37 @@
+{
+  "source": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+  "emitted_items": [],
+  "gaps": [
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+      "line": 1,
+      "col": 1,
+      "category": "ReservedWord",
+      "rust_construct": "ReservedWord",
+      "snippet": "nodule lsp.bin.mycelium-lsp;",
+      "reason": "derived nodule path `lsp.bin.mycelium-lsp` has segment(s) [bin] colliding with a Mycelium reserved word — emitting them verbatim would fail to parse (`nodule lsp.bin.mycelium-lsp;` tokenizes the colliding word as a keyword, not an identifier); each colliding segment is escaped with the `_kw` suffix (now `lsp.bin_kw.mycelium_u2D_lsp`) rather than dropped, so distinct source files whose only differing segment is a reserved word (e.g. `l1.fuse` vs `l1.nodule`) stay distinguishable instead of both collapsing onto the same nodule path (G2/VR-5)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+      "line": 12,
+      "col": 1,
+      "category": "Import",
+      "rust_construct": "Import",
+      "snippet": "use std :: process :: ExitCode ;",
+      "reason": "`use std.process::ExitCode` — `std.process` is not a sibling module OR sibling phylum transpiled in this same batch (an external crate, `std`, or simply out of this batch's target set). Flagged, not guessed (VR-5/G2)",
+      "item_name": null
+    },
+    {
+      "file": "/root/git/isolated/mycelium/crates/mycelium-lsp/src/bin/mycelium-lsp.rs",
+      "line": 14,
+      "col": 1,
+      "category": "Other",
+      "rust_construct": "Other",
+      "snippet": "fn main () -> ExitCode { match mycelium_lsp :: serve_stdio () { Ok (()) => ExitCode :: SUCCESS , Err (e) => { eprintln ! (\"mycelium-lsp: transport error: {e}\") ; ExitCode :: FAILURE } } }",
+      "reason": "qualified/associated-function call `mycelium_lsp :: serve_stdio` did not resolve to a known-emitted associated fn — Mycelium calls are bare identifiers, and the only sound surface form for `Type::method(...)` is the mangled `Type__method` name the declaration side already emits for a receiver-less inherent-impl associated fn (DN-34 §8.13/8.14), referenced only when that exact declaration is PROVEN present (same-file, or a resolved M-1084 cross-nodule sibling). A primitive/std associated fn with no emitted decl (e.g. `i128::try_from`), an unresolved type, or a `self`-receiving method (excluded by construction — it stays reachable only from its own bare call site) all gap here rather than fabricate a call (G2/VR-5, DN-133)",
+      "item_name": "main"
+    }
+  ],
+  "total_top_level_items": 2
+}

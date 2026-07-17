@@ -1,0 +1,27 @@
+// nodule: lsp.diagnostics.policy_kw
+// The **reified per-definition error-handling policy** (RFC-0013 §4.4) — the RFC-0005 selection-
+// policy pattern (ADR-006) applied to *presentation/routing*.
+//
+// ```text
+// on <ErrorClass> => { message?, tags?, level?, route? }
+// ```
+//
+// A policy is a **content-addressed, inspectable artifact**: every diagnostic it shapes records its
+// [`content_id`](DiagnosticPolicy::content_id) (`PolicyRef`), so one can always answer *"which policy
+// shaped this diagnostic, and what does it do?"*. It configures **presentation/routing only** (I4):
+// no recovery, no fallback, no handler, no control-flow effect — that is RFC-0014's concern. The
+// explicit error it attaches to propagates unchanged (I1, enforced by [`super::record::present`]).
+//
+// `<ErrorClass>` is resolved **through the registry** (§4.5 X1): a rule cannot name a class the
+// registry does not know — an unknown class is an explicit error, never silently ignored.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.diagnostics.policy_kw;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.record) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Level = Minimal | Medium | Detailed;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.registry) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ClassName = ClassName(Bytes);
+type UnknownClass = UnknownClass(Bytes);

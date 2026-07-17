@@ -1,0 +1,32 @@
+// nodule: lsp.diagnostics.record
+// The **content-addressed diagnostic record** and its **dual human + JSON projection**
+// (RFC-0013 §4.2/§4.3), plus the never-silent **`present`** renderer (§4.1).
+//
+// A diagnostic is *one content-addressed value*; "human" and "JSON" are two **renderers of one
+// truth** (G11). The renderer is a **pure function of an already-emitted error** ([`ReasonedError`])
+// plus an optional policy: it is structurally incapable of catching, softening, or standing in for
+// that error — [`present`] returns the error **unchanged** alongside the presentation (I1).
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.diagnostics.record;
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.registry) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type ClassName = ClassName(Bytes);
+
+// EXPLAIN (L2-B/DN-124): Declared co-include of batch-sibling type surface (homes: lsp.diagnostics.sink) so single-file oracle is self-contained — not a language `use` identity, not a short-form path collapse (M-1084 full path retained as provenance). Transitive type deps in the same batch are co-included. G2/VR-5.
+type Route = Stream | Audit | Log | Null | Mesh;
+type UnknownRoute = UnknownRoute(Bytes);
+
+// A graded context **level** — a verbosity knob over *one* truth (§4.2). Ordered
+// `Minimal < Medium < Detailed`; raising it shows *more of* a diagnostic, never *whether* the
+// underlying error exists (I2).
+pub type Level = Minimal | Medium | Detailed;
+
+impl Show[Level] for Level {
+  fn render(x: Level) => Bytes =
+    match x { Minimal => "Minimal", Medium => "Medium", Detailed => "Detailed" };
+};
+
+fn eq_Level(a: Level, b: Level) => Binary{1} =
+  match a { Minimal => match b { Minimal => 0b1, _ => 0b0 }, Medium => match b { Medium => 0b1, _ => 0b0 }, Detailed => match b { Detailed => 0b1, _ => 0b0 } };

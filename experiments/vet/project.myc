@@ -1,0 +1,62 @@
+// nodule: lsp.project
+// The **`LlmCanonical` projection** (RFC-0021 §4.6; M-380) — a v0 prototype renderer.
+//
+// A *projection* (RFC-0021 §3.1) is a total, inspectable function from a content-addressed L1 node
+// tree to a rendered surface; identity stays the content hash, never the rendering (P4). This module
+// is the **LLM-facing canonical** projection (FR-S5): an s-expression rendering chosen for low
+// out-of-distribution token overhead and maximal regularity, intended as the machine-co-authoring
+// surface. It lives **above the kernel** (KC-3) — in the dual-intelligibility surface crate, not in
+// `mycelium-core`.
+//
+// # What this prototype demonstrates (the RFC-0021 §9 ergonomics gate / RP-4 sub-q 1)
+// `research/11` *assessed* that authoring a total, honesty-preserving projection over the closed
+// ~11-node L1 grammar is feasible at single-engineer scale (T11.4). This module turns that assessment
+// into **demonstrated, tested** evidence: it is one total `match` over every [`Node`] kind (the
+// compiler enforces totality), it preserves the honesty overlay by construction, and its tests check
+// that overlay holds. It does **not** address the *empirical* LLM-leverage gate (RP-1 / RFC-0021's
+// §9 second prompt) — that needs LLM runs and is honestly out of scope (`research/11` T11.6).
+//
+// # The honesty overlay (RFC-0021 §4.3 P1–P6), enforced here
+// - **P2 (honest tags survive):** every `Const`'s guarantee tag is rendered (`@Exact`/`@Declared`/…),
+//   and an approximate value's bound presence is surfaced (`:bound`).
+// - **P3 (`Swap` never elided):** the `Swap` node renders explicitly as `(swap! …)`, always carrying
+//   its target and policy — it can never be dropped (it is a match arm).
+// - **P1/P4:** this is a *view*; it changes no node and re-uses the kernel's `CtorRef`/`PrimRef`
+//   `#…` content-addresses as identity.
+//
+// # Honest scope of the prototype (VR-5)
+// The mapping rules here are a Rust `match`, not the *declared, dumpable rule table* RFC-0021 §4.2
+// ultimately wants (so the rules are inspectable as source, but not yet as data); and this is a
+// **read-only** projection (no `RoundTrip` parse-back — RFC-0021 §4.1 `EditCapability::ReadOnly`).
+// Both are noted as follow-ups, not claimed as done.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.project;
+
+// Declared: co-emitted guarantee-lattice type — referenced in this file but not declared here and not available via a resolved batch `use` (ORACLE-R1 A2; never silent unknown-type file poison — G2/VR-5). Variants use DN-140 `*_kw` renames for the reserved lattice keywords (Exact/Proven/Empirical/Declared).
+// Declared: renamed Exact -> Exact_kw (reserved-word collision, DN-140)
+// Declared: renamed Proven -> Proven_kw (reserved-word collision, DN-140)
+// Declared: renamed Empirical -> Empirical_kw (reserved-word collision, DN-140)
+// Declared: renamed Declared -> Declared_kw (reserved-word collision, DN-140)
+type GuaranteeStrength = Exact_kw | Proven_kw | Empirical_kw | Declared_kw;
+
+// A conservative, **Declared** (not measured) per-node byte estimate for the rendered s-expression,
+// used only to *size the pre-render reservation* — never to bound the actual output. An
+// under-estimate would only under-charge the arena (never cause a false refusal); this constant is
+// picked generously relative to the shortest possible per-node rendering (a bare variable name or
+// `(const ...)`) so the reservation stays a conservative upper bound in practice, without being
+// `Proven`.
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn ESTIMATED_BYTES_PER_NODE() => Binary{64} = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100_0000; // 64
+
+fn guar_str(g: GuaranteeStrength) => Bytes = match g { Exact_kw => "Exact", Proven_kw => "Proven", Empirical_kw => "Empirical", Declared_kw => "Declared" };
+
+// Above this width, a literal payload is summarized by its length rather than inlined element-wise.
+// `Binary{width}`/`Ternary{trits}` are only constrained `> 0` (`mycelium-core::repr`), so a `Const`
+// can carry an arbitrarily large payload; rendering every element would be O(width). The summary is
+// honest (the value is never dropped — it states its shape), mirroring the VSA-hypervector case.
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn INLINE_MAX() => Binary{64} = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100_0000; // 64
+
+fn scalar_str(k: ScalarKind) => Bytes = match k { F16_kw => "F16", Bf16 => "BF16", F32_kw => "F32", F64_kw => "F64" };

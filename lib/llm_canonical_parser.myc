@@ -1,0 +1,74 @@
+// nodule: lsp.llm_canonical_parser
+// LlmCanonical → Core-IR S-expression parser (M-381 Arm 4; RFC-0021 §4.1 `EditCapability`).
+//
+// This is the **inverse** of the `project::llm_canonical` renderer: it reads a
+// LlmCanonical S-expression string (produced by the renderer, or typed by an LLM) and
+// validates/normalizes it into a canonical Core-IR S-expression string suitable for
+// `myc-check` verification.
+//
+// # Honesty (VR-5, G2)
+// - **Guarantee tag: `Empirical`** — this is a heuristic line/token regex approach over
+//   the closed ~11-node grammar, not a proven-sound parser. Never upgrade to `Proven`
+//   without a checked basis (VR-5).
+// - **Fail-closed**: empty input, unrecognized constructs, unclosed delimiters, and
+//   inputs exceeding the depth limit all return explicit `Err`, never a partial/silent
+//   result (G2).
+// - **Depth limit**: recursive descent is guarded at 64 levels (banked guard #4). Inputs
+//   deeper than this return `ParseError::DepthLimitExceeded` — not a stack overflow.
+//
+// # What the parser validates
+// The LlmCanonical format produced by `project::llm_canonical` is itself an S-expression:
+// every node kind maps to a recognizable head keyword or positional structure. The parser
+// re-tokenizes the source into a balanced S-expression tree, classifies each form by its
+// head token, and emits the normalized S-expression string.
+//
+// Forms recognized (exactly the 11 node kinds the renderer covers):
+// - `(const …)` → constant
+// - `<identifier>` → variable reference
+// - `(let [id expr] body)` → let binding
+// - `(op prim arg…)` → primitive application
+// - `(swap! src :to repr :policy ref)` → representation swap
+// - `(make ctor arg…)` → saturated constructor
+// - `(match scrutinee alt…)` → flat pattern match
+// - `(fn [param] body)` → lambda
+// - `(func arg)` → application (general two-element S-expr)
+// - `(fix name body)` → fixed-point
+// - `(fix-group (binds…) body)` → mutual recursion group
+//
+// Any head token not in this set returns `ParseError::UnrecognizedConstruct`.
+// @summary: best-effort transpilation via mycelium-transpile (M-873). Declared,
+// unvalidated — no Mycelium parser/typechecker confirms this output; see the
+// accompanying .gap.json for every construct this pass could not express.
+nodule lsp.llm_canonical_parser;
+
+// Maximum nesting depth (banked guard #4 — depth limit prevents stack overflow).
+// Declared: co-emitted private const as zero-arg fn returning a BinLit — Mycelium has no const item production (`item` covers use/default/type/trait/impl/fn/object/lower/derive only); hand-port precedent `max_expr_depth()` (ORACLE-R1 A4; G2/VR-5: value from the Rust initializer or a known workspace-floor path, never fabricated). Use sites rewrite `NAME` → `NAME()`.
+fn DEPTH_LIMIT() => Binary{64} = 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0100_0000; // 64
+
+// Errors returned by [`parse_llm_canonical`] (G2: always explicit, never silent).
+pub type ParseError = EmptyInput | UnrecognizedConstruct(Binary{64}, Bytes) | UnclosedDelimiter(Binary{64}, Binary{32}) | DepthLimitExceeded(Binary{64});
+
+impl Show[ParseError] for ParseError {
+  fn render(x: ParseError) => Bytes =
+    match x { EmptyInput => "EmptyInput", UnrecognizedConstruct(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("UnrecognizedConstruct(", render(p0)), ", "), render(p1)), ")"), UnclosedDelimiter(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("UnclosedDelimiter(", render(p0)), ", "), render(width_cast(p1, 0b0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000_0000))), ")"), DepthLimitExceeded(p0) => bytes_concat(bytes_concat("DepthLimitExceeded(", render(p0)), ")") };
+};
+
+fn eq_ParseError(a: ParseError, b: ParseError) => Binary{1} =
+  match a { EmptyInput => match b { EmptyInput => 0b1, _ => 0b0 }, UnrecognizedConstruct(p0, p1) => match b { UnrecognizedConstruct(q0, q1) => and(eq(p0, q0), bytes_eq(p1, q1)), _ => 0b0 }, UnclosedDelimiter(p0, p1) => match b { UnclosedDelimiter(q0, q1) => and(eq(p0, q0), eq(p1, q1)), _ => 0b0 }, DepthLimitExceeded(p0) => match b { DepthLimitExceeded(q0) => eq(p0, q0), _ => 0b0 } };
+
+// S-expression tree (internal representation before normalization).
+type Sexp = Atom(Bytes, Binary{64}) | List(Vec[Sexp], Binary{64}) | Bracket(Vec[Sexp], Binary{64});
+
+fn show_vec_Sexp(xs: Vec[Sexp]) => Bytes =
+  match xs { Nil => "Nil", Cons(h, t) => bytes_concat("Cons(", bytes_concat(render(h), bytes_concat(", ", bytes_concat(show_vec_Sexp(t), ")")))) };
+
+impl Show[Sexp] for Sexp {
+  fn render(x: Sexp) => Bytes =
+    match x { Atom(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("Atom(", render(p0)), ", "), render(p1)), ")"), List(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("List(", show_vec_Sexp(p0)), ", "), render(p1)), ")"), Bracket(p0, p1) => bytes_concat(bytes_concat(bytes_concat(bytes_concat("Bracket(", show_vec_Sexp(p0)), ", "), render(p1)), ")") };
+};
+
+type Parser = Parser(Vec[Binary{32}], Binary{64}, Vec[Binary{64}]);
+
+impl Parser {
+  fn advance(self: Parser) => Parser = let self = Parser((match self { Parser(p0, _, _) => p0 }), (match self { Parser(_, p1, _) => p1 }) + 1, (match self { Parser(_, _, p2) => p2 })) in self;
+};
